@@ -1,0 +1,1586 @@
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
+| Date         : Sun Mar 13 14:14:55 2022
+| Host         : WD-SN850 running 64-bit Ubuntu 20.04.4 LTS
+| Command      : report_timing_summary -file ./results/timing.rpt
+| Design       : tri_mode_ethernet_mac_0_example_design
+| Device       : 7a35ti-csg324
+| Speed File   : -1L  PRODUCTION 1.23 2018-06-13
+------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+No report available as report_methodology has not been run prior. Run report_methodology on the current design for the summary of methodology violations.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (0)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (0)
+5. checking no_input_delay (9)
+6. checking no_output_delay (12)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (1)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (0)
+------------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (0)
+------------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (9)
+------------------------------
+ There is 1 input port with no input delay specified. (HIGH)
+
+ There are 8 input ports with no input delay but user has a false path constraint. (MEDIUM)
+
+
+6. checking no_output_delay (12)
+--------------------------------
+ There are 7 ports with no output delay specified. (HIGH)
+
+ There are 5 ports with no output delay but user has a false path constraint (MEDIUM)
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (1)
+------------------------------------
+ There is 1 input port with partial input delay specified. (HIGH)
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      1.686        0.000                      0                10683        0.024        0.000                      0                10587        3.000        0.000                       0                  4311  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock                                        Waveform(ns)       Period(ns)      Frequency(MHz)
+-----                                        ------------       ----------      --------------
+clk_in                                       {0.000 5.000}      10.000          100.000         
+example_clocks/clock_generator/inst/clk_in1  {0.000 5.000}      10.000          100.000         
+  clk_out1_mac_clk_wiz                       {0.000 20.000}     40.000          25.000          
+  clk_out2_mac_clk_wiz                       {0.000 5.000}      10.000          100.000         
+  clkfbout_mac_clk_wiz                       {0.000 5.000}      10.000          100.000         
+mii_rx_clk                                   {0.000 20.000}     40.000          25.000          
+mii_tx_clk                                   {0.000 20.000}     40.000          25.000          
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock                                            WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----                                            -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk_in                                             8.448        0.000                      0                   10        0.160        0.000                      0                   10        4.500        0.000                       0                    13  
+example_clocks/clock_generator/inst/clk_in1                                                                                                                                                    3.000        0.000                       0                     1  
+  clk_out1_mac_clk_wiz                            33.164        0.000                      0                 3477        0.024        0.000                      0                 3477       18.750        0.000                       0                  1405  
+  clk_out2_mac_clk_wiz                             3.841        0.000                      0                 3341        0.081        0.000                      0                 3341        3.750        0.000                       0                  1114  
+  clkfbout_mac_clk_wiz                                                                                                                                                                         7.845        0.000                       0                     3  
+mii_rx_clk                                        10.311        0.000                      0                 1982        0.091        0.000                      0                 1982       18.750        0.000                       0                   901  
+mii_tx_clk                                        31.823        0.000                      0                 1775        0.122        0.000                      0                 1775       19.020        0.000                       0                   874  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock                                   To Clock                                         WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------                                   --------                                         -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+clk_out2_mac_clk_wiz                         example_clocks/clock_generator/inst/clk_in1       93.625        0.000                      0                    1        2.296        0.000                      0                    1  
+clk_out2_mac_clk_wiz                         clk_out1_mac_clk_wiz                               2.163        0.000                      0                   74                                                                        
+mii_rx_clk                                   clk_out1_mac_clk_wiz                               1.784        0.000                      0                   41                                                                        
+mii_tx_clk                                   clk_out1_mac_clk_wiz                               1.686        0.000                      0                   36                                                                        
+clk_out1_mac_clk_wiz                         clk_out2_mac_clk_wiz                               2.953        0.000                      0                   33                                                                        
+clk_out1_mac_clk_wiz                         mii_rx_clk                                         1.880        0.000                      0                    7                                                                        
+clk_out2_mac_clk_wiz                         mii_rx_clk                                         3.449        0.000                      0                    6                                                                        
+clk_out1_mac_clk_wiz                         mii_tx_clk                                         1.881        0.000                      0                    3                                                                        
+mii_rx_clk                                   mii_tx_clk                                         4.859        0.000                      0                   18                                                                        
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group         From Clock         To Clock               WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------         ----------         --------               -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+**async_default**  mii_rx_clk         mii_rx_clk              38.457        0.000                      0                    1        0.440        0.000                      0                    1  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_in
+  To Clock:  clk_in
+
+Setup :            0  Failing Endpoints,  Worst Slack        8.448ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.160ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             8.448ns  (required time - arrival time)
+  Source:                 example_clocks/lock_sync/data_sync_reg4/C
+                            (rising edge-triggered cell FDRE clocked by clk_in  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            example_clocks/dcm_locked_edge_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk_in  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_in
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_in rise@10.000ns - clk_in rise@0.000ns)
+  Data Path Delay:        1.588ns  (logic 0.774ns (48.753%)  route 0.814ns (51.247%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.876ns = ( 14.876 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.174ns
+    Clock Pessimism Removal (CPR):    0.298ns
+  Clock Uncertainty:      0.043ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.050ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_in rise edge)     0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk_in (IN)
+                         net (fo=0)                   0.000     0.000    example_clocks/clk_in
+    E3                   IBUF (Prop_ibuf_I_O)         1.489     1.489 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           1.967     3.455    example_clocks/clkin1
+    BUFGCTRL_X0Y18       BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.096     3.551 r  example_clocks/bufg_clkin1/O
+                         net (fo=12, routed)          1.623     5.174    example_clocks/lock_sync/clk
+    SLICE_X64Y57         FDRE                                         r  example_clocks/lock_sync/data_sync_reg4/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y57         FDRE (Prop_fdre_C_Q)         0.478     5.652 f  example_clocks/lock_sync/data_sync_reg4/Q
+                         net (fo=2, routed)           0.814     6.466    example_clocks/dcm_locked_sync
+    SLICE_X64Y57         LUT2 (Prop_lut2_I1_O)        0.296     6.762 r  example_clocks/dcm_locked_edge_i_1/O
+                         net (fo=1, routed)           0.000     6.762    example_clocks/dcm_locked_edge_i_1_n_0
+    SLICE_X64Y57         FDRE                                         r  example_clocks/dcm_locked_edge_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_in rise edge)    10.000    10.000 r  
+    E3                                                0.000    10.000 r  clk_in (IN)
+                         net (fo=0)                   0.000    10.000    example_clocks/clk_in
+    E3                   IBUF (Prop_ibuf_I_O)         1.418    11.418 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           1.862    13.280    example_clocks/clkin1
+    BUFGCTRL_X0Y18       BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.091    13.371 r  example_clocks/bufg_clkin1/O
+                         net (fo=12, routed)          1.505    14.876    example_clocks/clkin1_bufg
+    SLICE_X64Y57         FDRE                                         r  example_clocks/dcm_locked_edge_reg/C
+                         clock pessimism              0.298    15.174    
+                         clock uncertainty           -0.043    15.131    
+    SLICE_X64Y57         FDRE (Setup_fdre_C_D)        0.079    15.210    example_clocks/dcm_locked_edge_reg
+  -------------------------------------------------------------------
+                         required time                         15.210    
+                         arrival time                          -6.762    
+  -------------------------------------------------------------------
+                         slack                                  8.448    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.160ns  (arrival time - required time)
+  Source:                 example_clocks/lock_sync/data_sync_reg0/C
+                            (rising edge-triggered cell FDRE clocked by clk_in  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            example_clocks/lock_sync/data_sync_reg1/D
+                            (rising edge-triggered cell FDRE clocked by clk_in  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_in
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_in rise@0.000ns - clk_in rise@0.000ns)
+  Data Path Delay:        0.220ns  (logic 0.164ns (74.580%)  route 0.056ns (25.420%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.019ns
+    Source Clock Delay      (SCD):    1.503ns
+    Clock Pessimism Removal (CPR):    0.515ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_in rise edge)     0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk_in (IN)
+                         net (fo=0)                   0.000     0.000    example_clocks/clk_in
+    E3                   IBUF (Prop_ibuf_I_O)         0.257     0.257 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           0.631     0.888    example_clocks/clkin1
+    BUFGCTRL_X0Y18       BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.026     0.914 r  example_clocks/bufg_clkin1/O
+                         net (fo=12, routed)          0.590     1.503    example_clocks/lock_sync/clk
+    SLICE_X64Y57         FDRE                                         r  example_clocks/lock_sync/data_sync_reg0/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y57         FDRE (Prop_fdre_C_Q)         0.164     1.667 r  example_clocks/lock_sync/data_sync_reg0/Q
+                         net (fo=1, routed)           0.056     1.723    example_clocks/lock_sync/data_sync0
+    SLICE_X64Y57         FDRE                                         r  example_clocks/lock_sync/data_sync_reg1/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_in rise edge)     0.000     0.000 r  
+    E3                                                0.000     0.000 r  clk_in (IN)
+                         net (fo=0)                   0.000     0.000    example_clocks/clk_in
+    E3                   IBUF (Prop_ibuf_I_O)         0.445     0.445 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           0.685     1.129    example_clocks/clkin1
+    BUFGCTRL_X0Y18       BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.029     1.158 r  example_clocks/bufg_clkin1/O
+                         net (fo=12, routed)          0.860     2.019    example_clocks/lock_sync/clk
+    SLICE_X64Y57         FDRE                                         r  example_clocks/lock_sync/data_sync_reg1/C
+                         clock pessimism             -0.515     1.503    
+    SLICE_X64Y57         FDRE (Hold_fdre_C_D)         0.060     1.563    example_clocks/lock_sync/data_sync_reg1
+  -------------------------------------------------------------------
+                         required time                         -1.563    
+                         arrival time                           1.723    
+  -------------------------------------------------------------------
+                         slack                                  0.160    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk_in
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { clk_in }
+
+Check Type        Corner  Lib Pin      Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     BUFGCTRL/I0  n/a            2.155         10.000      7.845      BUFGCTRL_X0Y18  example_clocks/bufg_clkin1/I0
+Low Pulse Width   Slow    FDRE/C       n/a            0.500         5.000       4.500      SLICE_X64Y57    example_clocks/dcm_locked_edge_reg/C
+High Pulse Width  Slow    FDRE/C       n/a            0.500         5.000       4.500      SLICE_X64Y57    example_clocks/dcm_locked_edge_reg/C
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  example_clocks/clock_generator/inst/clk_in1
+  To Clock:  example_clocks/clock_generator/inst/clk_in1
+
+Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+PW    :            0  Failing Endpoints,  Worst Slack        3.000ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         example_clocks/clock_generator/inst/clk_in1
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { example_clocks/clock_generator/inst/clk_in1 }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     MMCME2_ADV/CLKIN1  n/a            1.249         10.000      8.751      MMCME2_ADV_X1Y1  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKIN1
+Max Period        n/a     MMCME2_ADV/CLKIN1  n/a            100.000       10.000      90.000     MMCME2_ADV_X1Y1  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKIN1
+Low Pulse Width   Slow    MMCME2_ADV/CLKIN1  n/a            2.000         5.000       3.000      MMCME2_ADV_X1Y1  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKIN1
+High Pulse Width  Slow    MMCME2_ADV/CLKIN1  n/a            2.000         5.000       3.000      MMCME2_ADV_X1Y1  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKIN1
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out1_mac_clk_wiz
+  To Clock:  clk_out1_mac_clk_wiz
+
+Setup :            0  Failing Endpoints,  Worst Slack       33.164ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.024ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack       18.750ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             33.164ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_fifo_full_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            basic_pat_gen_inst/address_swap_inst/rd_count_reg[0]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             clk_out1_mac_clk_wiz
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            40.000ns  (clk_out1_mac_clk_wiz rise@40.000ns - clk_out1_mac_clk_wiz rise@0.000ns)
+  Data Path Delay:        6.509ns  (logic 1.180ns (18.130%)  route 5.329ns (81.870%))
+  Logic Levels:           4  (LUT4=1 LUT5=2 LUT6=1)
+  Clock Path Skew:        -0.186ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.924ns = ( 37.076 - 40.000 ) 
+    Source Clock Delay      (SCD):    -2.317ns
+    Clock Pessimism Removal (CPR):    0.421ns
+  Clock Uncertainty:      0.095ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_mac_clk_wiz rise edge)
+                                                      0.000     0.000 r  
+    E3                   IBUF                         0.000     0.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           1.233     1.233    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.946    -5.713 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.661    -4.052    example_clocks/clock_generator/inst/clk_out1_mac_clk_wiz
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096    -3.956 r  example_clocks/clock_generator/inst/clkout1_buf/O
+                         net (fo=1404, routed)        1.638    -2.318    trimac_fifo_block/user_side_FIFO/tx_fifo_i/clk_out1
+    SLICE_X5Y48          FDRE                                         r  trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_fifo_full_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y48          FDRE (Prop_fdre_C_Q)         0.456    -1.862 f  trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_fifo_full_reg/Q
+                         net (fo=8, routed)           1.889     0.028    trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_fifo_full
+    SLICE_X37Y41         LUT4 (Prop_lut4_I0_O)        0.150     0.178 f  trimac_fifo_block/user_side_FIFO/tx_fifo_i/tx_axis_fifo_tvalid_i_2/O
+                         net (fo=4, routed)           0.941     1.119    basic_pat_gen_inst/address_swap_inst/tx_axis_fifo_tvalid_reg_1
+    SLICE_X40Y39         LUT6 (Prop_lut6_I4_O)        0.326     1.445 f  basic_pat_gen_inst/address_swap_inst/rd_addr[2]_i_2/O
+                         net (fo=8, routed)           1.122     2.567    basic_pat_gen_inst/address_swap_inst/rd_addr[2]_i_2_n_0
+    SLICE_X40Y36         LUT5 (Prop_lut5_I0_O)        0.124     2.691 r  basic_pat_gen_inst/address_swap_inst/rd_count[3]_i_2/O
+                         net (fo=6, routed)           1.040     3.731    basic_pat_gen_inst/address_swap_inst/rd_count_12
+    SLICE_X40Y37         LUT5 (Prop_lut5_I0_O)        0.124     3.855 r  basic_pat_gen_inst/address_swap_inst/rd_count[0]_i_1/O
+                         net (fo=1, routed)           0.336     4.191    basic_pat_gen_inst/address_swap_inst/rd_count[0]_i_1_n_0
+    SLICE_X40Y36         FDRE                                         r  basic_pat_gen_inst/address_swap_inst/rd_count_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_mac_clk_wiz rise edge)
+                                                     40.000    40.000 r  
+    E3                   IBUF                         0.000    40.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           1.162    41.162    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.204    33.958 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.581    35.539    example_clocks/clock_generator/inst/clk_out1_mac_clk_wiz
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    35.630 r  example_clocks/clock_generator/inst/clkout1_buf/O
+                         net (fo=1404, routed)        1.445    37.076    basic_pat_gen_inst/address_swap_inst/clk_out1
+    SLICE_X40Y36         FDRE                                         r  basic_pat_gen_inst/address_swap_inst/rd_count_reg[0]/C
+                         clock pessimism              0.421    37.497    
+                         clock uncertainty           -0.095    37.402    
+    SLICE_X40Y36         FDRE (Setup_fdre_C_D)       -0.047    37.355    basic_pat_gen_inst/address_swap_inst/rd_count_reg[0]
+  -------------------------------------------------------------------
+                         required time                         37.355    
+                         arrival time                          -4.191    
+  -------------------------------------------------------------------
+                         slack                                 33.164    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/addra_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/gen_distributed_parity[2].RAM64X1D_inst/DP/WADR0
+                            (rising edge-triggered cell RAMD64E clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             clk_out1_mac_clk_wiz
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_mac_clk_wiz rise@0.000ns - clk_out1_mac_clk_wiz rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.599%)  route 0.206ns (59.401%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -1.267ns
+    Source Clock Delay      (SCD):    -0.840ns
+    Clock Pessimism Removal (CPR):    -0.440ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_mac_clk_wiz rise edge)
+                                                      0.000     0.000 r  
+    E3                   IBUF                         0.000     0.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           0.440     0.440    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -2.356    -1.915 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.486    -1.430    example_clocks/clock_generator/inst/clk_out1_mac_clk_wiz
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.404 r  example_clocks/clock_generator/inst/clkout1_buf/O
+                         net (fo=1404, routed)        0.564    -0.840    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/stats_ref_clk
+    SLICE_X31Y42         FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/addra_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X31Y42         FDRE (Prop_fdre_C_Q)         0.141    -0.699 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/addra_reg[0]/Q
+                         net (fo=216, routed)         0.206    -0.493    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/gen_distributed_parity[2].RAM64X1D_inst/A0
+    SLICE_X30Y42         RAMD64E                                      r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/gen_distributed_parity[2].RAM64X1D_inst/DP/WADR0
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_mac_clk_wiz rise edge)
+                                                      0.000     0.000 r  
+    E3                   IBUF                         0.000     0.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           0.480     0.480    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.138    -2.658 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.530    -2.128    example_clocks/clock_generator/inst/clk_out1_mac_clk_wiz
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -2.099 r  example_clocks/clock_generator/inst/clkout1_buf/O
+                         net (fo=1404, routed)        0.833    -1.267    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/gen_distributed_parity[2].RAM64X1D_inst/WCLK
+    SLICE_X30Y42         RAMD64E                                      r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/gen_distributed_parity[2].RAM64X1D_inst/DP/CLK
+                         clock pessimism              0.440    -0.827    
+    SLICE_X30Y42         RAMD64E (Hold_ramd64e_CLK_WADR0)
+                                                      0.310    -0.517    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/gen_distributed_parity[2].RAM64X1D_inst/DP
+  -------------------------------------------------------------------
+                         required time                          0.517    
+                         arrival time                          -0.493    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk_out1_mac_clk_wiz
+Waveform(ns):       { 0.000 20.000 }
+Period(ns):         40.000
+Sources:            { example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT0 }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     RAMB36E1/CLKBWRCLK  n/a            2.576         40.000      37.424     RAMB36_X0Y10     trimac_fifo_block/user_side_FIFO/rx_fifo_i/rx_ramgen_i/mem_reg/CLKBWRCLK
+Max Period        n/a     MMCME2_ADV/CLKOUT0  n/a            213.360       40.000      173.360    MMCME2_ADV_X1Y1  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT0
+Low Pulse Width   Slow    RAMD64E/CLK         n/a            1.250         20.000      18.750     SLICE_X38Y38     basic_pat_gen_inst/address_swap_inst/ram_loop[0].RAM64X1D_inst/DP/CLK
+High Pulse Width  Slow    RAMD64E/CLK         n/a            1.250         20.000      18.750     SLICE_X38Y38     basic_pat_gen_inst/address_swap_inst/ram_loop[0].RAM64X1D_inst/DP/CLK
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out2_mac_clk_wiz
+  To Clock:  clk_out2_mac_clk_wiz
+
+Setup :            0  Failing Endpoints,  Worst Slack        3.841ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.081ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        3.750ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             3.841ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_reset.int_mgmt_host_reset_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/conf/int_rx_frame_length_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out2_mac_clk_wiz
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_out2_mac_clk_wiz rise@10.000ns - clk_out2_mac_clk_wiz rise@0.000ns)
+  Data Path Delay:        5.568ns  (logic 0.456ns (8.190%)  route 5.112ns (91.810%))
+  Logic Levels:           0  
+  Clock Path Skew:        -0.088ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.916ns = ( 7.084 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.336ns
+    Clock Pessimism Removal (CPR):    0.493ns
+  Clock Uncertainty:      0.074ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.131ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_mac_clk_wiz rise edge)
+                                                      0.000     0.000 r  
+    E3                   IBUF                         0.000     0.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           1.233     1.233    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.946    -5.713 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.661    -4.052    example_clocks/clock_generator/inst/clk_out2_mac_clk_wiz
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.096    -3.956 r  example_clocks/clock_generator/inst/clkout2_buf/O
+                         net (fo=1112, routed)        1.620    -2.335    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/bus2ip_clk
+    SLICE_X1Y24          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_reset.int_mgmt_host_reset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y24          FDRE (Prop_fdre_C_Q)         0.456    -1.879 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_reset.int_mgmt_host_reset_reg/Q
+                         net (fo=375, routed)         5.112     3.232    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/conf/int_mgmt_host_reset
+    SLICE_X9Y45          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/conf/int_rx_frame_length_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out2_mac_clk_wiz rise edge)
+                                                     10.000    10.000 r  
+    E3                   IBUF                         0.000    10.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           1.162    11.162    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -7.204     3.958 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.581     5.539    example_clocks/clock_generator/inst/clk_out2_mac_clk_wiz
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.091     5.630 r  example_clocks/clock_generator/inst/clkout2_buf/O
+                         net (fo=1112, routed)        1.453     7.084    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/conf/bus2ip_clk
+    SLICE_X9Y45          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/conf/int_rx_frame_length_reg[0]/C
+                         clock pessimism              0.493     7.576    
+                         clock uncertainty           -0.074     7.502    
+    SLICE_X9Y45          FDRE (Setup_fdre_C_R)       -0.429     7.073    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/conf/int_rx_frame_length_reg[0]
+  -------------------------------------------------------------------
+                         required time                          7.073    
+                         arrival time                          -3.232    
+  -------------------------------------------------------------------
+                         slack                                  3.841    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.081ns  (arrival time - required time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/write_strobes[3].ram_field_wr_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/address_filters[3].configurable_addresses/byte_wide_ram[6].header_field_dist_ram/DP/WE
+                            (rising edge-triggered cell RAMD64E clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out2_mac_clk_wiz
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out2_mac_clk_wiz rise@0.000ns - clk_out2_mac_clk_wiz rise@0.000ns)
+  Data Path Delay:        0.393ns  (logic 0.141ns (35.915%)  route 0.252ns (64.085%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.265ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -1.239ns
+    Source Clock Delay      (SCD):    -0.808ns
+    Clock Pessimism Removal (CPR):    -0.696ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_mac_clk_wiz rise edge)
+                                                      0.000     0.000 r  
+    E3                   IBUF                         0.000     0.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           0.440     0.440    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -2.356    -1.915 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           0.486    -1.430    example_clocks/clock_generator/inst/clk_out2_mac_clk_wiz
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026    -1.404 r  example_clocks/clock_generator/inst/clkout2_buf/O
+                         net (fo=1112, routed)        0.596    -0.808    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/bus2ip_clk
+    SLICE_X4Y47          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/write_strobes[3].ram_field_wr_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X4Y47          FDRE (Prop_fdre_C_Q)         0.141    -0.667 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/write_strobes[3].ram_field_wr_reg[3]/Q
+                         net (fo=17, routed)          0.252    -0.415    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/address_filters[3].configurable_addresses/byte_wide_ram[6].header_field_dist_ram/WE
+    SLICE_X6Y51          RAMD64E                                      r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/address_filters[3].configurable_addresses/byte_wide_ram[6].header_field_dist_ram/DP/WE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out2_mac_clk_wiz rise edge)
+                                                      0.000     0.000 r  
+    E3                   IBUF                         0.000     0.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           0.480     0.480    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -3.138    -2.658 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           0.530    -2.128    example_clocks/clock_generator/inst/clk_out2_mac_clk_wiz
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029    -2.099 r  example_clocks/clock_generator/inst/clkout2_buf/O
+                         net (fo=1112, routed)        0.861    -1.239    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/address_filters[3].configurable_addresses/byte_wide_ram[6].header_field_dist_ram/WCLK
+    SLICE_X6Y51          RAMD64E                                      r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/address_filters[3].configurable_addresses/byte_wide_ram[6].header_field_dist_ram/DP/CLK
+                         clock pessimism              0.696    -0.543    
+    SLICE_X6Y51          RAMD64E (Hold_ramd64e_CLK_WE)
+                                                      0.047    -0.496    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/address_filters[3].configurable_addresses/byte_wide_ram[6].header_field_dist_ram/DP
+  -------------------------------------------------------------------
+                         required time                          0.496    
+                         arrival time                          -0.415    
+  -------------------------------------------------------------------
+                         slack                                  0.081    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk_out2_mac_clk_wiz
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1 }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     BUFG/I              n/a            2.155         10.000      7.845      BUFGCTRL_X0Y17   example_clocks/clock_generator/inst/clkout2_buf/I
+Max Period        n/a     MMCME2_ADV/CLKOUT1  n/a            213.360       10.000      203.360    MMCME2_ADV_X1Y1  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1
+Low Pulse Width   Slow    RAMD64E/CLK         n/a            1.250         5.000       3.750      SLICE_X10Y51     trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/addr_regs.unicast_address_compare/byte_wide_ram[0].header_compare_dist_ram/DP/CLK
+High Pulse Width  Slow    RAMD64E/CLK         n/a            1.250         5.000       3.750      SLICE_X10Y51     trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/addr_regs.unicast_address_compare/byte_wide_ram[0].header_compare_dist_ram/DP/CLK
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clkfbout_mac_clk_wiz
+  To Clock:  clkfbout_mac_clk_wiz
+
+Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+PW    :            0  Failing Endpoints,  Worst Slack        7.845ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clkfbout_mac_clk_wiz
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { example_clocks/clock_generator/inst/mmcm_adv_inst/CLKFBOUT }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period  n/a     BUFG/I              n/a            2.155         10.000      7.845      BUFGCTRL_X0Y19   example_clocks/clock_generator/inst/clkf_buf/I
+Max Period  n/a     MMCME2_ADV/CLKFBIN  n/a            100.000       10.000      90.000     MMCME2_ADV_X1Y1  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKFBIN
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  mii_rx_clk
+  To Clock:  mii_rx_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack       10.311ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.091ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack       18.750ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             10.311ns  (required time - arrival time)
+  Source:                 mii_rx_er
+                            (input port clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/rx_er_to_mac_reg/D
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_rx_clk
+  Path Type:              Setup (Max at Fast Process Corner)
+  Requirement:            40.000ns  (mii_rx_clk rise@40.000ns - mii_rx_clk rise@0.000ns)
+  Data Path Delay:        0.468ns  (logic 0.468ns (100.000%)  route 0.000ns (0.000%))
+  Logic Levels:           1  (IBUF=1)
+  Input Delay:            30.000ns
+  Clock Path Skew:        0.816ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.816ns = ( 40.816 - 40.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mii_rx_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                 30.000    30.000    
+    C17                                               0.000    30.000 r  mii_rx_er (IN)
+                         net (fo=0)                   0.000    30.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_er
+    C17                  IBUF (Prop_ibuf_I_O)         0.468    30.468 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_er_ibuf_i/O
+                         net (fo=1, routed)           0.000    30.468    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_er_ibuf
+    ILOGIC_X0Y59         FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/rx_er_to_mac_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mii_rx_clk rise edge)
+                                                     40.000    40.000 r  
+    F15                                               0.000    40.000 r  mii_rx_clk (IN)
+                         net (fo=0)                   0.000    40.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.250    40.250 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206    40.456    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092    40.548 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=900, routed)         0.268    40.816    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk_0
+    ILOGIC_X0Y59         FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/rx_er_to_mac_reg/C
+                         clock pessimism              0.000    40.816    
+                         clock uncertainty           -0.035    40.781    
+    ILOGIC_X0Y59         FDRE (Setup_fdre_C_D)       -0.002    40.779    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/rx_er_to_mac_reg
+  -------------------------------------------------------------------
+                         required time                         40.779    
+                         arrival time                         -30.468    
+  -------------------------------------------------------------------
+                         slack                                 10.311    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.091ns  (arrival time - required time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/load_wr_data_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[5].header_field_dist_ram/SP/I
+                            (rising edge-triggered cell RAMD64E clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_rx_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (mii_rx_clk rise@0.000ns - mii_rx_clk rise@0.000ns)
+  Data Path Delay:        0.253ns  (logic 0.141ns (55.730%)  route 0.112ns (44.270%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.016ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.301ns
+    Source Clock Delay      (SCD):    0.813ns
+    Clock Pessimism Removal (CPR):    0.472ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mii_rx_clk rise edge)
+                                                      0.000     0.000 r  
+    F15                                               0.000     0.000 r  mii_rx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.250     0.250 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206     0.456    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092     0.548 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=900, routed)         0.265     0.813    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/rx_axi_clk
+    SLICE_X7Y54          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/load_wr_data_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y54          FDRE (Prop_fdre_C_Q)         0.141     0.954 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/load_wr_data_reg[5]/Q
+                         net (fo=2, routed)           0.112     1.066    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[5].header_field_dist_ram/D
+    SLICE_X6Y55          RAMD64E                                      r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[5].header_field_dist_ram/SP/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mii_rx_clk rise edge)
+                                                      0.000     0.000 r  
+    F15                                               0.000     0.000 r  mii_rx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.438     0.438 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.311     0.749    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.254     1.003 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=900, routed)         0.298     1.301    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[5].header_field_dist_ram/WCLK
+    SLICE_X6Y55          RAMD64E                                      r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[5].header_field_dist_ram/SP/CLK
+                         clock pessimism             -0.472     0.829    
+    SLICE_X6Y55          RAMD64E (Hold_ramd64e_CLK_I)
+                                                      0.146     0.975    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[5].header_field_dist_ram/SP
+  -------------------------------------------------------------------
+                         required time                         -0.975    
+                         arrival time                           1.066    
+  -------------------------------------------------------------------
+                         slack                                  0.091    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         mii_rx_clk
+Waveform(ns):       { 0.000 20.000 }
+Period(ns):         40.000
+Sources:            { mii_rx_clk }
+
+Check Type        Corner  Lib Pin      Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location     Pin
+Min Period        n/a     BUFR/I       n/a            3.174         40.000      36.826     BUFR_X0Y4    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/I
+Low Pulse Width   Slow    RAMD64E/CLK  n/a            1.250         20.000      18.750     SLICE_X8Y54  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[0].header_field_dist_ram/DP/CLK
+High Pulse Width  Slow    RAMD64E/CLK  n/a            1.250         20.000      18.750     SLICE_X8Y54  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/byte_wide_ram[0].header_field_dist_ram/DP/CLK
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  mii_tx_clk
+  To Clock:  mii_tx_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack       31.823ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.122ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack       19.020ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             31.823ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/tx_reset_reg/C
+                            (rising edge-triggered cell FDRE clocked by mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/FRAME_MAX_reg[2]/S
+                            (rising edge-triggered cell FDSE clocked by mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_tx_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            40.000ns  (mii_tx_clk rise@40.000ns - mii_tx_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 0.668ns (8.926%)  route 6.815ns (91.074%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    3.063ns = ( 43.063 - 40.000 ) 
+    Source Clock Delay      (SCD):    3.239ns
+    Clock Pessimism Removal (CPR):    0.149ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mii_tx_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  mii_tx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.479     1.479 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.500     1.979    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.511     2.490 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=873, routed)         0.749     3.239    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/tx_axi_clk
+    SLICE_X2Y54          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/tx_reset_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y54          FDRE (Prop_fdre_C_Q)         0.518     3.757 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/tx_reset_reg/Q
+                         net (fo=224, routed)         3.835     7.592    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/INT_MAX_FRAME_ENABLE_reg_0
+    SLICE_X5Y77          LUT2 (Prop_lut2_I1_O)        0.150     7.742 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/STATUS_VALID_i_1/O
+                         net (fo=113, routed)         2.980    10.722    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/STATUS_VALID_i_1_n_0
+    SLICE_X3Y60          FDSE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/FRAME_MAX_reg[2]/S
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mii_tx_clk rise edge)
+                                                     40.000    40.000 r  
+    H16                                               0.000    40.000 r  mii_tx_clk (IN)
+                         net (fo=0)                   0.000    40.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.408    41.408 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.459    41.867    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.486    42.353 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=873, routed)         0.710    43.063    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/tx_axi_clk
+    SLICE_X3Y60          FDSE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/FRAME_MAX_reg[2]/C
+                         clock pessimism              0.149    43.212    
+                         clock uncertainty           -0.035    43.176    
+    SLICE_X3Y60          FDSE (Setup_fdse_C_S)       -0.631    42.545    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/TX_SM1/FRAME_MAX_reg[2]
+  -------------------------------------------------------------------
+                         required time                         42.545    
+                         arrival time                         -10.722    
+  -------------------------------------------------------------------
+                         slack                                 31.823    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.122ns  (arrival time - required time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync_reg0/C
+                            (rising edge-triggered cell FDRE clocked by mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync_reg1/D
+                            (rising edge-triggered cell FDRE clocked by mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_tx_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (mii_tx_clk rise@0.000ns - mii_tx_clk rise@0.000ns)
+  Data Path Delay:        0.197ns  (logic 0.141ns (71.611%)  route 0.056ns (28.389%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.288ns
+    Source Clock Delay      (SCD):    0.802ns
+    Clock Pessimism Removal (CPR):    0.486ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mii_tx_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  mii_tx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.247     0.247 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206     0.453    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.092     0.545 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=873, routed)         0.257     0.802    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/tx_axi_clk
+    SLICE_X1Y69          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync_reg0/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y69          FDRE (Prop_fdre_C_Q)         0.141     0.943 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync_reg0/Q
+                         net (fo=1, routed)           0.056     0.999    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync0
+    SLICE_X1Y69          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync_reg1/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mii_tx_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  mii_tx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.311     0.745    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.254     1.000 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=873, routed)         0.288     1.288    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/tx_axi_clk
+    SLICE_X1Y69          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync_reg1/C
+                         clock pessimism             -0.486     0.802    
+    SLICE_X1Y69          FDRE (Hold_fdre_C_D)         0.075     0.877    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_tx_gen/sync_speed_is_10_100/data_sync_reg1
+  -------------------------------------------------------------------
+                         required time                         -0.877    
+                         arrival time                           0.999    
+  -------------------------------------------------------------------
+                         slack                                  0.122    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         mii_tx_clk
+Waveform(ns):       { 0.000 20.000 }
+Period(ns):         40.000
+Sources:            { mii_tx_clk }
+
+Check Type        Corner  Lib Pin     Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location     Pin
+Min Period        n/a     BUFR/I      n/a            3.174         40.000      36.826     BUFR_X0Y5    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_tx_clk/I
+Low Pulse Width   Slow    SRL16E/CLK  n/a            0.980         20.000      19.020     SLICE_X6Y72  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/BYTECNTSRL/CLK
+High Pulse Width  Slow    SRL16E/CLK  n/a            0.980         20.000      19.020     SLICE_X6Y72  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/txgen/BYTECNTSRL/CLK
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out2_mac_clk_wiz
+  To Clock:  example_clocks/clock_generator/inst/clk_in1
+
+Setup :            0  Failing Endpoints,  Worst Slack       93.625ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        2.296ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             93.625ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.miim_clk_int_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            mdc
+                            (output port clocked by example_clocks/clock_generator/inst/clk_in1  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             example_clocks/clock_generator/inst/clk_in1
+  Path Type:              Max at Slow Process Corner
+  Requirement:            100.000ns  (example_clocks/clock_generator/inst/clk_in1 rise@100.000ns - clk_out2_mac_clk_wiz rise@0.000ns)
+  Data Path Delay:        7.502ns  (logic 4.251ns (56.664%)  route 3.251ns (43.336%))
+  Logic Levels:           2  (LUT2=1 OBUF=1)
+  Output Delay:           1.000ns
+  Clock Path Skew:        2.316ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.000ns = ( 10.000 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.316ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.188ns  ((TSJ^2 + TIJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.100ns
+    Discrete Jitter          (DJ):    0.131ns
+    Phase Error              (PE):    0.099ns
+  Timing Exception:       MultiCycle Path   Setup -end   10
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_mac_clk_wiz rise edge)
+                                                      0.000     0.000 r  
+    E3                   IBUF                         0.000     0.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           1.233     1.233    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.946    -5.713 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.661    -4.052    example_clocks/clock_generator/inst/clk_out2_mac_clk_wiz
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.096    -3.956 r  example_clocks/clock_generator/inst/clkout2_buf/O
+                         net (fo=1112, routed)        1.640    -2.315    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/bus2ip_clk
+    SLICE_X1Y44          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.miim_clk_int_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y44          FDRE (Prop_fdre_C_Q)         0.419    -1.896 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.miim_clk_int_reg/Q
+                         net (fo=6, routed)           0.829    -1.067    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/miim_clk_int
+    SLICE_X0Y42          LUT2 (Prop_lut2_I0_O)        0.297    -0.770 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/mdc_inferred_i_1/O
+                         net (fo=1, routed)           2.422     1.652    mdc_OBUF
+    F16                  OBUF (Prop_obuf_I_O)         3.535     5.187 r  mdc_OBUF_inst/O
+                         net (fo=0)                   0.000     5.187    mdc
+    F16                                                               r  mdc (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock example_clocks/clock_generator/inst/clk_in1 rise edge)
+                                                    100.000   100.000 r  
+                         clock pessimism              0.000   100.000    
+                         clock uncertainty           -0.188    99.812    
+                         output delay                -1.000    98.812    
+  -------------------------------------------------------------------
+                         required time                         98.812    
+                         arrival time                          -5.187    
+  -------------------------------------------------------------------
+                         slack                                 93.625    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             2.296ns  (arrival time - required time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/enable_reg_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            mdc
+                            (output port clocked by example_clocks/clock_generator/inst/clk_in1  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             example_clocks/clock_generator/inst/clk_in1
+  Path Type:              Min at Fast Process Corner
+  Requirement:            0.000ns  (example_clocks/clock_generator/inst/clk_in1 rise@90.000ns - clk_out2_mac_clk_wiz rise@90.000ns)
+  Data Path Delay:        2.293ns  (logic 1.422ns (61.994%)  route 0.872ns (38.006%))
+  Logic Levels:           2  (LUT2=1 OBUF=1)
+  Output Delay:           1.000ns
+  Clock Path Skew:        0.809ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.000ns
+    Source Clock Delay      (SCD):    -0.809ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.188ns  ((TSJ^2 + TIJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.100ns
+    Discrete Jitter          (DJ):    0.131ns
+    Phase Error              (PE):    0.099ns
+  Timing Exception:       MultiCycle Path   Setup -end   10    Hold  -start 9
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_mac_clk_wiz rise edge)
+                                                     90.000    90.000 r  
+    E3                   IBUF                         0.000    90.000 r  example_clocks/clk_in_buf/O
+                         net (fo=2, routed)           0.440    90.440    example_clocks/clock_generator/inst/clk_in1
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -2.356    88.085 r  example_clocks/clock_generator/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           0.486    88.571    example_clocks/clock_generator/inst/clk_out2_mac_clk_wiz
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026    88.597 r  example_clocks/clock_generator/inst/clkout2_buf/O
+                         net (fo=1112, routed)        0.595    89.191    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/bus2ip_clk
+    SLICE_X0Y38          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/enable_reg_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y38          FDRE (Prop_fdre_C_Q)         0.141    89.332 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/enable_reg_reg/Q
+                         net (fo=3, routed)           0.242    89.574    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/enable_reg
+    SLICE_X0Y42          LUT2 (Prop_lut2_I1_O)        0.045    89.619 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/man_block.managen/mdio_enabled.phy/mdc_inferred_i_1/O
+                         net (fo=1, routed)           0.630    90.249    mdc_OBUF
+    F16                  OBUF (Prop_obuf_I_O)         1.236    91.485 r  mdc_OBUF_inst/O
+                         net (fo=0)                   0.000    91.485    mdc
+    F16                                                               r  mdc (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock example_clocks/clock_generator/inst/clk_in1 rise edge)
+                                                     90.000    90.000 r  
+                         clock pessimism              0.000    90.000    
+                         clock uncertainty            0.188    90.188    
+                         output delay                -1.000    89.188    
+  -------------------------------------------------------------------
+                         required time                        -89.188    
+                         arrival time                          91.485    
+  -------------------------------------------------------------------
+                         slack                                  2.296    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out2_mac_clk_wiz
+  To Clock:  clk_out1_mac_clk_wiz
+
+Setup :            0  Failing Endpoints,  Worst Slack        2.163ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             2.163ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/axi4_lite_ipif/axi4_lite_ipif_top_wrapper/axi_lite_top/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[4]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ipic_rd_clear_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             clk_out1_mac_clk_wiz
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.000ns  (MaxDelay Path 6.000ns)
+  Data Path Delay:        3.868ns  (logic 1.388ns (35.887%)  route 2.480ns (64.113%))
+  Logic Levels:           3  (LUT4=1 LUT6=1 MUXF7=1)
+  Timing Exception:       MaxDelay Path 6.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y26                                      0.000     0.000 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/axi4_lite_ipif/axi4_lite_ipif_top_wrapper/axi_lite_top/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[4]/C
+    SLICE_X13Y26         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/axi4_lite_ipif/axi4_lite_ipif_top_wrapper/axi_lite_top/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[4]/Q
+                         net (fo=159, routed)         1.565     2.021    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/bus2ip_addr[2]
+    SLICE_X29Y35         LUT4 (Prop_lut4_I1_O)        0.154     2.175 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ipic_rd_clear_i_5/O
+                         net (fo=1, routed)           0.618     2.794    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ipic_rd_clear_i_5_n_0
+    SLICE_X29Y35         MUXF7 (Prop_muxf7_S_O)       0.479     3.273 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ipic_rd_clear_reg_i_3/O
+                         net (fo=1, routed)           0.296     3.569    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/sync_request/ipic_rd_clear_reg_1
+    SLICE_X29Y34         LUT6 (Prop_lut6_I3_O)        0.299     3.868 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/sync_request/ipic_rd_clear_i_1/O
+                         net (fo=1, routed)           0.000     3.868    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/sync_request_n_2
+    SLICE_X29Y34         FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ipic_rd_clear_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.000     6.000    
+    SLICE_X29Y34         FDRE (Setup_fdre_C_D)        0.031     6.031    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ipic_rd_clear_reg
+  -------------------------------------------------------------------
+                         required time                          6.031    
+                         arrival time                          -3.868    
+  -------------------------------------------------------------------
+                         slack                                  2.163    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  mii_rx_clk
+  To Clock:  clk_out1_mac_clk_wiz
+
+Setup :            0  Failing Endpoints,  Worst Slack        1.784ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             1.784ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/user_side_FIFO/rx_fifo_i/wr_store_frame_tog_reg/C
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/user_side_FIFO/rx_fifo_i/resync_wr_store_frame_tog/data_sync_reg0/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             clk_out1_mac_clk_wiz
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            3.200ns  (MaxDelay Path 3.200ns)
+  Data Path Delay:        1.321ns  (logic 0.456ns (34.515%)  route 0.865ns (65.485%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 3.200ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X29Y50                                      0.000     0.000 r  trimac_fifo_block/user_side_FIFO/rx_fifo_i/wr_store_frame_tog_reg/C
+    SLICE_X29Y50         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  trimac_fifo_block/user_side_FIFO/rx_fifo_i/wr_store_frame_tog_reg/Q
+                         net (fo=2, routed)           0.865     1.321    trimac_fifo_block/user_side_FIFO/rx_fifo_i/resync_wr_store_frame_tog/data_in
+    SLICE_X31Y37         FDRE                                         r  trimac_fifo_block/user_side_FIFO/rx_fifo_i/resync_wr_store_frame_tog/data_sync_reg0/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    3.200     3.200    
+    SLICE_X31Y37         FDRE (Setup_fdre_C_D)       -0.095     3.105    trimac_fifo_block/user_side_FIFO/rx_fifo_i/resync_wr_store_frame_tog/data_sync_reg0
+  -------------------------------------------------------------------
+                         required time                          3.105    
+                         arrival time                          -1.321    
+  -------------------------------------------------------------------
+                         slack                                  1.784    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  mii_tx_clk
+  To Clock:  clk_out1_mac_clk_wiz
+
+Setup :            0  Failing Endpoints,  Worst Slack        1.686ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             1.686ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/user_side_FIFO/tx_fifo_i/rd_addr_txfer_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_rd_addr_reg[0]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             clk_out1_mac_clk_wiz
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            3.200ns  (MaxDelay Path 3.200ns)
+  Data Path Delay:        1.419ns  (logic 0.456ns (32.130%)  route 0.963ns (67.870%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 3.200ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y54                                       0.000     0.000 r  trimac_fifo_block/user_side_FIFO/tx_fifo_i/rd_addr_txfer_reg[0]/C
+    SLICE_X5Y54          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  trimac_fifo_block/user_side_FIFO/tx_fifo_i/rd_addr_txfer_reg[0]/Q
+                         net (fo=1, routed)           0.963     1.419    trimac_fifo_block/user_side_FIFO/tx_fifo_i/rd_addr_txfer[0]
+    SLICE_X5Y49          FDRE                                         r  trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_rd_addr_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    3.200     3.200    
+    SLICE_X5Y49          FDRE (Setup_fdre_C_D)       -0.095     3.105    trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_rd_addr_reg[0]
+  -------------------------------------------------------------------
+                         required time                          3.105    
+                         arrival time                          -1.419    
+  -------------------------------------------------------------------
+                         slack                                  1.686    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out1_mac_clk_wiz
+  To Clock:  clk_out2_mac_clk_wiz
+
+Setup :            0  Failing Endpoints,  Worst Slack        2.953ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             2.953ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out2_mac_clk_wiz
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.000ns  (MaxDelay Path 6.000ns)
+  Data Path Delay:        3.078ns  (logic 0.642ns (20.859%)  route 2.436ns (79.141%))
+  Logic Levels:           1  (LUT6=1)
+  Timing Exception:       MaxDelay Path 6.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X30Y39                                      0.000     0.000 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C
+    SLICE_X30Y39         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/Q
+                         net (fo=32, routed)          2.436     2.954    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref[71]
+    SLICE_X15Y33         LUT6 (Prop_lut6_I4_O)        0.124     3.078 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data[21]_i_1__1/O
+                         net (fo=1, routed)           0.000     3.078    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data[21]_i_1__1_n_0
+    SLICE_X15Y33         FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.000     6.000    
+    SLICE_X15Y33         FDRE (Setup_fdre_C_D)        0.031     6.031    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]
+  -------------------------------------------------------------------
+                         required time                          6.031    
+                         arrival time                          -3.078    
+  -------------------------------------------------------------------
+                         slack                                  2.953    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out1_mac_clk_wiz
+  To Clock:  mii_rx_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        1.880ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             1.880ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/user_side_FIFO/rx_fifo_i/update_addr_tog_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/user_side_FIFO/rx_fifo_i/sync_rd_addr_tog/data_sync_reg0/D
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_rx_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            3.200ns  (MaxDelay Path 3.200ns)
+  Data Path Delay:        1.262ns  (logic 0.518ns (41.051%)  route 0.744ns (58.949%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 3.200ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y49                                      0.000     0.000 r  trimac_fifo_block/user_side_FIFO/rx_fifo_i/update_addr_tog_reg/C
+    SLICE_X12Y49         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  trimac_fifo_block/user_side_FIFO/rx_fifo_i/update_addr_tog_reg/Q
+                         net (fo=2, routed)           0.744     1.262    trimac_fifo_block/user_side_FIFO/rx_fifo_i/sync_rd_addr_tog/data_in
+    SLICE_X12Y50         FDRE                                         r  trimac_fifo_block/user_side_FIFO/rx_fifo_i/sync_rd_addr_tog/data_sync_reg0/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    3.200     3.200    
+    SLICE_X12Y50         FDRE (Setup_fdre_C_D)       -0.058     3.142    trimac_fifo_block/user_side_FIFO/rx_fifo_i/sync_rd_addr_tog/data_sync_reg0
+  -------------------------------------------------------------------
+                         required time                          3.142    
+                         arrival time                          -1.262    
+  -------------------------------------------------------------------
+                         slack                                  1.880    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out2_mac_clk_wiz
+  To Clock:  mii_rx_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        3.449ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             3.449ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/addr_regs.promiscuous_mode_reg_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_mac_clk_wiz  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/resync_promiscuous_mode/data_sync_reg0/D
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_rx_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.000ns  (MaxDelay Path 6.000ns)
+  Data Path Delay:        2.446ns  (logic 0.456ns (18.642%)  route 1.990ns (81.358%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X4Y35                                       0.000     0.000 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/addr_regs.promiscuous_mode_reg_reg/C
+    SLICE_X4Y35          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/addr_regs.promiscuous_mode_reg_reg/Q
+                         net (fo=3, routed)           1.990     2.446    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/resync_promiscuous_mode/data_in
+    SLICE_X4Y56          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/resync_promiscuous_mode/data_sync_reg0/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.000     6.000    
+    SLICE_X4Y56          FDRE (Setup_fdre_C_D)       -0.105     5.895    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/resync_promiscuous_mode/data_sync_reg0
+  -------------------------------------------------------------------
+                         required time                          5.895    
+                         arrival time                          -2.446    
+  -------------------------------------------------------------------
+                         slack                                  3.449    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_out1_mac_clk_wiz
+  To Clock:  mii_tx_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        1.881ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             1.881ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_frames_in_fifo_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_mac_clk_wiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/user_side_FIFO/tx_fifo_i/resync_wr_frames_in_fifo/data_sync_reg0/D
+                            (rising edge-triggered cell FDRE clocked by mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_tx_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            3.200ns  (MaxDelay Path 3.200ns)
+  Data Path Delay:        1.224ns  (logic 0.456ns (37.251%)  route 0.768ns (62.749%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 3.200ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X15Y47                                      0.000     0.000 r  trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_frames_in_fifo_reg/C
+    SLICE_X15Y47         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  trimac_fifo_block/user_side_FIFO/tx_fifo_i/wr_frames_in_fifo_reg/Q
+                         net (fo=1, routed)           0.768     1.224    trimac_fifo_block/user_side_FIFO/tx_fifo_i/resync_wr_frames_in_fifo/data_in
+    SLICE_X13Y56         FDRE                                         r  trimac_fifo_block/user_side_FIFO/tx_fifo_i/resync_wr_frames_in_fifo/data_sync_reg0/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    3.200     3.200    
+    SLICE_X13Y56         FDRE (Setup_fdre_C_D)       -0.095     3.105    trimac_fifo_block/user_side_FIFO/tx_fifo_i/resync_wr_frames_in_fifo/data_sync_reg0
+  -------------------------------------------------------------------
+                         required time                          3.105    
+                         arrival time                          -1.224    
+  -------------------------------------------------------------------
+                         slack                                  1.881    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  mii_rx_clk
+  To Clock:  mii_tx_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        4.859ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             4.859ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/flow/rx_pause/pause_req_to_tx_int_reg/C
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/flow/tx_pause/sync_good_rx/data_sync_reg0/D
+                            (rising edge-triggered cell FDRE clocked by mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             mii_tx_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.000ns  (MaxDelay Path 6.000ns)
+  Data Path Delay:        1.046ns  (logic 0.456ns (43.584%)  route 0.590ns (56.416%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X31Y61                                      0.000     0.000 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/flow/rx_pause/pause_req_to_tx_int_reg/C
+    SLICE_X31Y61         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/flow/rx_pause/pause_req_to_tx_int_reg/Q
+                         net (fo=2, routed)           0.590     1.046    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/flow/tx_pause/sync_good_rx/data_in
+    SLICE_X31Y64         FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/flow/tx_pause/sync_good_rx/data_sync_reg0/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.000     6.000    
+    SLICE_X31Y64         FDRE (Setup_fdre_C_D)       -0.095     5.905    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/flow/tx_pause/sync_good_rx/data_sync_reg0
+  -------------------------------------------------------------------
+                         required time                          5.905    
+                         arrival time                          -1.046    
+  -------------------------------------------------------------------
+                         slack                                  4.859    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+Path Group:  **async_default**
+From Clock:  mii_rx_clk
+  To Clock:  mii_rx_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack       38.457ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.440ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             38.457ns  (required time - arrival time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable_reg/C
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+                            (recovery check against rising-edge clock mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            40.000ns  (mii_rx_clk rise@40.000ns - mii_rx_clk rise@0.000ns)
+  Data Path Delay:        1.077ns  (logic 0.518ns (48.079%)  route 0.559ns (51.921%))
+  Logic Levels:           0  
+  Clock Path Skew:        -0.025ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    3.063ns = ( 43.063 - 40.000 ) 
+    Source Clock Delay      (SCD):    3.237ns
+    Clock Pessimism Removal (CPR):    0.149ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mii_rx_clk rise edge)
+                                                      0.000     0.000 r  
+    F15                                               0.000     0.000 r  mii_rx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         1.482     1.482 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.500     1.982    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.511     2.493 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=900, routed)         0.744     3.237    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X2Y64          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y64          FDRE (Prop_fdre_C_Q)         0.518     3.755 f  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable_reg/Q
+                         net (fo=3, routed)           0.559     4.314    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable
+    SLICE_X5Y64          FDCE                                         f  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mii_rx_clk rise edge)
+                                                     40.000    40.000 r  
+    F15                                               0.000    40.000 r  mii_rx_clk (IN)
+                         net (fo=0)                   0.000    40.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         1.412    41.412 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.459    41.871    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.486    42.356 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=900, routed)         0.707    43.063    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X5Y64          FDCE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg/C
+                         clock pessimism              0.149    43.212    
+                         clock uncertainty           -0.035    43.177    
+    SLICE_X5Y64          FDCE (Recov_fdce_C_CLR)     -0.405    42.772    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg
+  -------------------------------------------------------------------
+                         required time                         42.772    
+                         arrival time                          -4.314    
+  -------------------------------------------------------------------
+                         slack                                 38.457    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.440ns  (arrival time - required time)
+  Source:                 trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable_reg/C
+                            (rising edge-triggered cell FDRE clocked by mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+                            (removal check against rising-edge clock mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (mii_rx_clk rise@0.000ns - mii_rx_clk rise@0.000ns)
+  Data Path Delay:        0.367ns  (logic 0.164ns (44.638%)  route 0.203ns (55.362%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.019ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.296ns
+    Source Clock Delay      (SCD):    0.809ns
+    Clock Pessimism Removal (CPR):    0.468ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mii_rx_clk rise edge)
+                                                      0.000     0.000 r  
+    F15                                               0.000     0.000 r  mii_rx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.250     0.250 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206     0.456    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092     0.548 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=900, routed)         0.261     0.809    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X2Y64          FDRE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y64          FDRE (Prop_fdre_C_Q)         0.164     0.973 f  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable_reg/Q
+                         net (fo=3, routed)           0.203     1.177    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/sfd_enable
+    SLICE_X5Y64          FDCE                                         f  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mii_rx_clk rise edge)
+                                                      0.000     0.000 r  
+    F15                                               0.000     0.000 r  mii_rx_clk (IN)
+                         net (fo=0)                   0.000     0.000    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.438     0.438 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.311     0.749    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.254     1.003 r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=900, routed)         0.293     1.296    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X5Y64          FDCE                                         r  trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg/C
+                         clock pessimism             -0.468     0.828    
+    SLICE_X5Y64          FDCE (Remov_fdce_C_CLR)     -0.092     0.736    trimac_fifo_block/trimac_sup_block/tri_mode_ethernet_mac_i/inst/tri_mode_ethernet_mac_0_core/gmii_mii_rx_gen/nibble_toggle_reg
+  -------------------------------------------------------------------
+                         required time                         -0.736    
+                         arrival time                           1.177    
+  -------------------------------------------------------------------
+                         slack                                  0.440    
+
+
+
+
+
