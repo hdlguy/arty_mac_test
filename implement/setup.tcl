@@ -10,6 +10,7 @@ set_property default_lib work [current_project]
 #load_features ipintegrator
 #tclapp::install ultrafast -quiet
 
+read_ip ../source/tx_fifo_ila/tx_fifo_ila.xci
 read_ip ../source/mac_clk_wiz/mac_clk_wiz.xci
 read_ip ../source/tri_mode_ethernet_mac_0/tri_mode_ethernet_mac_0.xci
 upgrade_ip -quiet  [get_ips *]
@@ -27,11 +28,11 @@ read_verilog -sv ../source/tri_mode_ethernet_mac_0_ten_100_1g_eth_fifo.v
 
 read_verilog -sv ../source/tri_mode_ethernet_mac_0_address_swap.v   
 read_verilog -sv ../source/tri_mode_ethernet_mac_0_bram_tdp.v               
-read_verilog -sv ../source/tri_mode_ethernet_mac_0_frame_typ.v         
+#read_verilog -sv ../source/tri_mode_ethernet_mac_0_frame_typ.v         
 read_verilog -sv ../source/tri_mode_ethernet_mac_0_tx_client_fifo.v
 
 read_verilog -sv ../source/tri_mode_ethernet_mac_0_axi_lite_sm.v    
-read_verilog -sv ../source/tri_mode_ethernet_mac_0_clk_wiz.v                
+#read_verilog -sv ../source/tri_mode_ethernet_mac_0_clk_wiz.v                
 read_verilog -sv ../source/tri_mode_ethernet_mac_0_reset_sync.v        
 
 read_verilog -sv ../source/tri_mode_ethernet_mac_0_axi_mux.v        

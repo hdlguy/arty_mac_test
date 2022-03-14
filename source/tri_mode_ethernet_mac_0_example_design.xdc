@@ -10,6 +10,13 @@
 #set_property PACKAGE_PIN  H5        [get_ports led[0]]
 
 
+set_property IOSTANDARD LVCMOS33    [get_ports led_b[*]]
+set_property PACKAGE_PIN  E1        [get_ports led_b[0]]
+set_property PACKAGE_PIN  G4        [get_ports led_b[1]]
+set_property PACKAGE_PIN  H4        [get_ports led_b[2]]
+set_property PACKAGE_PIN  K2        [get_ports led_b[3]]
+
+
 #set_property IOSTANDARD LVCMOS33    [get_ports sw[*]]
 #set_property PACKAGE_PIN A10        [get_ports sw[3]]
 #set_property PACKAGE_PIN C10        [get_ports sw[2]]
@@ -51,64 +58,56 @@
 
 ################
 
-########### NO BOARD INFO SO IO NO PIN PLACEMENT ##########
-#set_property IOSTANDARD  DIFF_HSTL_II_18  [get_ports clk_in_p]
-#set_property IOSTANDARD  DIFF_HSTL_II_18  [get_ports clk_in_n]
-set_property IOSTANDARD LVCMOS33    [get_ports clk_in]
-set_property PACKAGE_PIN   E3       [get_ports clk_in]
+set_property IOSTANDARD LVCMOS33  [get_ports clk_in]
+set_property PACKAGE_PIN   E3     [get_ports clk_in]
 
-#set_property IOSTANDARD  LVCMOS33 [get_ports glbl_rst]
-#set_false_path -from [get_ports glbl_rst]
-set_property IOSTANDARD LVCMOS33    [get_ports glbl_rstn]
-set_property PACKAGE_PIN   C2       [get_ports glbl_rstn]
-set_false_path -from                [get_ports glbl_rstn]
+set_property IOSTANDARD LVCMOS33  [get_ports glbl_rstn]
+set_property PACKAGE_PIN   C2     [get_ports glbl_rstn]
+set_false_path -from              [get_ports glbl_rstn]
 
 #### Module LEDs_8Bit constraints
 set_property IOSTANDARD  LVCMOS33 [get_ports activity_flash]
-set_property PACKAGE_PIN  H5        [get_ports activity_flash] ;# [get_ports led[0]]
-#set_property IOSTANDARD  LVCMOS33 [get_ports activity_flashn]
+set_property PACKAGE_PIN  H5      [get_ports activity_flash] ;# [get_ports led[0]]
 
 set_property IOSTANDARD  LVCMOS33 [get_ports frame_error]
-set_property PACKAGE_PIN  J5        [get_ports frame_error] ;#[get_ports led[1]]
-#set_property IOSTANDARD  LVCMOS33 [get_ports frame_errorn]
+set_property PACKAGE_PIN  J5      [get_ports frame_error] ;#[get_ports led[1]]
 
 #### Module Push_Buttons_4Bit constraints
 set_property IOSTANDARD  LVCMOS33 [get_ports update_speed]
-set_property PACKAGE_PIN D9         [get_ports update_speed] ;#[get_ports btn[0]]
+set_property PACKAGE_PIN D9       [get_ports update_speed] ;#[get_ports btn[0]]
 
 set_property IOSTANDARD  LVCMOS33 [get_ports config_board]
-set_property PACKAGE_PIN C9         [get_ports config_board] ;#[get_ports btn[1]]
+set_property PACKAGE_PIN C9       [get_ports config_board] ;#[get_ports btn[1]]
 
 set_property IOSTANDARD  LVCMOS33 [get_ports pause_req_s]
-set_property PACKAGE_PIN B9         [get_ports pause_req_s] ;#[get_ports btn[2]]
+set_property PACKAGE_PIN B9       [get_ports pause_req_s] ;#[get_ports btn[2]]
 
 set_property IOSTANDARD  LVCMOS33 [get_ports reset_error]
-set_property PACKAGE_PIN B8         [get_ports reset_error] ;#[get_ports btn[3]]
+set_property PACKAGE_PIN B8       [get_ports reset_error] ;#[get_ports btn[3]]
 
 #### Module DIP_Switches_4Bit constraints
-set_property IOSTANDARD  LVCMOS33 [get_ports mac_speed[0]]
-set_property IOSTANDARD  LVCMOS33 [get_ports mac_speed[1]]
-set_property PACKAGE_PIN C11        [get_ports mac_speed[1]] ;#[get_ports sw[1]]
-set_property PACKAGE_PIN A8         [get_ports mac_speed[0]] ;#[get_ports sw[0]]
+set_property IOSTANDARD  LVCMOS33 [get_ports mac_speed[*]]
+set_property PACKAGE_PIN C11      [get_ports mac_speed[1]] ;#[get_ports sw[1]]
+set_property PACKAGE_PIN A8       [get_ports mac_speed[0]] ;#[get_ports sw[0]]
 
 
 set_property IOSTANDARD  LVCMOS33 [get_ports gen_tx_data]
-set_property PACKAGE_PIN C10        [get_ports gen_tx_data] ;#[get_ports sw[2]]
+set_property PACKAGE_PIN C10      [get_ports gen_tx_data] ;#[get_ports sw[2]]
 
 set_property IOSTANDARD  LVCMOS33 [get_ports chk_tx_data]
-set_property PACKAGE_PIN A10        [get_ports chk_tx_data] ;#[get_ports sw[3]]
+set_property PACKAGE_PIN A10      [get_ports chk_tx_data] ;#[get_ports sw[3]]
 
 set_property IOSTANDARD  LVCMOS33 [get_ports phy_resetn]
-set_property PACKAGE_PIN   C16      [get_ports phy_resetn]
+set_property PACKAGE_PIN   C16    [get_ports phy_resetn]
 
 set_property IOSTANDARD  LVCMOS33 [get_ports serial_response]
-set_property PACKAGE_PIN  T9        [get_ports serial_response] ;#[get_ports led[2]]
+set_property PACKAGE_PIN  T9      [get_ports serial_response] ;#[get_ports led[2]]
 
-set_property IOSTANDARD LVCMOS33    [get_ports tx_statistics_s]
-set_property PACKAGE_PIN   G13      [get_ports tx_statistics_s]
+set_property IOSTANDARD LVCMOS33  [get_ports tx_statistics_s]
+set_property PACKAGE_PIN   G13    [get_ports tx_statistics_s]
 
-set_property IOSTANDARD LVCMOS33    [get_ports rx_statistics_s]
-set_property PACKAGE_PIN   B11      [get_ports rx_statistics_s]
+set_property IOSTANDARD LVCMOS33  [get_ports rx_statistics_s]
+set_property PACKAGE_PIN   B11    [get_ports rx_statistics_s]
 
 #set_property IOSTANDARD  LVCMOS33 [get_ports mdc]
 #set_property IOSTANDARD  LVCMOS33 [get_ports mdio]
@@ -133,8 +132,8 @@ set_property PACKAGE_PIN   B11      [get_ports rx_statistics_s]
 #set_property IOSTANDARD  LVCMOS33 [get_ports mii_tx_clk]
 
 # TB clock pin gtx_clk_bufg_out 
-set_property IOSTANDARD LVCMOS33    [get_ports gtx_clk_bufg_out]
-set_property PACKAGE_PIN   G18      [get_ports gtx_clk_bufg_out]
+set_property IOSTANDARD LVCMOS33  [get_ports gtx_clk_bufg_out]
+set_property PACKAGE_PIN   G18    [get_ports gtx_clk_bufg_out]
 
 
 create_clock -name clk_in -period 10.000 [get_ports clk_in]
@@ -145,6 +144,8 @@ set_input_jitter clk_in 0.050
 
 #set axi_clk_name [get_clocks -of [get_pins example_clocks/clock_generator/mmcm_adv_inst/CLKOUT1]]
 set axi_clk_name [get_clocks example_clocks/clock_generator/inst/clk_in1]
+set axi_clk_name [get_clocks example_clocks/clock_generator/inst/clk_in1]
+set axi_clk_name [get_clocks clk_out2_mac_clk_wiz]
 
 ############################################################
 # Input Delay constraints
