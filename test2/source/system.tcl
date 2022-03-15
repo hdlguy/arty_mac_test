@@ -362,6 +362,7 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.PHASE {0.0} \
  ] $sys_clock
+  set tx_ifg_delay [ create_bd_port -dir I -from 7 -to 0 tx_ifg_delay ]
   set tx_mac_aclk [ create_bd_port -dir O -type clk tx_mac_aclk ]
   set_property -dict [ list \
    CONFIG.ASSOCIATED_BUSIF {s_axis_tx:s_axis_pause} \
@@ -397,8 +398,8 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_OUT_CLKS {3} \
    CONFIG.PRIM_SOURCE {Single_ended_clock_capable_pin} \
    CONFIG.RESET_BOARD_INTERFACE {reset} \
-   CONFIG.RESET_PORT {resetn} \
-   CONFIG.RESET_TYPE {ACTIVE_LOW} \
+   CONFIG.RESET_PORT {reset} \
+   CONFIG.RESET_TYPE {ACTIVE_HIGH} \
    CONFIG.USE_BOARD_FLOW {true} \
    CONFIG.USE_RESET {false} \
  ] $clk_wiz_1
@@ -493,6 +494,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net tri_mode_ethernet_mac_0_mac_irq [get_bd_pins microblaze_0_xlconcat/In0] [get_bd_pins tri_mode_ethernet_mac_0/mac_irq]
   connect_bd_net -net tri_mode_ethernet_mac_0_rx_mac_aclk [get_bd_ports rx_mac_aclk] [get_bd_pins tri_mode_ethernet_mac_0/rx_mac_aclk]
   connect_bd_net -net tri_mode_ethernet_mac_0_tx_mac_aclk [get_bd_ports tx_mac_aclk] [get_bd_pins tri_mode_ethernet_mac_0/tx_mac_aclk]
+  connect_bd_net -net tx_ifg_delay_0_1 [get_bd_ports tx_ifg_delay] [get_bd_pins tri_mode_ethernet_mac_0/tx_ifg_delay]
 
   # Create address segments
   assign_bd_address -offset 0x44A10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs M00_AXI/Reg] -force

@@ -15,7 +15,7 @@ open_run impl_1
 report_timing_summary   -file   ./results/timing.rpt
 report_utilization      -file   ./results/utilization.rpt
 write_debug_probes      -force  ./results/top.ltx
-#write_hw_platform -fixed -force -file   ./results/top.xsa
+write_hw_platform -fixed -force -file   ./results/top.xsa
 
 set_property CFGBVS VCCO [current_design]
 set_property CONFIG_VOLTAGE 2.5 [current_design]

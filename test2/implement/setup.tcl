@@ -10,9 +10,10 @@ set_property default_lib work [current_project]
 #load_features ipintegrator
 #tclapp::install ultrafast -quiet
 
-#read_ip ../source/temac_core/temac_core.xci
-#upgrade_ip -quiet  [get_ips *]
-#generate_target {all} [get_ips *]
+read_ip ../source/tx_fifo_ila/tx_fifo_ila.xci
+read_ip ../source/eth_tx_fifo/eth_tx_fifo.xci
+upgrade_ip -quiet  [get_ips *]
+generate_target {all} [get_ips *]
 
 source ../source/system.tcl
 generate_target {synthesis implementation} [get_files ./proj.srcs/sources_1/bd/system/system.bd]

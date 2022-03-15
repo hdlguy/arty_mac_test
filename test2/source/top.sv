@@ -16,6 +16,7 @@ module top (
     input   logic           eth_mii_rx_dv,           
     input   logic           eth_mii_rx_er,           
     input   logic           eth_mii_rx_clk,                   
+    output  logic           eth_mii_rst_n,
     output  logic           eth_mdc,                     
     inout   logic           eth_mdio,
     output  logic           eth_refclk      
@@ -52,6 +53,7 @@ module top (
     logic rx_mac_aclk;
     logic [15:0]s_axis_pause_tdata;
     logic s_axis_pause_tvalid;
+    logic [7:0] tx_ifg_delay;
     logic [7:0]s_axis_tx_tdata;
     logic s_axis_tx_tlast;
     logic s_axis_tx_tready;
@@ -157,6 +159,7 @@ module top (
         
         .s_axis_pause_tdata (s_axis_pause_tdata),
         .s_axis_pause_tvalid(s_axis_pause_tvalid),
+        .tx_ifg_delay       (tx_ifg_delay),
         
         .tx_mac_aclk        (tx_mac_aclk),
         .s_axis_tx_tdata    (s_axis_tx_tdata),
@@ -167,9 +170,32 @@ module top (
     );
 
     IOBUF eth_mdio_mdc_mdio_iobuf (.I(eth_mdio_o), .IO(eth_mdio), .O(eth_mdio_i), .T(eth_mdio_t));    
+
+    assign eth_mii_rst_n = axi_aresetn;
     
     assign s_axis_pause_tdata = 0;
     assign s_axis_pause_tvalid = 0;
+    assign tx_ifg_delay = 0;
+    
+    
+    // generate some kind of tx data
+    logic tx_fifo_full, tx_fifo_empty;
+    logic [31:0] tx_count = 0;
+    always_ff @(posedge clk) begin
+        if (0 == tx_fifo_full) begin
+            tx_count <= tx_count + 1;
+            if (tx_count[3:0] == 15) s_axis_tx_tlast <= 1; else s_axis_tx_tlast <= 0;
+        end
+    end
+        
+    eth_tx_fifo tx_fifo_inst (
+        .wr_clk(clk),           .full(tx_fifo_full),     .wr_en(1'b1),               .din(tx_count),         
+        .rd_clk(tx_mac_aclk),   .empty(tx_fifo_empty),   .rd_en(s_axis_tx_tready),   .dout(s_axis_tx_tdata)
+    );
+    assign s_axis_tx_tvalid = ~tx_fifo_empty;
+    assign s_axis_tx_tuser = 0;
+    
+    tx_fifo_ila tx_ila_inst(.clk(clk), .probe0({tx_fifo_full, tx_count, s_axis_tx_tlast})); // 34
     
 
 endmodule

@@ -1,4 +1,8 @@
 
+set_property IOSTANDARD LVCMOS33    [get_ports eth_mii_rst_n]
+set_property SLEW SLOW              [get_ports eth_mii_rst_n]
+set_property PACKAGE_PIN C16        [get_ports eth_mii_rst_n]
+
 set_property IOSTANDARD LVCMOS33    [get_ports eth_refclk]
 set_property SLEW SLOW              [get_ports eth_refclk]
 set_property PACKAGE_PIN G18        [get_ports eth_refclk]
