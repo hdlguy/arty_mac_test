@@ -7,12 +7,15 @@ module top (
     input   logic [3:0]     btn,
     input   logic [3:0]     sw,
     //
+    input   logic           eth_mii_tx_clk,
     output  logic [3:0]     eth_mii_txd,    
-    output  logic           eth_mii_tx_en,          
+    output  logic           eth_mii_tx_en,  
+        
+    input   logic           eth_mii_rx_clk,              
     input   logic [3:0]     eth_mii_rxd,     
     input   logic           eth_mii_rx_dv,           
-    input   logic           eth_mii_rx_er,           
-    input   logic           eth_mii_rx_clk,                   
+    input   logic           eth_mii_rx_er,
+                        
     output  logic           eth_mii_rst_n,
     output  logic           eth_mdc,                     
     inout   logic           eth_mdio,
@@ -21,14 +24,13 @@ module top (
 
     logic clk, clk125, clk25, locked;
     clk_wiz clk_wiz_inst (.clkin100(clkin100), .resetn(resetn), .locked(locked), .clkout100(clk), .clkout125(clk125), .clkout25(clk25));
+    assign eth_refclk = clk25;
     
-    logic glbl_rstn;
-    assign glbl_rstn   = locked; 
-    assign rx_axi_rstn = locked; 
-    assign tx_axi_rstn = locked; 
     
     logic [27 : 0] rx_statistics_vector;
     logic rx_statistics_valid;
+
+    logic glbl_rstn;
 
     logic rx_axi_rstn;
     logic rx_mac_aclk;
@@ -68,7 +70,28 @@ module top (
     logic mii_rx_er;
     logic mii_rx_clk;
                                            
+    assign glbl_rstn   = locked; 
+    assign rx_axi_rstn = locked; 
+    assign tx_axi_rstn = locked; 
+
     logic [79 : 0] rx_configuration_vector;
+    assign rx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Receiver Pause Frame Source Address[47:0]
+    assign rx_configuration_vector[31:16] = 1600; // Receiver Max Frame Size[15:0].
+    assign rx_configuration_vector[15] = 0; // Reserved
+    assign rx_configuration_vector[14] = 0; // Receiver Max Frame Enable
+    assign rx_configuration_vector[13:12] = 2'b01; // Receiver Speed Configuration
+    assign rx_configuration_vector[11] = 0; // Promiscuous Mode
+    assign rx_configuration_vector[10] = 0; // Reserved
+    assign rx_configuration_vector[9] = 0; // Receiver Control Frame Length Check Disable
+    assign rx_configuration_vector[8] = 0; // Receiver Length/Type Error Check Disable
+    assign rx_configuration_vector[7] = 0; // Reserved
+    assign rx_configuration_vector[6] = 0; // Receiver Half-Duplex
+    assign rx_configuration_vector[5] = 0; // Receiver Flow Control Enable
+    assign rx_configuration_vector[4] = 0; // Receiver Jumbo Frame Enable
+    assign rx_configuration_vector[3] = 0; // Receiver In-Band FCS Enable
+    assign rx_configuration_vector[2] = 0; // Receiver VLAN Enable
+    assign rx_configuration_vector[1] = 1; // Receiver Enable
+    assign rx_configuration_vector[0] = 0; // Receiver Reset
 
     logic [79 : 0] tx_configuration_vector;
     assign tx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Transmitter Pause Frame Source Address[47:0]
@@ -86,6 +109,7 @@ module top (
     assign tx_configuration_vector[2] = 0; // Transmitter VLAN Enable
     assign tx_configuration_vector[1] = 1; // Transmitter Enable
     assign tx_configuration_vector[0] = 0; // Transmitter Reset
+
 
     temac_core temac_core_inst (
         .glbl_rstn(glbl_rstn),                              // input logic glbl_rstn
@@ -146,18 +170,24 @@ module top (
     always_ff @(posedge clk) begin
         if (0 == tx_fifo_full) begin
             tx_count <= tx_count + 1;
-            if (tx_count[3:0] == 15) s_axis_tx_tlast <= 1; else s_axis_tx_tlast <= 0;
+            if (tx_count[3:0] == 15) tx_axis_mac_tlast <= 1; else tx_axis_mac_tlast <= 0;
         end
     end
         
     eth_tx_fifo tx_fifo_inst (
         .wr_clk(clk),           .full(tx_fifo_full),     .wr_en(1'b1),               .din(tx_count),         
-        .rd_clk(tx_mac_aclk),   .empty(tx_fifo_empty),   .rd_en(s_axis_tx_tready),   .dout(s_axis_tx_tdata)
+        .rd_clk(tx_mac_aclk),   .empty(tx_fifo_empty),   .rd_en(tx_axis_mac_tready), .dout(tx_axis_mac_tdata)
     );
-    assign s_axis_tx_tvalid = ~tx_fifo_empty;
-    assign s_axis_tx_tuser = 0;
+    assign tx_axis_mac_tvalid = ~tx_fifo_empty;
+    assign tx_axis_mac_tuser = 0;
     
-    tx_fifo_ila tx_ila_inst(.clk(clk), .probe0({tx_fifo_full, tx_count, s_axis_tx_tlast})); // 34
+    logic[7:0] rx_fifo_dout;
+    logic rx_fifo_empty;
+    eth_rx_fifo rx_fifo_inst (.wr_clk(rx_mac_aclk), .wr_en(rx_axis_mac_tvalid), .din(rx_axis_mac_tdata), .full(),    
+        .rd_clk(clk), .rd_en(1'b1), .dout(rx_fifo_dout), .empty(rx_fifo_empty)   
+    );
+    
+    tx_fifo_ila tx_ila_inst(.clk(clk), .probe0({tx_fifo_full, tx_count, tx_axis_mac_tlast, rx_fifo_empty, rx_fifo_dout})); // 43
     
 
 endmodule

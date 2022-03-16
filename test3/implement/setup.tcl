@@ -11,6 +11,10 @@ set_property default_lib work [current_project]
 #tclapp::install ultrafast -quiet
 
 read_ip ../source/temac_core/temac_core.xci
+read_ip ../source/tx_fifo_ila/tx_fifo_ila.xci
+read_ip ../source/eth_tx_fifo/eth_tx_fifo.xci
+read_ip ../source/eth_rx_fifo/eth_rx_fifo.xci
+read_ip ../source/clk_wiz/clk_wiz.xci
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
