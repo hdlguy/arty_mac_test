@@ -17,8 +17,8 @@ module top (
     input   logic           eth_mii_rx_er,
                         
     output  logic           eth_mii_rst_n,
-    output  logic           eth_mdc,                     
-    inout   logic           eth_mdio,
+    //output  logic           eth_mdc,                     
+    //inout   logic           eth_mdio,
     output  logic           eth_refclk      
 );
 
@@ -73,6 +73,7 @@ module top (
     assign glbl_rstn   = locked; 
     assign rx_axi_rstn = locked; 
     assign tx_axi_rstn = locked; 
+    assign eth_mii_rst_n = locked;
 
     logic [79 : 0] rx_configuration_vector;
     assign rx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Receiver Pause Frame Source Address[47:0]
@@ -95,7 +96,7 @@ module top (
 
     logic [79 : 0] tx_configuration_vector;
     assign tx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Transmitter Pause Frame Source Address[47:0]
-    assign tx_configuration_vector[31:16] = 1600; // Transmitter Max Frame Size[15:0].
+    assign tx_configuration_vector[31:16] = 4500; // Transmitter Max Frame Size[15:0].
     assign tx_configuration_vector[15] = 0; // Reserved
     assign tx_configuration_vector[14] = 0; // Transmitter Max Frame Enable
     assign tx_configuration_vector[13:12] = 2'b01; // Transmitter Speed Configuration
@@ -104,7 +105,7 @@ module top (
     assign tx_configuration_vector[7] = 0; // Reserved
     assign tx_configuration_vector[6] = 0; // Transmitter Half-Duplex
     assign tx_configuration_vector[5] = 0; // Transmitter Flow Control Enable
-    assign tx_configuration_vector[4] = 0; // Transmitter Jumbo Frame Enable
+    assign tx_configuration_vector[4] = 1; // Transmitter Jumbo Frame Enable
     assign tx_configuration_vector[3] = 0; // Transmitter In-Band FCS Enable
     assign tx_configuration_vector[2] = 0; // Transmitter VLAN Enable
     assign tx_configuration_vector[1] = 1; // Transmitter Enable
@@ -166,16 +167,16 @@ module top (
     
     // generate some kind of tx data
     logic tx_fifo_full, tx_fifo_empty;
-    logic [31:0] tx_count = 0;
+    logic [7:0] tx_count = 0;
     always_ff @(posedge clk) begin
         if (0 == tx_fifo_full) begin
             tx_count <= tx_count + 1;
-            if (tx_count[3:0] == 15) tx_axis_mac_tlast <= 1; else tx_axis_mac_tlast <= 0;
+            if ($signed(tx_count) == -2) tx_axis_mac_tlast <= 1; else tx_axis_mac_tlast <= 0;
         end
     end
         
     eth_tx_fifo tx_fifo_inst (
-        .wr_clk(clk),           .full(tx_fifo_full),     .wr_en(1'b1),               .din(tx_count),         
+        .wr_clk(clk),           .full(tx_fifo_full),     .wr_en(1'b1),               .din(tx_count[7:0]),         
         .rd_clk(tx_mac_aclk),   .empty(tx_fifo_empty),   .rd_en(tx_axis_mac_tready), .dout(tx_axis_mac_tdata)
     );
     assign tx_axis_mac_tvalid = ~tx_fifo_empty;
@@ -187,8 +188,9 @@ module top (
         .rd_clk(clk), .rd_en(1'b1), .dout(rx_fifo_dout), .empty(rx_fifo_empty)   
     );
     
-    tx_fifo_ila tx_ila_inst(.clk(clk), .probe0({tx_fifo_full, tx_count, tx_axis_mac_tlast, rx_fifo_empty, rx_fifo_dout})); // 43
-    
+    tx_fifo_ila tx_ila_inst(.clk(clk), .probe0({tx_fifo_full, tx_count[7:0], tx_axis_mac_tlast, rx_fifo_empty, rx_fifo_dout})); // 43    
+    mac_rx_ila mac_rx_ila_inst (.clk(rx_mac_aclk), .probe0({rx_axis_mac_tdata,rx_axis_mac_tvalid,rx_axis_mac_tlast,rx_axis_mac_tuser})); // 11    
+    mac_tx_ila mac_tx_ila_inst (.clk(tx_mac_aclk), .probe0({tx_axis_mac_tdata,tx_axis_mac_tvalid,tx_axis_mac_tready,tx_axis_mac_tlast,tx_axis_mac_tuser})); // 12    
 
 endmodule
 

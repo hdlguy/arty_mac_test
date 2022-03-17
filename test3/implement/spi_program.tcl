@@ -1,4 +1,4 @@
-open_project proj.xpr
+#open_project proj.xpr
 disconnect_hw_server -quiet
 open_hw_manager
 connect_hw_server
@@ -25,6 +25,6 @@ refresh_hw_device   [current_hw_device];
 program_hw_cfgmem -hw_cfgmem                                [ get_property PROGRAM.HW_CFGMEM [current_hw_device]]
 boot_hw_device  [current_hw_device]
 close_hw_manager
-close_project
+#close_project
 
 
