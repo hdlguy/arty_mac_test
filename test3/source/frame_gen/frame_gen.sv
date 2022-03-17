@@ -11,10 +11,12 @@ module frame_gen (
     input  logic            tready
 );
 
-    localparam int Nframe = 64;
+    localparam int Nframe = 1024;
 
     logic [0:5][7:0] d_address = {8'hff, 8'hff, 8'hff, 8'hff, 8'hff, 8'hff}; // the broadcast address.
     logic [0:5][7:0] s_address = {8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02}; 
+    
+    logic [0:3][7:0] header1 = {8'hde, 8'had, 8'hbe, 8'hef}; 
     logic [15:0] len = Nframe - 14; 
 
     logic fifo_full, fifo_empty;
@@ -25,7 +27,7 @@ module frame_gen (
     assign tdata = fifo_dout[7:0];
     assign tuser = 0;
     
-    logic [13:0] count = 0;
+    logic [15:0] count = 0;
     always_ff @(posedge clk) begin
         if (0 == fifo_full) begin
             if (Nframe-1 == count) begin
@@ -37,6 +39,13 @@ module frame_gen (
     end
 
     always_comb begin
+/*
+        if  (count < 4) begin
+            fifo_din[7:0] = header1[count];
+        end else begin
+            fifo_din[7:0] = count[7:0];
+        end
+*/
         if  (count < 6) begin
             fifo_din[7:0] = d_address[count];
         end else if ((count > 5) && (count < 12)) begin

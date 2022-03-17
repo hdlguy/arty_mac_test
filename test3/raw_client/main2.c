@@ -11,9 +11,6 @@
 
 int main ()
 {
-    struct timespec t1, t2;
-    double elapsed_time;
-
 
     // open a raw socket
     int sock_r;
@@ -31,6 +28,8 @@ int main ()
 
 
     //Receive network packets
+    struct timespec t1, t2;
+    double elapsed_time, rate;
     const size_t bufsize = 65536;
     unsigned char *buffer = (unsigned char *) malloc(65536); //to receive data
     memset(buffer,0,bufsize);
@@ -48,11 +47,13 @@ int main ()
         total_rxlen += buflen;
 
         // occasionally compute the rx throughput.
-        if (i%(1024*64) == 0) {
+        if (i%(1024*128) == 0) {
             t1 = t2;
             clock_gettime(CLOCK_MONOTONIC, &t2);
             elapsed_time = (t2.tv_sec - t1.tv_sec) + 1e-9*(t2.tv_nsec - t1.tv_nsec);
-            printf("bytes received = %ld, elapsed seconds = %le, bytes/second = %3.2le\n", total_rxlen, elapsed_time, total_rxlen/elapsed_time);
+            rate = total_rxlen/elapsed_time;
+            printf("bytes received = %ld, elapsed seconds = %le, Mbytes/second = %3.2lf, Mbits/second = %3.2lf\n", total_rxlen, elapsed_time, rate/1.0e6, rate*8/1.0e6);
+            printf("buflen = %ld: ", buflen); for(int j=0; j<32; j++) printf("%02x",buffer[j]); printf("\n");
             total_rxlen = 0;
         }
 
