@@ -8,7 +8,7 @@ module frame_gen (
     output logic            tvalid,
     output logic            tlast,
     output logic            tuser,
-    output logic            tready
+    input  logic            tready
 );
 
     localparam int Nframe = 64;
@@ -42,9 +42,9 @@ module frame_gen (
         end else if ((count > 5) && (count < 12)) begin
             fifo_din[7:0] = s_address[count-6];
         end else if (count == 12)  begin
-            fifo_din[7:0] = len[7:0];
-        end else if (count == 13)  begin
             fifo_din[7:0] = len[15:8];
+        end else if (count == 13)  begin
+            fifo_din[7:0] = len[7:0];
         end else begin
             fifo_din[7:0] = count[7:0];
         end
@@ -52,5 +52,5 @@ module frame_gen (
         if (count == Nframe-1) fifo_din[8] = 1; else fifo_din[8] = 0; // put the tlast into the fifo.
     end
         
-endmodule;
+endmodule
 

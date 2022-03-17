@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 
 module frame_gen_tb ();
 
@@ -9,7 +11,7 @@ module frame_gen_tb ();
     logic            tready;
 
     logic  clk = 0; localparam  clk_period = 10; always #( clk_period/2)  clk =  ~clk;
-    logic aclk = 0; localparam aclk_period = 25; always #(aclk_period/2) aclk = ~aclk;
+    logic aclk = 0; localparam aclk_period = 26; always #(aclk_period/2) aclk = ~aclk;
 
     frame_gen uut (.*);
 
@@ -26,11 +28,11 @@ module frame_gen_tb ();
     initial begin
     
         tready = 0;
-        #(aclk_period*2);
+        #(aclk_period*20);
         
         forever begin
             tready = ~tready;
-            #(aclk_period*2);
+            #(aclk_period*1);
         end
         
     end

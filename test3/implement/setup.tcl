@@ -9,15 +9,16 @@ set_property target_language verilog [current_project]
 set_property default_lib work [current_project]
 
 read_ip ../source/temac_core/temac_core.xci
-read_ip ../source/eth_tx_fifo/eth_tx_fifo.xci
 read_ip ../source/eth_rx_fifo/eth_rx_fifo.xci
 read_ip ../source/clk_wiz/clk_wiz.xci
-read_ip ../source/tx_fifo_ila/tx_fifo_ila.xci
 read_ip ../source/mac_tx_ila/mac_tx_ila.xci
 read_ip ../source/mac_rx_ila/mac_rx_ila.xci
+read_ip ../source/frame_gen/frame_gen_fifo/frame_gen_fifo.xci
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
+
+read_verilog -sv ../source/frame_gen/frame_gen.sv
 read_verilog -sv ../source/top.sv
 
 read_xdc ../source/top.xdc  

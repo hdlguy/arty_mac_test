@@ -12,14 +12,17 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="11,810.001 ns"></ZoomEndTime>
+      <ZoomEndTime time="10,000.001 ns"></ZoomEndTime>
       <Cursor1Time time="0.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="293"></NameColumnWidth>
-      <ValueColumnWidth column_width="158"></ValueColumnWidth>
+      <ValueColumnWidth column_width="153"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="26" />
+   <WVObjectSize size="27" />
+   <wave_markers>
+      <marker label="" time="924000" />
+   </wave_markers>
    <wvobject type="logic" fp_name="/frame_gen_tb/reset">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
@@ -35,6 +38,11 @@
    <wvobject type="array" fp_name="/frame_gen_tb/tdata">
       <obj_property name="ElementShortName">tdata[7:0]</obj_property>
       <obj_property name="ObjectShortName">tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_gen_tb/tdata">
+      <obj_property name="ElementShortName">tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tdata[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/frame_gen_tb/tvalid">
       <obj_property name="ElementShortName">tvalid</obj_property>

@@ -165,32 +165,29 @@ module top (
     assign pause_req = 0;
     assign pause_val = 0;
     
-    // generate some kind of tx data
-    logic tx_fifo_full, tx_fifo_empty;
-    logic [7:0] tx_count = 0;
-    always_ff @(posedge clk) begin
-        if (0 == tx_fifo_full) begin
-            tx_count <= tx_count + 1;
-            if ($signed(tx_count) == -2) tx_axis_mac_tlast <= 1; else tx_axis_mac_tlast <= 0;
-        end
-    end
-        
-    eth_tx_fifo tx_fifo_inst (
-        .wr_clk(clk),           .full(tx_fifo_full),     .wr_en(1'b1),               .din(tx_count[7:0]),         
-        .rd_clk(tx_mac_aclk),   .empty(tx_fifo_empty),   .rd_en(tx_axis_mac_tready), .dout(tx_axis_mac_tdata)
-    );
-    assign tx_axis_mac_tvalid = ~tx_fifo_empty;
-    assign tx_axis_mac_tuser = 0;
+    // generate tx frames
+    frame_gen frame_gen_inst (.clk(clk), .reset(0), .aclk(tx_mac_aclk), .tdata(tx_axis_mac_tdata), .tvalid(tx_axis_mac_tvalid), .tlast(tx_axis_mac_tlast), .tuser(tx_axis_mac_tuser), .tready(tx_axis_mac_tready));
     
     logic[7:0] rx_fifo_dout;
     logic rx_fifo_empty;
-    eth_rx_fifo rx_fifo_inst (.wr_clk(rx_mac_aclk), .wr_en(rx_axis_mac_tvalid), .din(rx_axis_mac_tdata), .full(),    
-        .rd_clk(clk), .rd_en(1'b1), .dout(rx_fifo_dout), .empty(rx_fifo_empty)   
-    );
+    eth_rx_fifo rx_fifo_inst (.wr_clk(rx_mac_aclk), .wr_en(rx_axis_mac_tvalid), .din(rx_axis_mac_tdata), .full(), .rd_clk(clk), .rd_en(1'b1), .dout(rx_fifo_dout), .empty(rx_fifo_empty));
     
-    tx_fifo_ila tx_ila_inst(.clk(clk), .probe0({tx_fifo_full, tx_count[7:0], tx_axis_mac_tlast, rx_fifo_empty, rx_fifo_dout})); // 43    
-    mac_rx_ila mac_rx_ila_inst (.clk(rx_mac_aclk), .probe0({rx_axis_mac_tdata,rx_axis_mac_tvalid,rx_axis_mac_tlast,rx_axis_mac_tuser})); // 11    
-    mac_tx_ila mac_tx_ila_inst (.clk(tx_mac_aclk), .probe0({tx_axis_mac_tdata,tx_axis_mac_tvalid,tx_axis_mac_tready,tx_axis_mac_tlast,tx_axis_mac_tuser})); // 12    
+    mac_tx_ila mac_tx_ila_inst (.clk(tx_mac_aclk), .probe0({tx_axis_mac_tdata,tx_axis_mac_tvalid,tx_axis_mac_tlast,tx_axis_mac_tuser,tx_axis_mac_tready})); // 12    
+    //mac_rx_ila mac_rx_ila_inst (.clk(rx_mac_aclk), .probe0({rx_axis_mac_tdata,rx_axis_mac_tvalid,rx_axis_mac_tlast,rx_axis_mac_tuser})); // 11    
 
 endmodule
 
+
+/*
+module frame_gen (
+    input  logic            clk,            // 100MHz system clock.
+    input  logic            reset,
+    //
+    input  logic            aclk,    // 25MHz tx clock from Phy
+    output logic [7 : 0]    tdata,
+    output logic            tvalid,
+    output logic            tlast,
+    output logic            tuser,
+    output logic            tready
+);
+*/
