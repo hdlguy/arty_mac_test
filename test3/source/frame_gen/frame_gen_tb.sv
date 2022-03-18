@@ -3,36 +3,31 @@
 
 module frame_gen_tb ();
 
-    logic            reset;
-    logic [7 : 0]    tdata;
-    logic            tvalid;
-    logic            tlast;
-    logic            tuser;
-    logic            tready;
+    logic            enable;
+    logic [7 : 0]    m_axis_tdata;
+    logic            m_axis_tvalid;
+    logic            m_axis_tlast;
+    logic            m_axis_tuser;
+    logic            m_axis_tready;
 
     logic  clk = 0; localparam  clk_period = 10; always #( clk_period/2)  clk =  ~clk;
-    logic aclk = 0; localparam aclk_period = 26; always #(aclk_period/2) aclk = ~aclk;
 
     frame_gen uut (.*);
 
     initial begin
-
-        reset = 1;
-        #(clk_period*10);
-
-        reset = 0;
-        #(clk_period*10);
-        
+        enable = 0;
+        #(clk_period*100);
+        enable = 1;
     end
     
     initial begin
     
-        tready = 0;
-        #(aclk_period*20);
+        m_axis_tready = 0;
+        #(clk_period*20);
         
         forever begin
-            tready = ~tready;
-            #(aclk_period*1);
+            m_axis_tready = ~m_axis_tready;
+            #(clk_period*1);
         end
         
     end
@@ -42,14 +37,14 @@ endmodule
 
 /*
 module frame_gen (
-    input  logic            clk,            // 100MHz system clock.
-    input  logic            reset,
     //
-    input  logic            aclk,    // 25MHz tx clock from Phy
-    output logic [7 : 0]    tdata,
-    output logic            tvalid,
-    output logic            tlast,
-    output logic            tuser,
-    output logic            tready
+    input  logic            clk,
+    input  logic            enable,
+    // fifo interface
+    output logic [7 : 0]    m_axis_tdata,
+    output logic            m_axis_tvalid,
+    output logic            m_axis_tlast,
+    output logic            m_axis_tuser,
+    input  logic            m_axis_tready
 );
 */

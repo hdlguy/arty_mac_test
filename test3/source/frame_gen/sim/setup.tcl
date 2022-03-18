@@ -8,9 +8,9 @@ set_property target_language Verilog [current_project]
 set_property default_lib work [current_project]
 load_features ipintegrator
 
-read_ip ../frame_gen_fifo/frame_gen_fifo.xci
-upgrade_ip -quiet  [get_ips *]
-generate_target {all} [get_ips *]
+#read_ip ../frame_gen_fifo/frame_gen_fifo.xci
+#upgrade_ip -quiet  [get_ips *]
+#generate_target {all} [get_ips *]
 
 read_verilog -sv ../frame_gen.sv
 read_verilog -sv ../frame_gen_tb.sv

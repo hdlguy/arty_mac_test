@@ -106,12 +106,18 @@ int main(int argc, char *argv[])
 	socket_address.sll_addr[5] = MY_DEST_MAC5;
 
 	/* Send packets */
+    ssize_t send_size;
+    int whilecount = 0;
     while(1) {
-	    if (sendto(sockfd, sendbuf, tx_len, 0, (struct sockaddr*)&socket_address, sizeof(struct sockaddr_ll)) < 0){
-	    //if (send(sockfd, sendbuf, tx_len, 0) < 0){
+	    send_size = sendto(sockfd, sendbuf, tx_len, 0, (struct sockaddr*)&socket_address, sizeof(struct sockaddr_ll));
+	    if (send_size < 0){
 	        printf("Send failed\n");
+        } else {
+            printf("%d: send_size = %ld\n", whilecount, send_size);
         }
-        usleep(1000000);
+
+        usleep(100000);
+        whilecount++;
     }
 
 	return 0;
