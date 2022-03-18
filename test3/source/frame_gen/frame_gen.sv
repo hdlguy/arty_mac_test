@@ -1,7 +1,7 @@
 
 module frame_gen (
     input  logic            clk,            // 100MHz system clock.
-    input  logic            reset,
+    input  logic            enable,
     //
     input  logic            aclk,    // 25MHz tx clock from Phy
     output logic [7 : 0]    tdata,
@@ -21,7 +21,9 @@ module frame_gen (
 
     logic fifo_full, fifo_empty;
     logic [8:0] fifo_din, fifo_dout;
-    frame_gen_fifo frame_gen_fifo_inst (.wr_clk(clk), .full(fifo_full), .wr_en(1'b1), .din(fifo_din), .rd_clk(aclk), .empty(fifo_empty), .rd_en(tready), .dout(fifo_dout));
+    logic enable_q;
+    always_ff @(posedge clk) enable_q <= enable;
+    frame_gen_fifo frame_gen_fifo_inst (.wr_clk(clk), .full(fifo_full), .wr_en(enable_q), .din(fifo_din), .rd_clk(aclk), .empty(fifo_empty), .rd_en(tready), .dout(fifo_dout));
     assign tvalid = ~fifo_empty;
     assign tlast = fifo_dout[8];
     assign tdata = fifo_dout[7:0];

@@ -22,6 +22,8 @@ module top (
     output  logic           eth_refclk      
 );
 
+    assign led_b = sw;
+
     logic clk, clk125, clk25, locked;
     clk_wiz clk_wiz_inst (.clkin100(clkin100), .resetn(resetn), .locked(locked), .clkout100(clk), .clkout125(clk125), .clkout25(clk25));
     assign eth_refclk = clk25;
@@ -166,14 +168,14 @@ module top (
     assign pause_val = 0;
     
     // generate tx frames
-    frame_gen frame_gen_inst (.clk(clk), .reset(0), .aclk(tx_mac_aclk), .tdata(tx_axis_mac_tdata), .tvalid(tx_axis_mac_tvalid), .tlast(tx_axis_mac_tlast), .tuser(tx_axis_mac_tuser), .tready(tx_axis_mac_tready));
+    frame_gen frame_gen_inst (.clk(clk), .enable(sw[0]), .aclk(tx_mac_aclk), .tdata(tx_axis_mac_tdata), .tvalid(tx_axis_mac_tvalid), .tlast(tx_axis_mac_tlast), .tuser(tx_axis_mac_tuser), .tready(tx_axis_mac_tready));
     
     logic[7:0] rx_fifo_dout;
     logic rx_fifo_empty;
     eth_rx_fifo rx_fifo_inst (.wr_clk(rx_mac_aclk), .wr_en(rx_axis_mac_tvalid), .din(rx_axis_mac_tdata), .full(), .rd_clk(clk), .rd_en(1'b1), .dout(rx_fifo_dout), .empty(rx_fifo_empty));
     
-    mac_tx_ila mac_tx_ila_inst (.clk(tx_mac_aclk), .probe0({tx_axis_mac_tdata,tx_axis_mac_tvalid,tx_axis_mac_tlast,tx_axis_mac_tuser,tx_axis_mac_tready})); // 12    
-    //mac_rx_ila mac_rx_ila_inst (.clk(rx_mac_aclk), .probe0({rx_axis_mac_tdata,rx_axis_mac_tvalid,rx_axis_mac_tlast,rx_axis_mac_tuser})); // 11    
+    //mac_tx_ila mac_tx_ila_inst (.clk(tx_mac_aclk), .probe0({tx_axis_mac_tdata,tx_axis_mac_tvalid,tx_axis_mac_tlast,tx_axis_mac_tuser,tx_axis_mac_tready})); // 12    
+    mac_rx_ila mac_rx_ila_inst (.clk(rx_mac_aclk), .probe0({rx_axis_mac_tdata,rx_axis_mac_tvalid,rx_axis_mac_tlast,rx_axis_mac_tuser})); // 11    
 
 endmodule
 

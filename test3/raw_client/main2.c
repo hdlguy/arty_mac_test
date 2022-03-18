@@ -16,7 +16,7 @@ int main ()
     int sock_r;
     sock_r=socket(AF_PACKET,SOCK_RAW,htons(ETH_P_ALL));
     if(sock_r<0) {
-        printf("error in socket\n");
+        printf("error in socket. Are you root?\n");
         return -1;
     } else {
         printf("socket opened, sock_r = %d\n", sock_r);
@@ -47,7 +47,8 @@ int main ()
         total_rxlen += buflen;
 
         // occasionally compute the rx throughput.
-        if (i%(1024*128) == 0) {
+        if (i%(1024*64) == 0) {
+
             t1 = t2;
             clock_gettime(CLOCK_MONOTONIC, &t2);
             elapsed_time = (t2.tv_sec - t1.tv_sec) + 1e-9*(t2.tv_nsec - t1.tv_nsec);
@@ -55,6 +56,7 @@ int main ()
             printf("bytes received = %ld, elapsed seconds = %le, Mbytes/second = %3.2lf, Mbits/second = %3.2lf\n", total_rxlen, elapsed_time, rate/1.0e6, rate*8/1.0e6);
             printf("buflen = %ld: ", buflen); for(int j=0; j<32; j++) printf("%02x",buffer[j]); printf("\n");
             total_rxlen = 0;
+
         }
 
         i++;
