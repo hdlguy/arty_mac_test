@@ -17,6 +17,8 @@ generate_target {all} [get_ips *]
 
 
 read_verilog -sv ../source/frame_gen/frame_gen.sv
+read_verilog -sv ../source/frame_rx/frame_rx.sv
+
 read_verilog -sv ../source/top.sv
 
 read_xdc ../source/top.xdc  

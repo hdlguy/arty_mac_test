@@ -92,6 +92,14 @@ int main(int argc, char *argv[])
 
     const int Ndata = 64;
     for (int i=0; i<Ndata; i++) sendbuf[tx_len++] = 0xff - i;
+    sendbuf[14] = 0xfa;
+    sendbuf[15] = 0xf3;
+    sendbuf[16] = 0xbe;
+    sendbuf[17] = 0xfe;
+    sendbuf[18] = 0xca;
+    sendbuf[19] = 0xfe;
+
+    sendbuf[28] = 0xff;
 
 	/* Index of the network device */
 	socket_address.sll_ifindex = if_idx.ifr_ifindex;
@@ -115,8 +123,9 @@ int main(int argc, char *argv[])
         } else {
             printf("%d: send_size = %ld\n", whilecount, send_size);
         }
+        sendbuf[28] -= 1;
 
-        usleep(100000);
+        usleep(1000000);
         whilecount++;
     }
 

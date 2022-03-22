@@ -168,10 +168,12 @@ module top (
     assign pause_val = 0;
     
     
-    // generate tx frames and push into tx fifo
+    // generate tx frames
     logic tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_full, tx_fifo_empty;
     logic [7:0] tx_fifo_tdata;
     frame_gen frame_gen_inst (.clk(clk), .enable(sw[0]), .m_axis_tdata(tx_fifo_tdata), .m_axis_tvalid(tx_fifo_tvalid), .m_axis_tlast(tx_fifo_tlast), .m_axis_tuser(tx_fifo_tuser), .m_axis_tready(tx_fifo_tready));
+
+    // tx fifo
     mac_fifo tx_mac_fifo(
         .wr_clk(clk),         .full(tx_fifo_full),   .wr_en(tx_fifo_tvalid),     .din ({tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata}), 
         .rd_clk(tx_mac_aclk), .empty(tx_fifo_empty), .rd_en(tx_axis_mac_tready), .dout({tx_axis_mac_tlast, tx_axis_mac_tuser, tx_axis_mac_tdata})
@@ -180,16 +182,33 @@ module top (
     assign tx_axis_mac_tvalid = ~tx_fifo_empty;
     
     
-    
-    //read the rx fifo continuously
+    //rx fifo 
     logic[7:0] rx_fifo_tdata;
     logic rx_fifo_empty, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tready, rx_fifo_tvalid;
     mac_fifo rx_mac_fifo(
         .wr_clk(rx_mac_aclk), .full(),               .wr_en(rx_axis_mac_tvalid), .din ({rx_axis_mac_tlast, rx_axis_mac_tuser, rx_axis_mac_tdata}), 
         .rd_clk(clk),         .empty(rx_fifo_empty), .rd_en(rx_fifo_tready),     .dout({rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})
     );
-    assign rx_fifo_tready = 1;  
+    //assign rx_fifo_tready = 1;  
     assign rx_fifo_tvalid = ~rx_fifo_empty;  
+
+    // receive mac frames and write the values the control registers.
+    localparam int Nreg = 32;
+    logic reg_dv;
+    logic [Nreg-1:0][31:0] slv_reg, slv_read, slv_wr_pulse;
+    frame_rx #(.Nregs(Nreg)) frame_rx_inst (
+        .clk(clk),
+        .rx_fifo_tvalid (rx_fifo_tvalid),
+        .rx_fifo_tready (rx_fifo_tready),
+        .rx_fifo_tdata  (rx_fifo_tdata),
+        .rx_fifo_tlast  (rx_fifo_tlast),
+        .rx_fifo_tuser  (rx_fifo_tuser),
+        .dv_out         (reg_dv),
+        .wr_val         (slv_reg)
+    );
+
+    assign led = slv_reg[2][3:0];
+
     
     eth_ila tx_eth_ila (.clk(clk), .probe0({tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata})); // 12
     eth_ila rx_eth_ila (.clk(clk), .probe0({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})); // 12
