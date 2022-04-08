@@ -231,7 +231,8 @@
                                 "nets": [
                                     {
                                         "name": "tx_fifo_tvalid",
-                                        "isBus": false
+                                        "isBus": false,
+                                        "parentNetId": 22
                                     }
                                 ]
                             },
@@ -248,6 +249,35 @@
                                     {
                                         "name": "tx_fifo_tready",
                                         "isBus": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "parent_nets": [
+                    {
+                        "id": 22,
+                        "name": "arp_tx_inst/tx_fifo_tvalid",
+                        "state_reg": [
+                            {
+                                "name": "arp_tx_inst/FSM_onehot_state_reg[3]",
+                                "states": [
+                                    {
+                                        "name": "iSTATE",
+                                        "val": "0001"
+                                    },
+                                    {
+                                        "name": "iSTATE0",
+                                        "val": "0010"
+                                    },
+                                    {
+                                        "name": "iSTATE1",
+                                        "val": "0100"
+                                    },
+                                    {
+                                        "name": "iSTATE2",
+                                        "val": "1000"
                                     }
                                 ]
                             }

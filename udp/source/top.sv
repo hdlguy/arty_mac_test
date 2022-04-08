@@ -167,14 +167,13 @@ module top #(
     assign tx_ifg_delay = 0;
     assign pause_req = 0;
     assign pause_val = 0;
-    
-    
-    // generate tx frames
-    logic tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_full, tx_fifo_empty;
-    logic [7:0] tx_fifo_tdata;
-    frame_gen frame_gen_inst (.clk(clk), .enable(sw[0]), .m_axis_tdata(tx_fifo_tdata), .m_axis_tvalid(tx_fifo_tvalid), .m_axis_tlast(tx_fifo_tlast), .m_axis_tuser(tx_fifo_tuser), .m_axis_tready(tx_fifo_tready));
+ 
 
+   
+    
     // tx fifo
+    logic[7:0] tx_fifo_tdata;
+    logic tx_fifo_empty, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_tvalid;
     mac_fifo tx_mac_fifo(
         .wr_clk(clk),         .full(tx_fifo_full),   .wr_en(tx_fifo_tvalid),     .din ({tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata}), 
         .rd_clk(tx_mac_aclk), .empty(tx_fifo_empty), .rd_en(tx_axis_mac_tready), .dout({tx_axis_mac_tlast, tx_axis_mac_tuser, tx_axis_mac_tdata})
@@ -192,22 +191,24 @@ module top #(
     );
     assign rx_fifo_tvalid = ~rx_fifo_empty;  
 
-    // receive mac frames and write the values the control registers.
-    localparam int Nreg = 32;
-    logic reg_dv;
-    logic [Nreg-1:0][31:0] slv_reg, slv_read, slv_wr_pulse;
-    frame_rx #(.Nregs(Nreg)) frame_rx_inst (
-        .clk(clk),
-        .rx_fifo_tvalid (rx_fifo_tvalid),
-        .rx_fifo_tready (rx_fifo_tready),
-        .rx_fifo_tdata  (rx_fifo_tdata),
-        .rx_fifo_tlast  (rx_fifo_tlast),
-        .rx_fifo_tuser  (rx_fifo_tuser),
-        .dv_out         (reg_dv),
-        .wr_val         (slv_reg)
+
+    // receive and decode arp requests
+    logic  arp_rx_dv_out;
+    logic[47:0] remote_mac;
+    logic[31:0] remote_ip;
+    arp_rx #(.local_ip(local_ip)) arp_rx_inst (
+        .clk(clk), 
+        .rx_fifo_tvalid(rx_fifo_tvalid), .rx_fifo_tready(rx_fifo_tready), .rx_fifo_tdata(rx_fifo_tdata) , .rx_fifo_tlast(rx_fifo_tlast), .rx_fifo_tuser(rx_fifo_tuser),  // connect to rx fifo
+        .dv_out(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip)
     );
 
-    assign led = slv_reg[2][3:0];
+
+    // send an arp reply
+    arp_tx #(.local_mac(local_mac), .local_ip(local_ip)) arp_tx_inst (
+        .clk(clk),
+        .tx_fifo_tvalid(tx_fifo_tvalid), .tx_fifo_tready(tx_fifo_tready), .tx_fifo_tdata(tx_fifo_tdata) , .tx_fifo_tlast(tx_fifo_tlast), .tx_fifo_tuser(tx_fifo_tuser),  // connect to tx fifo
+        .dv_in(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip)
+    );
 
     
     eth_ila tx_eth_ila (.clk(clk), .probe0({tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata})); // 12
@@ -217,4 +218,36 @@ endmodule
 
 
 /*
+module arp_tx #(
+    parameter logic[47:0]   local_mac = 48'h00_0a_35_01_02_03,
+    parameter logic[31:0]   local_ip  = 32'h10_00_00_80
+) (
+    input   logic           clk,
+    // axi-stream interface to tx fifo.
+    output  logic           tx_fifo_tvalid,
+    input   logic           tx_fifo_tready, 
+    output  logic[7:0]      tx_fifo_tdata,
+    output  logic           tx_fifo_tlast, 
+    output  logic           tx_fifo_tuser, 
+    // 
+    input   logic           dv_in = 0,
+    input   logic[47:0]     remote_mac,
+    input   logic[31:0]     remote_ip
+);
+
+module arp_rx #(
+    parameter logic[31:0] local_ip  = 32'h10_00_00_80           // 16.0.0.128
+) (
+    input   logic                   clk,
+    // axi-stream interface from rx fifo.
+    input   logic                   rx_fifo_tvalid,
+    output  logic                   rx_fifo_tready, 
+    input   logic[7:0]              rx_fifo_tdata,
+    input   logic                   rx_fifo_tlast, 
+    input   logic                   rx_fifo_tuser, 
+    // 
+    output  logic                   dv_out = 0,
+    output  logic[47:0]             remote_mac,
+    output  logic[31:0]             remote_ip
+);
 */
