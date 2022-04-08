@@ -27,5 +27,4 @@ write_bitstream -verbose -force ./results/top.bit
 
 close_project
 
-write_cfgmem -force -format MCS -size 128 -interface SPIx4 -loadbit "up 0x0 ./results/top.bit" -verbose ./results/top.mcs
 

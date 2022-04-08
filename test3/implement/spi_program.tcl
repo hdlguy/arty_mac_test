@@ -1,4 +1,6 @@
-#open_project proj.xpr
+#
+write_cfgmem -force -format MCS -size 128 -interface SPIx4 -loadbit "up 0x0 ./results/top.bit" -verbose ./results/top.mcs
+
 disconnect_hw_server -quiet
 open_hw_manager
 connect_hw_server
@@ -25,6 +27,5 @@ refresh_hw_device   [current_hw_device];
 program_hw_cfgmem -hw_cfgmem                                [ get_property PROGRAM.HW_CFGMEM [current_hw_device]]
 boot_hw_device  [current_hw_device]
 close_hw_manager
-#close_project
 
 

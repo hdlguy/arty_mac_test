@@ -189,7 +189,6 @@ module top (
         .wr_clk(rx_mac_aclk), .full(),               .wr_en(rx_axis_mac_tvalid), .din ({rx_axis_mac_tlast, rx_axis_mac_tuser, rx_axis_mac_tdata}), 
         .rd_clk(clk),         .empty(rx_fifo_empty), .rd_en(rx_fifo_tready),     .dout({rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})
     );
-    //assign rx_fifo_tready = 1;  
     assign rx_fifo_tvalid = ~rx_fifo_empty;  
 
     // receive mac frames and write the values the control registers.
@@ -211,9 +210,7 @@ module top (
 
     
     eth_ila tx_eth_ila (.clk(clk), .probe0({tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata})); // 12
-    eth_ila rx_eth_ila (.clk(clk), .probe0({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})); // 12
-    
-    //mac_tx_ila mac_tx_ila_inst (.clk(tx_mac_aclk), .probe0({tx_axis_mac_tdata,tx_axis_mac_tvalid,tx_axis_mac_tlast,tx_axis_mac_tuser,tx_axis_mac_tready})); // 12   
+    eth_ila rx_eth_ila (.clk(clk), .probe0({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})); // 12    
 
 endmodule
 
