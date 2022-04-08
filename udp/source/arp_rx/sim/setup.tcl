@@ -12,10 +12,10 @@ read_ip ../../mac_fifo/mac_fifo.xci
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
-read_verilog -sv ../frame_rx.sv
-read_verilog -sv ../frame_rx_tb.sv
+read_verilog -sv ../arp_rx.sv
+read_verilog -sv ../arp_rx_tb.sv
 
-add_files -fileset sim_1 -norecurse ./frame_rx_tb_behav.wcfg
+add_files -fileset sim_1 -norecurse ./arp_rx_tb_behav.wcfg
 
 close_project
 
