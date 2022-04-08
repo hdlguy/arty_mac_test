@@ -9,9 +9,11 @@ module arp_rx_tb ();
     logic[47:0] remote_mac;
     logic[31:0] remote_ip;
 
+    localparam logic[31:0] local_ip  = 32'h10_00_00_80;  // 16.0.0.128
+
     logic  clk = 0; localparam  clk_period = 10; always #( clk_period/2)  clk =  ~clk;
 
-    arp_rx uut (.*);            
+    arp_rx #(local_ip) uut (.*);            
     
     logic fifo_empty, fifo_full;
     mac_fifo rx_fifo (

@@ -1,6 +1,8 @@
 // arp_rx.sv - receives raw ethernet frames from the rx mac fifo.
 // If the frame is an arp request, fields are extracted for the arp reply.
-module arp_rx (
+module arp_rx #(
+    parameter logic[31:0] local_ip  = 32'h10_00_00_80           // 16.0.0.128
+) (
     input   logic                   clk,
     // axi-stream interface from rx fifo.
     input   logic                   rx_fifo_tvalid,
@@ -27,6 +29,8 @@ module arp_rx (
     assign frame_type_int = {wr_byte[12], wr_byte[13]};
     logic[15:0] op_int;
     assign op_int = {wr_byte[20], wr_byte[21]};
+    logic[31:0] target_ip_int;
+    assign target_ip_int = {wr_byte[38], wr_byte[39], wr_byte[40], wr_byte[41]};
     
 
     assign rx_fifo_tready = 1; // always ready to receive a byte, no backpressure.
@@ -59,7 +63,7 @@ module arp_rx (
             pre_dv_out <= 0;
         end
 
-        if ((pre_dv_out) && (frame_type_int==16'h0806) && (op_int==16'h0001)) begin  // if an arp frame
+        if ((pre_dv_out) && (frame_type_int==16'h0806) && (op_int==16'h0001) && (target_ip_int==local_ip)) begin  // if an arp frame
             remote_mac <= remote_mac_int;
             remote_ip  <= remote_ip_int;
             dv_out <= 1;
