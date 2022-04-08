@@ -1,4 +1,7 @@
-module top (
+module top #(
+    parameter logic[47:0] local_mac = 48'h00_0a_35_01_02_03,    // a Xilinx mac address
+    parameter logic[31:0] local_ip  = 32'h10_00_00_80           // 16.0.0.128
+) (
     input   logic           clkin100,   // 100MHz oscillator
     input   logic           resetn,     // red reset button
     //
@@ -17,8 +20,6 @@ module top (
     input   logic           eth_mii_rx_er,
                         
     output  logic           eth_mii_rst_n,
-    //output  logic           eth_mdc,                     
-    //inout   logic           eth_mdio,
     output  logic           eth_refclk      
 );
 
