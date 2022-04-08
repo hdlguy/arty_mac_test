@@ -13,7 +13,7 @@ module arp_rx_tb ();
 
     logic  clk = 0; localparam  clk_period = 10; always #( clk_period/2)  clk =  ~clk;
 
-    arp_rx #(local_ip) uut (.*);            
+    arp_rx #(.local_ip(local_ip)) uut (.*);            
     
     logic fifo_empty, fifo_full;
     mac_fifo rx_fifo (
