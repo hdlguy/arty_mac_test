@@ -196,11 +196,15 @@ module top #(
     logic  arp_rx_dv_out;
     logic[47:0] remote_mac;
     logic[31:0] remote_ip;
+    logic udp_rx_tvalid, udp_rx_tready, udp_rx_tlast, udp_rx_tuser;
+    logic[7:0] udp_rx_tdata;
     arp_rx #(.local_ip(local_ip)) arp_rx_inst (
         .clk(clk), 
         .rx_fifo_tvalid(rx_fifo_tvalid), .rx_fifo_tready(rx_fifo_tready), .rx_fifo_tdata(rx_fifo_tdata) , .rx_fifo_tlast(rx_fifo_tlast), .rx_fifo_tuser(rx_fifo_tuser),  // connect to rx fifo
-        .dv_out(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip)
+        .dv_out(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip),
+        .udp_tvalid(udp_rx_tvalid), .udp_tready(udp_rx_tready), .udp_tdata(udp_rx_tdata), .udp_tlast(udp_rx_tlast), .udp_tuser(udp_rx_tuser)
     );
+    assign udp_rx_tready = 1;
 
 
     // send an arp reply
@@ -211,8 +215,12 @@ module top #(
     );
 
     
-    eth_ila tx_eth_ila (.clk(clk), .probe0({tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata})); // 12
-    eth_ila rx_eth_ila (.clk(clk), .probe0({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})); // 12    
+    eth_ila tx_eth_ila (
+        .clk(clk), 
+        .probe0({tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata}), // 12
+        .probe1({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata}), // 12
+        .probe2({ udp_rx_tready,  udp_rx_tvalid,  udp_rx_tlast,  udp_rx_tuser,  udp_rx_tdata})  // 12
+    );
 
 endmodule
 

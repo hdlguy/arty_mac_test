@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <unistd.h>
+
+int main(){
+    int clientSocket;
+    char buffer[1024];
+    struct sockaddr_in serverAddr;
+    socklen_t addr_size;
+
+    /*Create UDP socket*/
+    clientSocket = socket(PF_INET, SOCK_DGRAM, 0);
+
+    /*Configure settings in address struct*/
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(1234);
+    serverAddr.sin_addr.s_addr = inet_addr("16.0.0.128");
+    memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);  
+
+    /*Initialize size variable to be used later on*/
+    addr_size = sizeof serverAddr;
+
+    // send one packet to prime the pump.
+    ssize_t nBytes = 200;
+    int i=0;
+    while(1){
+        printf("%d\n", i);
+        for (int j=0; j<nBytes; j++) buffer[j] = 0x00ff & (j+i);
+        sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr *)&serverAddr, addr_size); // /*Send message to server*/
+        usleep(1000000);
+        i++;
+    }
+
+    return 0;
+}
+
+
+

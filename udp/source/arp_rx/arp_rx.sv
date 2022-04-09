@@ -54,6 +54,8 @@ module arp_rx #(
     // rename some of the bytes to UDP fields
     logic[15:0] dest_port;
     assign dest_port = {wr_byte[36], wr_byte[37]};
+    logic[15:0] udp_length;
+    assign udp_length = {wr_byte[38], wr_byte[39]};
 
     assign rx_fifo_tready = 1; // always ready to receive a byte, no backpressure.
     
@@ -63,7 +65,7 @@ module arp_rx #(
     logic tlast_q = 1, pre_dv_out = 0;
     logic[ 7:0] tdata_q;
     logic[15:0] byte_count;
-    logic udp_found=0;
+    logic udp_mess_active=0;
     always_ff @(posedge clk) begin
     
         dv_in_q <= dv_in;
@@ -94,15 +96,17 @@ module arp_rx #(
             dv_out <= 0;
         end
 
-        if ((byte_count==41) && (dest_mac==local_mac) && (protocol==17) && (dest_ip==local_ip)) udp_found <= 1;
-        if (tlast_q) udp_found <= 0;
+        if ((byte_count==41) && (dest_mac==local_mac) && (protocol==17) && (dest_ip==local_ip)) udp_mess_active <= 1;
+        //if (tlast_q) udp_mess_active <= 0;
+        if (byte_count==(udp_length+42-8-1)) udp_mess_active <= 0;  // end of message
         
     end
     
     assign udp_tdata = tdata_q;
-    assign udp_tlast = tlast_q;
+    //assign udp_tlast = (byte_count==(udp_length+42-8-1)) ? 1'b1 : 1'b0;
+    assign udp_tlast = (byte_count==(udp_length+42-8-1));
     assign udp_tuser = 0;
-    assign udp_tvalid = dv_in_q & udp_found;
+    assign udp_tvalid = dv_in_q & udp_mess_active;
     
 endmodule
 

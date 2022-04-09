@@ -46,7 +46,7 @@ module arp_rx_tb ();
     
     
     // define a legal udp packet
-    localparam int udp_len = 46;
+    localparam int udp_len = 50;
     logic[0:udp_len-1][7:0] udp_bytes;
     assign udp_bytes[ 0: 5] = local_mac;
     assign udp_bytes[ 6:11] = 48'h94_10_3e_b7_e2_01;
@@ -63,9 +63,10 @@ module arp_rx_tb ();
     assign udp_bytes[30:33] = 32'h10_00_00_80;
     assign udp_bytes[34:35] = 16'h9a0d;
     assign udp_bytes[36:37] = 16'h04d2;
-    assign udp_bytes[38:39] = 16'h000d;
+    assign udp_bytes[38:39] = 16'h000c;
     assign udp_bytes[40:41] = 16'h0000;
     assign udp_bytes[42:45] = 32'h55_66_77_88;
+    assign udp_bytes[46:49] = 32'h00_00_00_00; // padding
     
     assign udp_tready = 1;
     
