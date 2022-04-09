@@ -29,7 +29,21 @@ module arp_rx_tb ();
     assign rx_fifo_tvalid = ~fifo_empty;
     assign fifo_tready    = ~fifo_full;
 
-    // 94:10:3e:b7:e2:01
+    // define a legal arp packet
+    localparam int arp_len = 46;
+    logic[0:arp_len-1][7:0] arp_bytes;
+    assign arp_bytes[ 0: 5] = 48'hff_ff_ff_ff_ff_ff;
+    assign arp_bytes[ 6:11] = 48'h94_10_3e_b7_e2_01;
+    assign arp_bytes[12:13] = 16'h0806;
+    assign arp_bytes[14:15] = 16'h0001;
+    assign arp_bytes[16:17] = 16'h0800;
+    assign arp_bytes[18:19] = 16'h0604;
+    assign arp_bytes[20:21] = 16'h0001;
+    assign arp_bytes[22:27] = 48'h94_10_3e_b7_e2_01;
+    assign arp_bytes[28:31] = 32'h10_00_00_c8;
+    assign arp_bytes[32:37] = 48'h00_00_00_00_00_00;
+    assign arp_bytes[38:41] = 32'h10_00_00_80;
+    
     
     // define a legal udp packet
     localparam int udp_len = 46;
@@ -64,183 +78,18 @@ module arp_rx_tb ();
 
         forever begin
 
-            // an arp frame
-            // destination address for broadcast
-            for (int i=0; i<6; i++) begin        
+             // a arp frame
+            for (int i=0; i<arp_len; i++) begin        
                 fifo_tvalid = 1;
-                fifo_tdata  = 8'hff;
-                fifo_tlast = 0;
+                fifo_tdata  = arp_bytes[i];
+                if (i==arp_len-1) fifo_tlast = 1; else fifo_tlast = 0;
                 #(clk_period*1);
-            end
-            
-            // source address from computer
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h94;
-            fifo_tlast = 0;
-            #(clk_period*1);
-            
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h10;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h3e;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'hb7;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'he2;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-    
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h01;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-    
-            // frame type
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h08;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
 
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h06;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            // hardware type = ethernet
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h00;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h01;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            // protocol = ip
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h08;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h00;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            // hardware size
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h06;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            // protocol size
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h04;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            // operation
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h00;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h01;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-                    
-            // source address from computer, again
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h94;
-            fifo_tlast = 0;
-            #(clk_period*1);
-            
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h10;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h3e;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'hb7;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'he2;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-    
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h01;
-            fifo_tlast = 0;
-            #(clk_period*1);                                                               
-    
-            // source ip address from computer, 16.0.0.200
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h10;
-            fifo_tlast = 0;
-            #(clk_period*1);
-            
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h00;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h00;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'hc8;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            // destination mac address, not known so all zeros 
-            for (int i=0; i<6; i++) begin        
-                fifo_tvalid = 1;
-                fifo_tdata  = 8'h00;
-                fifo_tlast = 0;
-                #(clk_period*1);
-            end
-            
-            // target ip address for fpga, 16.0.0.128
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h10;
-            fifo_tlast = 0;
-            #(clk_period*1);
-            
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h00;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h00;
-            fifo_tlast = 0;
-            #(clk_period*1);
-                        
-            fifo_tvalid = 1;
-            fifo_tdata  = 8'h80;
-            fifo_tlast = 1;
-            #(clk_period*1);
-                        
+                fifo_tvalid = 0;
+                fifo_tdata  = arp_bytes[i];
+                if (i==arp_len-1) fifo_tlast = 1; else fifo_tlast = 0;
+                #(clk_period*7);
+            end                       
 
             // a gap
             fifo_tvalid = 0;
@@ -255,6 +104,11 @@ module arp_rx_tb ();
                 fifo_tdata  = udp_bytes[i];
                 if (i==udp_len-1) fifo_tlast = 1; else fifo_tlast = 0;
                 #(clk_period*1);
+
+                fifo_tvalid = 0;
+                fifo_tdata  = udp_bytes[i];
+                if (i==udp_len-1) fifo_tlast = 1; else fifo_tlast = 0;
+                #(clk_period*7);
             end
             
             
