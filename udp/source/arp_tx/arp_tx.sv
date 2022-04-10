@@ -11,15 +11,15 @@ module arp_tx #(
     output  logic           tx_fifo_tlast, 
     output  logic           tx_fifo_tuser, 
     // Arp parameters
-    input   logic           dv_in, // indicates when to send an ARP reply frame.
+    input   logic           arp_dv_in, // indicates when to send an ARP reply frame.
     input   logic[47:0]     remote_mac,
-    input   logic[31:0]     remote_ip
-    //// UDP message input
-    //input   logic           udp_tvalid,
-    //output  logic           udp_tready,
-    //input   logic[7:0]      udp_tdata,
-    //input   logic           udp_tlast, 
-    //input   logic           udp_tuser
+    input   logic[31:0]     remote_ip,
+    // UDP message input
+    input   logic           udp_tvalid,
+    output  logic           udp_tready,
+    input   logic[7:0]      udp_tdata,
+    input   logic           udp_tlast, 
+    input   logic           udp_tuser
 );
 
     // assign values to the 42 byte arp frame.
@@ -41,15 +41,17 @@ module arp_tx #(
 
     assign tx_fifo_tdata = tx_bytes[byte_count];
 
-    logic byte_count_rst, arp_complete=0;
+    logic byte_count_rst, arp_complete=0, set_arp_complete, new_arp=0;
     logic[3:0] state=0, next_state;
     always_comb begin
+
         // defaults
         next_state = state;
         tx_fifo_tvalid = 0;
         tx_fifo_tlast = 0;
         tx_fifo_tuser = 0;
         byte_count_rst = 0;
+        set_arp_complete = 0;
         
         case (state)
 
@@ -59,12 +61,17 @@ module arp_tx #(
             end
 
             1: begin
-                if (dv_in) begin
+                if (new_arp) begin
                     next_state = 2;
+                end else begin
+                    if (udp_tvalid) begin
+                        next_state = 4;
+                    end
                 end
                 byte_count_rst = 1;
             end
 
+            // begin arp stuff
             2: begin
                 if (byte_count == 41) begin
                     next_state = 3;
@@ -75,8 +82,14 @@ module arp_tx #(
             
             3: begin
                 next_state = 0;
+                set_arp_complete = 1;
             end
 
+            // begin udp stuff
+            4: begin
+                next_state = 0;
+            end
+            
             default: begin
                 next_state = 0;
             end
@@ -85,9 +98,6 @@ module arp_tx #(
     end
 
     always_ff @(posedge clk) state <= next_state;
-    
-    
-    always_ff @(posedge clk) if (dv_in) arp_complete <= 1;
         
 
     always_ff @(posedge clk) begin
@@ -99,7 +109,20 @@ module arp_tx #(
             end
         end
     end
+    
+    
+    always_ff @(posedge clk) begin
+        if (set_arp_complete) arp_complete <= 1;
+        if (arp_dv_in) begin
+            new_arp <= 1;
+        end else begin
+            if (set_arp_complete) new_arp <= 0;
+        end
+    end
+
+    assign udp_tready = arp_complete;
 
 
 endmodule
+
 
