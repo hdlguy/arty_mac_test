@@ -8,9 +8,9 @@ set_property target_language Verilog [current_project]
 set_property default_lib work [current_project]
 load_features ipintegrator
 
-#read_ip ../../mac_fifo/mac_fifo.xci
-#upgrade_ip -quiet  [get_ips *]
-#generate_target {all} [get_ips *]
+read_ip ../../udp_fifo/udp_fifo.xci
+upgrade_ip -quiet  [get_ips *]
+generate_target {all} [get_ips *]
 
 read_verilog -sv ../arp_tx.sv
 read_verilog -sv ../arp_tx_tb.sv

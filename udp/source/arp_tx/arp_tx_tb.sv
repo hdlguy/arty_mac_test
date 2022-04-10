@@ -22,7 +22,18 @@ module arp_tx_tb ();
 
     logic  clk = 0; localparam  clk_period = 10; always #( clk_period/2)  clk =  ~clk;
 
-    arp_tx #(.local_mac(local_mac), .local_ip(local_ip)) uut (.*);            
+    arp_tx #(.local_mac(local_mac), .local_ip(local_ip)) uut (.*);          
+
+    
+    logic fifo_empty, fifo_full;
+    logic[7:0] fifo_tdata;
+    udp_fifo udp_tx_fifo (
+        .wr_clk(clk), .full(fifo_full),  .wr_en(fifo_tvalid),  .din({fifo_tlast, fifo_tuser, fifo_tdata}),
+        .rd_clk(clk), .empty(fifo_empty), .rd_en(udp_tready),  .dout({udp_tlast,  udp_tuser,  udp_tdata})
+    );
+    assign udp_tvalid = ~fifo_empty;
+    assign fifo_tready    = ~fifo_full;
+              
     
     initial begin
             
@@ -39,12 +50,28 @@ module arp_tx_tb ();
     
     end
 
+
+    // throttle the tx mac fifo a little.
     always_ff @(posedge clk) tx_fifo_tready <= ~tx_fifo_tready;
+       
     
-    assign udp_tvalid = 0;
-    assign udp_tdata  = 0;
-    assign udp_tlast  = 0;
-    assign udp_tuser  = 0;
+    // keep the udp_tx_fifo full of frames.
+    localparam int Nudp = 10;
+    assign fifo_tvalid = 1;
+    assign fifo_tuser = 0;
+    int fifo_count=0;
+    always_ff @(posedge clk) begin
+        if ((fifo_tready) && (fifo_tvalid)) begin
+            if (fifo_count == Nudp-1) begin
+                fifo_count <= 0;
+            end else begin
+                fifo_count <= fifo_count + 1;
+            end
+        end
+    end
+    
+    assign fifo_tdata = fifo_count;
+    assign fifo_tlast = (fifo_count == Nudp-1) ? 1 : 0;
 
 endmodule
 

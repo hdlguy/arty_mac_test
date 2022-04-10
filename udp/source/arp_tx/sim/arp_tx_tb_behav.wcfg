@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="4,000.001 ns"></ZoomEndTime>
-      <Cursor1Time time="0.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="24.260001 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="293"></NameColumnWidth>
-      <ValueColumnWidth column_width="98"></ValueColumnWidth>
+      <ValueColumnWidth column_width="93"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="33" />
+   <WVObjectSize size="40" />
    <wave_markers>
       <marker label="" time="924000" />
    </wave_markers>
@@ -50,22 +50,32 @@
    <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tvalid">
       <obj_property name="ElementShortName">tx_fifo_tvalid</obj_property>
       <obj_property name="ObjectShortName">tx_fifo_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tready">
       <obj_property name="ElementShortName">tx_fifo_tready</obj_property>
       <obj_property name="ObjectShortName">tx_fifo_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/arp_tx_tb/tx_fifo_tdata">
       <obj_property name="ElementShortName">tx_fifo_tdata[7:0]</obj_property>
       <obj_property name="ObjectShortName">tx_fifo_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tlast">
       <obj_property name="ElementShortName">tx_fifo_tlast</obj_property>
       <obj_property name="ObjectShortName">tx_fifo_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tuser">
       <obj_property name="ElementShortName">tx_fifo_tuser</obj_property>
       <obj_property name="ObjectShortName">tx_fifo_tuser</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/arp_tx_tb/udp_tvalid">
       <obj_property name="ElementShortName">udp_tvalid</obj_property>
@@ -96,6 +106,30 @@
       <obj_property name="ObjectShortName">udp_tuser</obj_property>
       <obj_property name="CustomSignalColor">#FFA500</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/fifo_count">
+      <obj_property name="ElementShortName">fifo_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tvalid">
+      <obj_property name="ElementShortName">fifo_tvalid</obj_property>
+      <obj_property name="ObjectShortName">fifo_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tready">
+      <obj_property name="ElementShortName">fifo_tready</obj_property>
+      <obj_property name="ObjectShortName">fifo_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/fifo_tdata">
+      <obj_property name="ElementShortName">fifo_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tlast">
+      <obj_property name="ElementShortName">fifo_tlast</obj_property>
+      <obj_property name="ObjectShortName">fifo_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tuser">
+      <obj_property name="ElementShortName">fifo_tuser</obj_property>
+      <obj_property name="ObjectShortName">fifo_tuser</obj_property>
    </wvobject>
    <wvobject fp_name="divider16" type="divider">
       <obj_property name="label">uut</obj_property>
@@ -164,8 +198,12 @@
       <obj_property name="ElementShortName">arp_complete</obj_property>
       <obj_property name="ObjectShortName">arp_complete</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/arp_tx_tb/uut/new_arp">
-      <obj_property name="ElementShortName">new_arp</obj_property>
-      <obj_property name="ObjectShortName">new_arp</obj_property>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/arp_active">
+      <obj_property name="ElementShortName">arp_active</obj_property>
+      <obj_property name="ObjectShortName">arp_active</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/udp_active">
+      <obj_property name="ElementShortName">udp_active</obj_property>
+      <obj_property name="ObjectShortName">udp_active</obj_property>
    </wvobject>
 </wave_config>

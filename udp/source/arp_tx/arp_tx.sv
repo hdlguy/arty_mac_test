@@ -39,19 +39,20 @@ module arp_tx #(
     
     logic[7:0] byte_count=0;    
 
-    assign tx_fifo_tdata = tx_bytes[byte_count];
 
-    logic byte_count_rst, arp_complete=0, set_arp_complete, new_arp=0;
+    logic byte_count_rst, arp_complete=0, set_arp_complete, arp_active=0;
+    logic udp_active=0;
+    logic arp_tvalid, arp_tlast, arp_tuser;
     logic[3:0] state=0, next_state;
     always_comb begin
 
         // defaults
         next_state = state;
-        tx_fifo_tvalid = 0;
-        tx_fifo_tlast = 0;
-        tx_fifo_tuser = 0;
+        arp_tvalid = 0;
+        arp_tlast = 0;
         byte_count_rst = 0;
         set_arp_complete = 0;
+        udp_active = 0;
         
         case (state)
 
@@ -61,10 +62,10 @@ module arp_tx #(
             end
 
             1: begin
-                if (new_arp) begin
+                if (arp_active) begin
                     next_state = 2;
                 end else begin
-                    if (udp_tvalid) begin
+                    if ((udp_tvalid) && (arp_complete)) begin
                         next_state = 4;
                     end
                 end
@@ -75,9 +76,9 @@ module arp_tx #(
             2: begin
                 if (byte_count == 41) begin
                     next_state = 3;
-                    tx_fifo_tlast = 1;
+                    arp_tlast = 1;
                 end
-                tx_fifo_tvalid = 1;
+                arp_tvalid = 1;
             end
             
             3: begin
@@ -87,7 +88,15 @@ module arp_tx #(
 
             // begin udp stuff
             4: begin
-                next_state = 0;
+                next_state = 5;
+                byte_count_rst = 1;
+            end
+
+            5: begin
+                if ((udp_tvalid) && (udp_tready) && (udp_tlast)) begin
+                    next_state = 0;
+                end
+                udp_active = 1;
             end
             
             default: begin
@@ -114,13 +123,30 @@ module arp_tx #(
     always_ff @(posedge clk) begin
         if (set_arp_complete) arp_complete <= 1;
         if (arp_dv_in) begin
-            new_arp <= 1;
+            arp_active <= 1;
         end else begin
-            if (set_arp_complete) new_arp <= 0;
+            if (set_arp_complete) arp_active <= 0;
         end
     end
 
-    assign udp_tready = arp_complete;
+
+    // mux between arp and udp
+    assign arp_tuser = 0;
+    always_comb begin
+        if ((arp_complete) && (udp_active)) begin
+            udp_tready = tx_fifo_tready; 
+            tx_fifo_tvalid = udp_tvalid;
+            tx_fifo_tdata  = udp_tdata;
+            tx_fifo_tlast  = udp_tlast;
+            tx_fifo_tuser  = udp_tuser;
+        end else begin
+            udp_tready = 0;
+            tx_fifo_tvalid = arp_tvalid;
+            tx_fifo_tdata  = tx_bytes[byte_count];
+            tx_fifo_tlast  = arp_tlast;
+            tx_fifo_tuser  = arp_tuser;            
+        end
+    end                
 
 
 endmodule
