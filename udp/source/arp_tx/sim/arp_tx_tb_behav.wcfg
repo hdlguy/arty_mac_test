@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="2,000.000 ns"></ZoomEndTime>
+      <ZoomEndTime time="2,000.001 ns"></ZoomEndTime>
       <Cursor1Time time="0.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="293"></NameColumnWidth>
-      <ValueColumnWidth column_width="108"></ValueColumnWidth>
+      <ValueColumnWidth column_width="103"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="27" />
+   <WVObjectSize size="28" />
    <wave_markers>
       <marker label="" time="924000" />
    </wave_markers>
@@ -133,5 +133,9 @@
    <wvobject type="array" fp_name="/arp_tx_tb/uut/local_ip">
       <obj_property name="ElementShortName">local_ip[31:0]</obj_property>
       <obj_property name="ObjectShortName">local_ip[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/arp_complete">
+      <obj_property name="ElementShortName">arp_complete</obj_property>
+      <obj_property name="ObjectShortName">arp_complete</obj_property>
    </wvobject>
 </wave_config>

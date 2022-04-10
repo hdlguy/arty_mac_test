@@ -10,10 +10,16 @@ module arp_tx #(
     output  logic[7:0]      tx_fifo_tdata,
     output  logic           tx_fifo_tlast, 
     output  logic           tx_fifo_tuser, 
-    // 
-    input   logic           dv_in = 0,
+    // Arp parameters
+    input   logic           dv_in, // indicates when to send an ARP reply frame.
     input   logic[47:0]     remote_mac,
     input   logic[31:0]     remote_ip
+    //// UDP message input
+    //input   logic           udp_tvalid,
+    //output  logic           udp_tready,
+    //input   logic[7:0]      udp_tdata,
+    //input   logic           udp_tlast, 
+    //input   logic           udp_tuser
 );
 
     // assign values to the 42 byte arp frame.
@@ -35,8 +41,8 @@ module arp_tx #(
 
     assign tx_fifo_tdata = tx_bytes[byte_count];
 
+    logic byte_count_rst, arp_complete=0;
     logic[3:0] state=0, next_state;
-    logic byte_count_rst;
     always_comb begin
         // defaults
         next_state = state;
@@ -79,6 +85,9 @@ module arp_tx #(
     end
 
     always_ff @(posedge clk) state <= next_state;
+    
+    
+    always_ff @(posedge clk) if (dv_in) arp_complete <= 1;
         
 
     always_ff @(posedge clk) begin
