@@ -60,7 +60,7 @@ module arp_tx #(
     assign header_bytes[34:35] = local_port;        
     assign header_bytes[36:37] = remote_port;        
     assign header_bytes[38:39] = udp_header_length;        
-    assign header_bytes[40:41] = 16'hccbb;        // ignore udp checksum.
+    assign header_bytes[40:41] = 16'h0000;        // ignore udp checksum.
 
  
     // state machine   

@@ -15,7 +15,7 @@
                     },
                     {
                         "type": "ILA_V3",
-                        "name": "tx_eth_ila",
+                        "name": "eth_ila",
                         "spec": "labtools_ila_v6",
                         "ipName": "ila",
                         "core_location": {
@@ -23,7 +23,7 @@
                             "slave_index": 0,
                             "bscan_switch_index": 0
                         },
-                        "uuid": "377E3DC699D158C68B911C227DB3998D",
+                        "uuid": "A3A09C21F18156DF8BD404673FA43E4A",
                         "pins": [
                             {
                                 "name": "probe0",
@@ -111,8 +111,7 @@
                                 "nets": [
                                     {
                                         "name": "tx_fifo_tvalid",
-                                        "isBus": false,
-                                        "parentNetId": 10
+                                        "isBus": false
                                     }
                                 ]
                             },
@@ -343,33 +342,126 @@
                                         "isBus": false
                                     }
                                 ]
-                            }
-                        ]
-                    }
-                ],
-                "parent_nets": [
-                    {
-                        "id": 10,
-                        "name": "arp_tx_inst/tx_fifo_tvalid",
-                        "state_reg": [
+                            },
                             {
-                                "name": "arp_tx_inst/FSM_onehot_state_reg[3]",
-                                "states": [
+                                "name": "probe3",
+                                "id": 15,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 3,
+                                "nets": [
                                     {
-                                        "name": "iSTATE",
-                                        "val": "0001"
-                                    },
+                                        "name": "udp_tx_tdata",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "udp_tx_tdata[7]"
+                                            },
+                                            {
+                                                "name": "udp_tx_tdata[6]"
+                                            },
+                                            {
+                                                "name": "udp_tx_tdata[5]"
+                                            },
+                                            {
+                                                "name": "udp_tx_tdata[4]"
+                                            },
+                                            {
+                                                "name": "udp_tx_tdata[3]"
+                                            },
+                                            {
+                                                "name": "udp_tx_tdata[2]"
+                                            },
+                                            {
+                                                "name": "udp_tx_tdata[1]"
+                                            },
+                                            {
+                                                "name": "udp_tx_tdata[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 16,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 8,
+                                "rightIndex": 8,
+                                "portIndex": 3,
+                                "nets": [
                                     {
-                                        "name": "iSTATE0",
-                                        "val": "0010"
-                                    },
+                                        "name": "udp_tx_tuser",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 17,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 9,
+                                "rightIndex": 9,
+                                "portIndex": 3,
+                                "nets": [
                                     {
-                                        "name": "iSTATE1",
-                                        "val": "0100"
-                                    },
+                                        "name": "udp_tx_tlast",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 18,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 10,
+                                "rightIndex": 10,
+                                "portIndex": 3,
+                                "nets": [
                                     {
-                                        "name": "iSTATE2",
-                                        "val": "1000"
+                                        "name": "udp_tx_tvalid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 19,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 11,
+                                "rightIndex": 11,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "udp_tx_tready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe4",
+                                "id": 20,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 4,
+                                "nets": [
+                                    {
+                                        "name": "arp_rx_dv_out",
+                                        "isBus": false
                                     }
                                 ]
                             }

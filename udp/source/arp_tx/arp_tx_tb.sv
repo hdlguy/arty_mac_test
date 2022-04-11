@@ -62,6 +62,9 @@ module arp_tx_tb ();
        
     
     // keep the udp_tx_fifo full of frames.
+    udp_frame_gen gen_inst (.clk(clk), .m_tvalid(fifo_tvalid), .m_tready(fifo_tready), .m_tdata(fifo_tdata), .m_tlast(fifo_tlast), .m_tuser(fifo_tuser));
+
+/*
     localparam int Nudp = 256;
     assign fifo_tvalid = 1;
     assign fifo_tuser = 0;
@@ -75,10 +78,21 @@ module arp_tx_tb ();
             end
         end
     end
-    
     assign fifo_tdata = fifo_count;
     assign fifo_tlast = (fifo_count == Nudp-1) ? 1 : 0;
+*/
 
 endmodule
 
+/*
+module udp_frame_gen (
+    input   logic       clk,
+    output  logic       m_tvalid,
+    input   logic       m_tready, 
+    output  logic[7:0]  m_tdata,
+    output  logic       m_tlast, 
+    output  logic       m_tuser
+);
 
+    localparam int Nudp = 32;
+*/

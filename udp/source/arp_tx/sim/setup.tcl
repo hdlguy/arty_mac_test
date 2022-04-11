@@ -12,6 +12,7 @@ read_ip ../../udp_fifo/udp_fifo.xci
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
+read_verilog -sv ../udp_frame_gen.sv
 read_verilog -sv ../arp_tx.sv
 read_verilog -sv ../arp_tx_tb.sv
 

@@ -1,6 +1,7 @@
 module top #(
-    parameter logic[47:0] local_mac = 48'h00_0a_35_01_02_03,    // a Xilinx mac address
-    parameter logic[31:0] local_ip  = 32'h10_00_00_80           // 16.0.0.128
+    parameter logic[47:0] local_mac     = 48'h00_0a_35_01_02_03,    // a Xilinx mac address
+    parameter logic[31:0] local_ip      = 32'h10_00_00_80,          // 16.0.0.128
+    parameter logic[15:0] local_port    = 16'h04d2                  // 1234
 ) (
     input   logic           clkin100,   // 100MHz oscillator
     input   logic           resetn,     // red reset button
@@ -187,7 +188,7 @@ module top #(
     logic rx_fifo_empty, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tready, rx_fifo_tvalid;
     mac_fifo rx_mac_fifo(
         .wr_clk(rx_mac_aclk), .full(),               .wr_en(rx_axis_mac_tvalid), .din ({rx_axis_mac_tlast, rx_axis_mac_tuser, rx_axis_mac_tdata}), 
-        .rd_clk(clk),         .empty(rx_fifo_empty), .rd_en(rx_fifo_tready),     .dout({rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})
+        .rd_clk(clk),         .empty(rx_fifo_empty), .rd_en(rx_fifo_tready),     .dout({    rx_fifo_tlast,     rx_fifo_tuser,     rx_fifo_tdata})
     );
     assign rx_fifo_tvalid = ~rx_fifo_empty;  
 
@@ -208,18 +209,39 @@ module top #(
 
 
     // send an arp reply
-    arp_tx #(.local_mac(local_mac), .local_ip(local_ip)) arp_tx_inst (
+    logic udp_tx_tvalid, udp_tx_tready, udp_tx_tlast, udp_tx_tuser;
+    logic[7:0] udp_tx_tdata;
+    arp_tx #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) arp_tx_inst (
         .clk(clk),
         .tx_fifo_tvalid(tx_fifo_tvalid), .tx_fifo_tready(tx_fifo_tready), .tx_fifo_tdata(tx_fifo_tdata) , .tx_fifo_tlast(tx_fifo_tlast), .tx_fifo_tuser(tx_fifo_tuser),  // connect to tx fifo
-        .dv_in(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip)
+        .arp_dv_in(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip),
+        .udp_tvalid(udp_tx_tvalid), .udp_tready(udp_tx_tready), .udp_tdata(udp_tx_tdata), .udp_tlast(udp_tx_tlast), .udp_tuser(udp_tx_tuser)
     );
 
+
+    // a fifo to buffer udp tx frames
+    logic udp_tx_fifo_empty, udp_tx_fifo_full;
+    logic[7:0] udp_tx_fifo_tdata;
+    udp_fifo udp_tx_fifo (
+        .wr_clk(clk), .full(udp_tx_fifo_full),   .wr_en(udp_tx_fifo_tvalid), .din({udp_tx_fifo_tlast, udp_tx_fifo_tuser, udp_tx_fifo_tdata}),
+        .rd_clk(clk), .empty(udp_tx_fifo_empty), .rd_en(udp_tx_tready),      .dout({    udp_tx_tlast,      udp_tx_tuser,      udp_tx_tdata})
+    );
+    assign udp_tx_tvalid      = ~udp_tx_fifo_empty;
+    assign udp_tx_fifo_tready = ~udp_tx_fifo_full;
     
-    eth_ila tx_eth_ila (
+              
+    // keep the udp_tx_fifo full of frames.
+    udp_frame_gen gen_inst (.clk(clk), .enable(sw[0]), .m_tvalid(udp_tx_fifo_tvalid), .m_tready(udp_tx_fifo_tready), .m_tdata(udp_tx_fifo_tdata), .m_tlast(udp_tx_fifo_tlast), .m_tuser(udp_tx_fifo_tuser));
+
+
+    
+    eth_ila eth_ila (
         .clk(clk), 
         .probe0({tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata}), // 12
         .probe1({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata}), // 12
-        .probe2({ udp_rx_tready,  udp_rx_tvalid,  udp_rx_tlast,  udp_rx_tuser,  udp_rx_tdata})  // 12
+        .probe2({ udp_rx_tready,  udp_rx_tvalid,  udp_rx_tlast,  udp_rx_tuser,  udp_rx_tdata}), // 12
+        .probe3({ udp_tx_tready,  udp_tx_tvalid,  udp_tx_tlast,  udp_tx_tuser,  udp_tx_tdata}), // 12
+        .probe4(arp_rx_dv_out)
     );
 
 endmodule
