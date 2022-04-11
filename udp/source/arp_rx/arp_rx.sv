@@ -17,7 +17,6 @@ module arp_rx #(
     output  logic[31:0]             remote_ip,
     // UDP message output
     output  logic                   udp_tvalid,
-    input   logic                   udp_tready, // not used
     output  logic[7:0]              udp_tdata,
     output  logic                   udp_tlast, 
     output  logic                   udp_tuser   // not used
