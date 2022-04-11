@@ -12,7 +12,8 @@ int main(){
     socklen_t addr_size;
 
     /*Create UDP socket*/
-    clientSocket = socket(PF_INET, SOCK_DGRAM, 0);
+    //clientSocket = socket(PF_INET, SOCK_DGRAM, 0);
+    clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
 
     /*Configure settings in address struct*/
     serverAddr.sin_family = AF_INET;
@@ -24,7 +25,7 @@ int main(){
     addr_size = sizeof serverAddr;
 
     // send one packet to prime the pump.
-    ssize_t nBytes = 200;
+    ssize_t nBytes = 100;
     int i=0;
     while(1){
         printf("%d\n", i);

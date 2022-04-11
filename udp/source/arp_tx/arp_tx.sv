@@ -1,7 +1,8 @@
 //
 module arp_tx #(
-    parameter logic[47:0]   local_mac = 48'h00_0a_35_01_02_03,
-    parameter logic[31:0]   local_ip  = 32'h10_00_00_80
+    parameter logic[47:0]   local_mac   = 48'h00_0a_35_01_02_03,
+    parameter logic[31:0]   local_ip    = 32'h10_00_00_80,
+    parameter logic[15:0]   local_port  = 16'h04d2  // 1234;
 ) (
     input   logic           clk,
     // axi-stream interface to tx fifo.
@@ -23,36 +24,62 @@ module arp_tx #(
 );
 
     // assign values to the 42 byte arp frame.
-    logic[0:41][7:0] tx_bytes;
-    assign tx_bytes[ 0: 5] = remote_mac;
-    assign tx_bytes[ 6:11] = local_mac;
-    assign tx_bytes[12:13] = 16'h0806;
-    assign tx_bytes[14:15] = 16'h0001;
-    assign tx_bytes[16:17] = 16'h0800;
-    assign tx_bytes[   18] = 8'h06;
-    assign tx_bytes[   19] = 8'h04;
-    assign tx_bytes[20:21] = 16'h0002;
-    assign tx_bytes[22:27] = local_mac;
-    assign tx_bytes[28:31] = local_ip;
-    assign tx_bytes[32:37] = remote_mac;
-    assign tx_bytes[38:41] = remote_ip;        
-    
+    logic[0:41][7:0] arp_bytes;
+    assign arp_bytes[ 0: 5] = remote_mac;
+    assign arp_bytes[ 6:11] = local_mac;
+    assign arp_bytes[12:13] = 16'h0806;
+    assign arp_bytes[14:15] = 16'h0001;
+    assign arp_bytes[16:17] = 16'h0800;
+    assign arp_bytes[   18] = 8'h06;
+    assign arp_bytes[   19] = 8'h04;
+    assign arp_bytes[20:21] = 16'h0002;
+    assign arp_bytes[22:27] = local_mac;
+    assign arp_bytes[28:31] = local_ip;
+    assign arp_bytes[32:37] = remote_mac;
+    assign arp_bytes[38:41] = remote_ip;        
+ 
+    // some temporary assignments
+    logic[0:1][7:0] total_tx_length = 16'h00_26;
+    logic[0:1][7:0] header_checksum = 16'hcafe;
+    logic[0:1][7:0] remote_port = local_port;
+    logic[0:1][7:0] udp_header_length = 16'h0012;
+
+    // assign values to the 42 byte udp header.    
+    logic[0:41][7:0] header_bytes;
+    assign header_bytes[ 0: 5] = remote_mac;
+    assign header_bytes[ 6:11] = local_mac;
+    assign header_bytes[12:13] = 16'h0800;
+    assign header_bytes[14:15] = 16'h4500;
+    assign header_bytes[16:17] = total_tx_length;
+    assign header_bytes[18:19] = 16'h9999;
+    assign header_bytes[20:21] = 16'h0400;
+    assign header_bytes[22:23] = 16'h4011;
+    assign header_bytes[24:25] = header_checksum;
+    assign header_bytes[26:29] = local_ip;
+    assign header_bytes[30:33] = remote_ip;        
+    assign header_bytes[34:35] = local_port;        
+    assign header_bytes[36:37] = remote_port;        
+    assign header_bytes[38:39] = udp_header_length;        
+    assign header_bytes[40:41] = 16'hccbb;        // ignore udp checksum.
+
+ 
+    // state machine   
     logic[7:0] byte_count=0;    
-
-
-    logic byte_count_rst, arp_complete=0, set_arp_complete, arp_active=0;
-    logic udp_active=0;
-    logic arp_tvalid, arp_tlast, arp_tuser;
+    logic byte_count_rst, arp_complete=0, set_arp_complete, arp_pending=0, arp_active;
+    logic payload_active, header_tvalid, header_active;
+    logic arp_tvalid, arp_tuser;
     logic[3:0] state=0, next_state;
     always_comb begin
 
         // defaults
         next_state = state;
         arp_tvalid = 0;
-        arp_tlast = 0;
         byte_count_rst = 0;
+        arp_active = 0;
         set_arp_complete = 0;
-        udp_active = 0;
+        payload_active = 0;
+        header_tvalid = 0;
+        header_active = 0;
         
         case (state)
 
@@ -62,10 +89,10 @@ module arp_tx #(
             end
 
             1: begin
-                if (arp_active) begin
+                if (arp_pending) begin  // arp requests are rare but arp replies get priority.
                     next_state = 2;
                 end else begin
-                    if ((udp_tvalid) && (arp_complete)) begin
+                    if ((udp_tvalid) && (arp_complete)) begin   // don't send udp frames until an arp cycle completes.
                         next_state = 4;
                     end
                 end
@@ -74,16 +101,17 @@ module arp_tx #(
 
             // begin arp stuff
             2: begin
-                if (byte_count == 41) begin
+                if ((byte_count == 41) && (tx_fifo_tready)) begin
                     next_state = 3;
-                    arp_tlast = 1;
                 end
                 arp_tvalid = 1;
+                arp_active = 1;
             end
             
             3: begin
                 next_state = 0;
                 set_arp_complete = 1;
+                arp_active = 1;
             end
 
             // begin udp stuff
@@ -91,14 +119,24 @@ module arp_tx #(
                 next_state = 5;
                 byte_count_rst = 1;
             end
-
+            
+            // first send the headers for udp
             5: begin
+                if ((byte_count == 41) && (tx_fifo_tready)) begin
+                    next_state = 6;
+                end
+                header_tvalid = 1;
+                header_active = 1;
+            end            
+
+            // now send the udp data payload
+            6: begin
                 if ((udp_tvalid) && (udp_tready) && (udp_tlast)) begin
                     next_state = 0;
                 end
-                udp_active = 1;
-            end
-            
+                payload_active = 1;
+            end            
+                        
             default: begin
                 next_state = 0;
             end
@@ -109,6 +147,7 @@ module arp_tx #(
     always_ff @(posedge clk) state <= next_state;
         
 
+    // count bytes of the transmitted packet.
     always_ff @(posedge clk) begin
         if (byte_count_rst) begin
             byte_count <= 0;
@@ -120,34 +159,51 @@ module arp_tx #(
     end
     
     
+    // latch arp complete and arp pending signals.
     always_ff @(posedge clk) begin
         if (set_arp_complete) arp_complete <= 1;
         if (arp_dv_in) begin
-            arp_active <= 1;
+            arp_pending <= 1;
         end else begin
-            if (set_arp_complete) arp_active <= 0;
+            if (set_arp_complete) arp_pending <= 0;
         end
     end
 
 
     // mux between arp and udp
     assign arp_tuser = 0;
-    always_comb begin
-        if ((arp_complete) && (udp_active)) begin
-            udp_tready = tx_fifo_tready; 
-            tx_fifo_tvalid = udp_tvalid;
-            tx_fifo_tdata  = udp_tdata;
-            tx_fifo_tlast  = udp_tlast;
-            tx_fifo_tuser  = udp_tuser;
-        end else begin
+    assign arp_tlast = (byte_count==41) ? 1 : 0;
+    always_comb begin  
+        if (arp_active) begin
             udp_tready = 0;
             tx_fifo_tvalid = arp_tvalid;
-            tx_fifo_tdata  = tx_bytes[byte_count];
+            tx_fifo_tdata  = arp_bytes[byte_count];
             tx_fifo_tlast  = arp_tlast;
-            tx_fifo_tuser  = arp_tuser;            
-        end
+            tx_fifo_tuser  = arp_tuser;  
+        end else begin
+            if (header_active) begin
+                udp_tready = 0; 
+                tx_fifo_tvalid = header_tvalid;
+                tx_fifo_tdata  = header_bytes[byte_count];
+                tx_fifo_tlast  = 0;
+                tx_fifo_tuser  = 0;            
+            end else begin
+                if (payload_active) begin
+                    udp_tready = tx_fifo_tready; 
+                    tx_fifo_tvalid = udp_tvalid;
+                    tx_fifo_tdata  = udp_tdata;
+                    tx_fifo_tlast  = udp_tlast;
+                    tx_fifo_tuser  = udp_tuser;
+                end else begin
+                    udp_tready = 0; 
+                    tx_fifo_tvalid = 0;
+                    tx_fifo_tdata  = 0;
+                    tx_fifo_tlast  = 0;
+                    tx_fifo_tuser  = 0;         
+                end
+            end
+        end              
     end                
-
 
 endmodule
 

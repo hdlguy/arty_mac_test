@@ -16,19 +16,20 @@ module arp_tx_tb ();
 
     localparam logic[47:0] local_mac = 48'h00_0a_35_01_02_03;
     localparam logic[31:0] local_ip  = 32'h10_00_00_80;
+    localparam logic[15:0] local_port  = 16'h04d2;
 
     assign remote_mac = 48'h94_10_3e_b7_e2_01;
     assign remote_ip  = 32'h10_00_00_c8;
 
     logic  clk = 0; localparam  clk_period = 10; always #( clk_period/2)  clk =  ~clk;
 
-    arp_tx #(.local_mac(local_mac), .local_ip(local_ip)) uut (.*);          
+    arp_tx #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) uut (.*);          
 
     
     logic fifo_empty, fifo_full;
     logic[7:0] fifo_tdata;
     udp_fifo udp_tx_fifo (
-        .wr_clk(clk), .full(fifo_full),  .wr_en(fifo_tvalid),  .din({fifo_tlast, fifo_tuser, fifo_tdata}),
+        .wr_clk(clk), .full(fifo_full),   .wr_en(fifo_tvalid), .din({fifo_tlast, fifo_tuser, fifo_tdata}),
         .rd_clk(clk), .empty(fifo_empty), .rd_en(udp_tready),  .dout({udp_tlast,  udp_tuser,  udp_tdata})
     );
     assign udp_tvalid = ~fifo_empty;
@@ -39,24 +40,29 @@ module arp_tx_tb ();
             
         forever begin
             arp_dv_in = 0;
-            #(clk_period*10);
+            #(clk_period*1000);
         
             arp_dv_in = 1;
             #(clk_period*1);
-                
-            arp_dv_in = 0;
-            #(clk_period*200);
         end
     
     end
 
 
     // throttle the tx mac fifo a little.
-    always_ff @(posedge clk) tx_fifo_tready <= ~tx_fifo_tready;
+    logic[2:0] tready_count = 7;
+    always_ff @(posedge clk) begin
+        tready_count <= tready_count - 1;
+        if (tready_count==0) begin
+            tx_fifo_tready <= 1;
+        end else begin
+            tx_fifo_tready <= 0;
+        end
+    end
        
     
     // keep the udp_tx_fifo full of frames.
-    localparam int Nudp = 10;
+    localparam int Nudp = 256;
     assign fifo_tvalid = 1;
     assign fifo_tuser = 0;
     int fifo_count=0;

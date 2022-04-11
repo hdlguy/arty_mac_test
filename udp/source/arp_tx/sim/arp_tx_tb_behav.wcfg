@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="24.260001 us"></ZoomEndTime>
+      <ZoomEndTime time="52.560001 us"></ZoomEndTime>
       <Cursor1Time time="0.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="293"></NameColumnWidth>
-      <ValueColumnWidth column_width="93"></ValueColumnWidth>
+      <ValueColumnWidth column_width="88"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="40" />
+   <WVObjectSize size="35" />
    <wave_markers>
       <marker label="" time="924000" />
    </wave_markers>
@@ -107,30 +107,6 @@
       <obj_property name="CustomSignalColor">#FFA500</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/arp_tx_tb/fifo_count">
-      <obj_property name="ElementShortName">fifo_count[31:0]</obj_property>
-      <obj_property name="ObjectShortName">fifo_count[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tvalid">
-      <obj_property name="ElementShortName">fifo_tvalid</obj_property>
-      <obj_property name="ObjectShortName">fifo_tvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tready">
-      <obj_property name="ElementShortName">fifo_tready</obj_property>
-      <obj_property name="ObjectShortName">fifo_tready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/arp_tx_tb/fifo_tdata">
-      <obj_property name="ElementShortName">fifo_tdata[7:0]</obj_property>
-      <obj_property name="ObjectShortName">fifo_tdata[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tlast">
-      <obj_property name="ElementShortName">fifo_tlast</obj_property>
-      <obj_property name="ObjectShortName">fifo_tlast</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/arp_tx_tb/fifo_tuser">
-      <obj_property name="ElementShortName">fifo_tuser</obj_property>
-      <obj_property name="ObjectShortName">fifo_tuser</obj_property>
-   </wvobject>
    <wvobject fp_name="divider16" type="divider">
       <obj_property name="label">uut</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -178,10 +154,6 @@
       <obj_property name="ElementShortName">remote_ip[31:0]</obj_property>
       <obj_property name="ObjectShortName">remote_ip[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/arp_tx_tb/uut/tx_bytes">
-      <obj_property name="ElementShortName">tx_bytes[0:41][7:0]</obj_property>
-      <obj_property name="ObjectShortName">tx_bytes[0:41][7:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/arp_tx_tb/uut/next_state">
       <obj_property name="ElementShortName">next_state[3:0]</obj_property>
       <obj_property name="ObjectShortName">next_state[3:0]</obj_property>
@@ -198,12 +170,20 @@
       <obj_property name="ElementShortName">arp_complete</obj_property>
       <obj_property name="ObjectShortName">arp_complete</obj_property>
    </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/arp_pending">
+      <obj_property name="ElementShortName">arp_pending</obj_property>
+      <obj_property name="ObjectShortName">arp_pending</obj_property>
+   </wvobject>
    <wvobject type="logic" fp_name="/arp_tx_tb/uut/arp_active">
       <obj_property name="ElementShortName">arp_active</obj_property>
       <obj_property name="ObjectShortName">arp_active</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/arp_tx_tb/uut/udp_active">
-      <obj_property name="ElementShortName">udp_active</obj_property>
-      <obj_property name="ObjectShortName">udp_active</obj_property>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/header_active">
+      <obj_property name="ElementShortName">header_active</obj_property>
+      <obj_property name="ObjectShortName">header_active</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/payload_active">
+      <obj_property name="ElementShortName">payload_active</obj_property>
+      <obj_property name="ObjectShortName">payload_active</obj_property>
    </wvobject>
 </wave_config>
