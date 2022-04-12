@@ -17,6 +17,7 @@ upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
 
+read_verilog -sv ../source/temac.sv
 read_verilog -sv ../source/arp_rx/arp_rx.sv
 read_verilog -sv ../source/arp_tx/arp_tx.sv
 read_verilog -sv ../source/arp_tx/udp_frame_gen.sv

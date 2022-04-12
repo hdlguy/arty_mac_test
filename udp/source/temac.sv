@@ -1,6 +1,6 @@
 //
 module temac (
-    input   logic           reset,      // active high reset
+    input   logic           resetn,      // active low reset
     // phy
     input   logic           eth_mii_tx_clk,
     output  logic [3:0]     eth_mii_txd,    
@@ -9,7 +9,7 @@ module temac (
     input   logic [3:0]     eth_mii_rxd,     
     input   logic           eth_mii_rx_dv,           
     input   logic           eth_mii_rx_er,
-    output  logic           eth_mii_rst_n    
+    output  logic           eth_mii_rst_n,
     // rx data
     output  logic           rx_axis_aclk,
     output  logic [7 : 0]   rx_axis_tdata,
@@ -39,10 +39,10 @@ module temac (
     logic pause_req;
     logic [15:0] pause_val;
                                            
-    assign glbl_rstn        = ~reset; 
-    assign rx_axi_rstn      = ~reset; 
-    assign tx_axi_rstn      = ~reset; 
-    assign eth_mii_rst_n    = ~reset;
+    assign glbl_rstn        = resetn; 
+    assign rx_axi_rstn      = resetn; 
+    assign tx_axi_rstn      = resetn; 
+    assign eth_mii_rst_n    = resetn;
 
     logic [79:0] rx_configuration_vector;
     assign rx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Receiver Pause Frame Source Address[47:0]

@@ -30,7 +30,48 @@ module top #(
     clk_wiz clk_wiz_inst (.clkin100(clkin100), .resetn(resetn), .locked(locked), .clkout100(clk), .clkout125(clk125), .clkout25(clk25));
     assign eth_refclk = clk25;
     
+
+    logic           rx_axis_mac_aclk;
+    logic           rx_axis_mac_tvalid;
+    logic [7 : 0]   rx_axis_mac_tdata;
+    logic           rx_axis_mac_tlast;
+    logic           rx_axis_mac_tuser;
+                                           
+    logic           tx_axis_mac_aclk;
+    logic           tx_axis_mac_tvalid;
+    logic           tx_axis_mac_tready;
+    logic [7 : 0]   tx_axis_mac_tdata;
+    logic           tx_axis_mac_tlast;
+    logic           tx_axis_mac_tuser;
+                                           
+    temac temac_inst (
+        .resetn(locked),
+        //
+        .eth_mii_tx_clk (eth_mii_tx_clk), 
+        .eth_mii_txd    (eth_mii_txd), 
+        .eth_mii_tx_en  (eth_mii_tx_en),  
+        .eth_mii_rx_clk (eth_mii_rx_clk), 
+        .eth_mii_rxd    (eth_mii_rxd), 
+        .eth_mii_rx_dv  (eth_mii_rx_dv), 
+        .eth_mii_rx_er  (eth_mii_rx_er), 
+        .eth_mii_rst_n  (eth_mii_rst_n),
+        //    
+        .rx_axis_aclk   (rx_axis_mac_aclk), 
+        .rx_axis_tvalid (rx_axis_mac_tvalid),                                       
+        .rx_axis_tdata  (rx_axis_mac_tdata), 
+        .rx_axis_tlast  (rx_axis_mac_tlast), 
+        .rx_axis_tuser  (rx_axis_mac_tuser),
+        //
+        .tx_axis_aclk   (tx_axis_mac_aclk), 
+        .tx_axis_tvalid (tx_axis_mac_tvalid), 
+        .tx_axis_tready (tx_axis_mac_tready),  
+        .tx_axis_tdata  (tx_axis_mac_tdata), 
+        .tx_axis_tlast  (tx_axis_mac_tlast), 
+        .tx_axis_tuser  (tx_axis_mac_tuser)
+    );
+
     
+/*
     logic [27 : 0] rx_statistics_vector;
     logic rx_statistics_valid;
 
@@ -45,17 +86,6 @@ module top #(
     logic tx_mac_aclk;
     logic tx_reset;
     logic tx_enable;
-                                           
-    logic [7 : 0]   rx_axis_mac_tdata;
-    logic           rx_axis_mac_tvalid;
-    logic           rx_axis_mac_tlast;
-    logic           rx_axis_mac_tuser;
-                                           
-    logic [7 : 0]   tx_axis_mac_tdata;
-    logic           tx_axis_mac_tvalid;
-    logic           tx_axis_mac_tlast;
-    logic [0 : 0]   tx_axis_mac_tuser;
-    logic           tx_axis_mac_tready;
                                            
     logic [7 : 0] tx_ifg_delay;
     logic [31 : 0] tx_statistics_vector;
@@ -168,7 +198,7 @@ module top #(
     assign tx_ifg_delay = 0;
     assign pause_req = 0;
     assign pause_val = 0;
- 
+ */
 
    
     
@@ -176,8 +206,8 @@ module top #(
     logic[7:0] tx_fifo_tdata;
     logic tx_fifo_empty, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_tvalid;
     mac_fifo tx_mac_fifo(
-        .wr_clk(clk),         .full(tx_fifo_full),   .wr_en(tx_fifo_tvalid),     .din ({tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata}), 
-        .rd_clk(tx_mac_aclk), .empty(tx_fifo_empty), .rd_en(tx_axis_mac_tready), .dout({tx_axis_mac_tlast, tx_axis_mac_tuser, tx_axis_mac_tdata})
+        .wr_clk(clk),              .full(tx_fifo_full),   .wr_en(tx_fifo_tvalid),     .din ({tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata}), 
+        .rd_clk(tx_axis_mac_aclk), .empty(tx_fifo_empty), .rd_en(tx_axis_mac_tready), .dout({tx_axis_mac_tlast, tx_axis_mac_tuser, tx_axis_mac_tdata})
     );
     assign tx_fifo_tready     = ~tx_fifo_full;
     assign tx_axis_mac_tvalid = ~tx_fifo_empty;
@@ -187,8 +217,8 @@ module top #(
     logic[7:0] rx_fifo_tdata;
     logic rx_fifo_empty, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tready, rx_fifo_tvalid;
     mac_fifo rx_mac_fifo(
-        .wr_clk(rx_mac_aclk), .full(),               .wr_en(rx_axis_mac_tvalid), .din ({rx_axis_mac_tlast, rx_axis_mac_tuser, rx_axis_mac_tdata}), 
-        .rd_clk(clk),         .empty(rx_fifo_empty), .rd_en(rx_fifo_tready),     .dout({    rx_fifo_tlast,     rx_fifo_tuser,     rx_fifo_tdata})
+        .wr_clk(rx_axis_mac_aclk), .full(),               .wr_en(rx_axis_mac_tvalid), .din ({rx_axis_mac_tlast, rx_axis_mac_tuser, rx_axis_mac_tdata}), 
+        .rd_clk(clk),              .empty(rx_fifo_empty), .rd_en(rx_fifo_tready),     .dout({    rx_fifo_tlast,     rx_fifo_tuser,     rx_fifo_tdata})
     );
     assign rx_fifo_tvalid = ~rx_fifo_empty;  
 

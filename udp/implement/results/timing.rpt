@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-| Date         : Mon Apr 11 18:08:07 2022
+| Date         : Tue Apr 12 15:12:20 2022
 | Host         : WD-SN850 running 64-bit Ubuntu 20.04.4 LTS
 | Command      : report_timing_summary -file ./results/timing.rpt
 | Design       : top
@@ -592,7 +592,7 @@ Max Delay Paths
 Slack (MET) :             10.311ns  (required time - arrival time)
   Source:                 eth_mii_rx_er
                             (input port clocked by eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
-  Destination:            temac_core_inst/inst/mii_interface/rx_er_to_mac_reg/D
+  Destination:            temac_inst/temac_core_inst/inst/mii_interface/rx_er_to_mac_reg/D
                             (rising edge-triggered cell FDRE clocked by eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             eth_mii_rx_clk
   Path Type:              Setup (Max at Fast Process Corner)
@@ -616,24 +616,24 @@ Slack (MET) :             10.311ns  (required time - arrival time)
                                                       0.000     0.000 r  
                          input delay                 30.000    30.000    
     C17                                               0.000    30.000 r  eth_mii_rx_er (IN)
-                         net (fo=0)                   0.000    30.000    temac_core_inst/inst/mii_interface/mii_rx_er
-    C17                  IBUF (Prop_ibuf_I_O)         0.468    30.468 r  temac_core_inst/inst/mii_interface/mii_rx_er_ibuf_i/O
-                         net (fo=1, routed)           0.000    30.468    temac_core_inst/inst/mii_interface/mii_rx_er_ibuf
-    ILOGIC_X0Y59         FDRE                                         r  temac_core_inst/inst/mii_interface/rx_er_to_mac_reg/D
+                         net (fo=0)                   0.000    30.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_er
+    C17                  IBUF (Prop_ibuf_I_O)         0.468    30.468 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_er_ibuf_i/O
+                         net (fo=1, routed)           0.000    30.468    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_er_ibuf
+    ILOGIC_X0Y59         FDRE                                         r  temac_inst/temac_core_inst/inst/mii_interface/rx_er_to_mac_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock eth_mii_rx_clk rise edge)
                                                      40.000    40.000 r  
     F15                                               0.000    40.000 r  eth_mii_rx_clk (IN)
-                         net (fo=0)                   0.000    40.000    temac_core_inst/inst/mii_interface/mii_rx_clk
-    F15                  IBUF (Prop_ibuf_I_O)         0.250    40.250 r  temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.206    40.456    temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
-    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092    40.548 r  temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
-                         net (fo=549, routed)         0.268    40.816    temac_core_inst/inst/mii_interface/bufr_mii_rx_clk_0
-    ILOGIC_X0Y59         FDRE                                         r  temac_core_inst/inst/mii_interface/rx_er_to_mac_reg/C
+                         net (fo=0)                   0.000    40.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.250    40.250 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206    40.456    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092    40.548 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=549, routed)         0.268    40.816    temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk_0
+    ILOGIC_X0Y59         FDRE                                         r  temac_inst/temac_core_inst/inst/mii_interface/rx_er_to_mac_reg/C
                          clock pessimism              0.000    40.816    
                          clock uncertainty           -0.035    40.781    
-    ILOGIC_X0Y59         FDRE (Setup_fdre_C_D)       -0.002    40.779    temac_core_inst/inst/mii_interface/rx_er_to_mac_reg
+    ILOGIC_X0Y59         FDRE (Setup_fdre_C_D)       -0.002    40.779    temac_inst/temac_core_inst/inst/mii_interface/rx_er_to_mac_reg
   -------------------------------------------------------------------
                          required time                         40.779    
                          arrival time                         -30.468    
@@ -647,7 +647,7 @@ Slack (MET) :             10.311ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.061ns  (arrival time - required time)
-  Source:                 temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_mac_tdata_reg[5]/C
+  Source:                 temac_inst/temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_mac_tdata_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
   Destination:            rx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/DIADI[1]
                             (rising edge-triggered cell RAMB36E1 clocked by eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
@@ -666,14 +666,14 @@ Slack (MET) :             0.061ns  (arrival time - required time)
                          (clock eth_mii_rx_clk rise edge)
                                                       0.000     0.000 r  
     F15                                               0.000     0.000 r  eth_mii_rx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_rx_clk
-    F15                  IBUF (Prop_ibuf_I_O)         0.250     0.250 r  temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.206     0.456    temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
-    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092     0.548 r  temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
-                         net (fo=549, routed)         0.286     0.834    temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_axi_clk
-    SLICE_X8Y58          FDRE                                         r  temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_mac_tdata_reg[5]/C
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.250     0.250 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206     0.456    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092     0.548 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=549, routed)         0.286     0.834    temac_inst/temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_axi_clk
+    SLICE_X8Y58          FDRE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_mac_tdata_reg[5]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X8Y58          FDRE (Prop_fdre_C_Q)         0.148     0.982 r  temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_mac_tdata_reg[5]/Q
+    SLICE_X8Y58          FDRE (Prop_fdre_C_Q)         0.148     0.982 r  temac_inst/temac_core_inst/inst/temac_core_core/rx_axi_shim/rx_mac_tdata_reg[5]/Q
                          net (fo=1, routed)           0.210     1.192    rx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/dina[1]
     RAMB36_X0Y12         RAMB36E1                                     r  rx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/DIADI[1]
   -------------------------------------------------------------------    -------------------
@@ -681,10 +681,10 @@ Slack (MET) :             0.061ns  (arrival time - required time)
                          (clock eth_mii_rx_clk rise edge)
                                                       0.000     0.000 r  
     F15                                               0.000     0.000 r  eth_mii_rx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_rx_clk
-    F15                  IBUF (Prop_ibuf_I_O)         0.438     0.438 r  temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.311     0.749    temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
-    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.254     1.003 r  temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.438     0.438 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.311     0.749    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.254     1.003 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
                          net (fo=549, routed)         0.359     1.363    rx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/clka
     RAMB36_X0Y12         RAMB36E1                                     r  rx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/CLKARDCLK
                          clock pessimism             -0.474     0.889    
@@ -708,9 +708,9 @@ Period(ns):         40.000
 Sources:            { eth_mii_rx_clk }
 
 Check Type        Corner  Lib Pin      Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location     Pin
-Min Period        n/a     BUFR/I       n/a            3.174         40.000      36.826     BUFR_X0Y4    temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/I
-Low Pulse Width   Slow    RAMD64E/CLK  n/a            1.250         20.000      18.750     SLICE_X2Y73  temac_core_inst/inst/temac_core_core/addr_filter_top/address_filter_inst/byte_wide_ram[0].header_field_dist_ram/DP/CLK
-High Pulse Width  Slow    RAMD64E/CLK  n/a            1.250         20.000      18.750     SLICE_X2Y73  temac_core_inst/inst/temac_core_core/addr_filter_top/address_filter_inst/byte_wide_ram[0].header_field_dist_ram/DP/CLK
+Min Period        n/a     BUFR/I       n/a            3.174         40.000      36.826     BUFR_X0Y4    temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/I
+Low Pulse Width   Slow    RAMD64E/CLK  n/a            1.250         20.000      18.750     SLICE_X2Y73  temac_inst/temac_core_inst/inst/temac_core_core/addr_filter_top/address_filter_inst/byte_wide_ram[0].header_field_dist_ram/DP/CLK
+High Pulse Width  Slow    RAMD64E/CLK  n/a            1.250         20.000      18.750     SLICE_X2Y73  temac_inst/temac_core_inst/inst/temac_core_core/addr_filter_top/address_filter_inst/byte_wide_ram[0].header_field_dist_ram/DP/CLK
 
 
 
@@ -727,9 +727,9 @@ PW    :            0  Failing Endpoints,  Worst Slack       19.500ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             32.981ns  (required time - arrival time)
-  Source:                 temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/C
+  Source:                 temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/C
                             (rising edge-triggered cell FDRE clocked by eth_mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
-  Destination:            temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/D
+  Destination:            temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/D
                             (rising edge-triggered cell FDRE clocked by eth_mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             eth_mii_tx_clk
   Path Type:              Setup (Max at Slow Process Corner)
@@ -751,42 +751,42 @@ Slack (MET) :             32.981ns  (required time - arrival time)
                          (clock eth_mii_tx_clk rise edge)
                                                       0.000     0.000 r  
     H16                                               0.000     0.000 r  eth_mii_tx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_tx_clk
-    H16                  IBUF (Prop_ibuf_I_O)         1.479     1.479 r  temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.500     1.979    temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
-    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.511     2.490 r  temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
-                         net (fo=587, routed)         0.806     3.296    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_axi_clk
-    SLICE_X13Y50         FDRE                                         r  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/C
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.479     1.479 r  temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.500     1.979    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.511     2.490 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=587, routed)         0.806     3.296    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_axi_clk
+    SLICE_X13Y50         FDRE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X13Y50         FDRE (Prop_fdre_C_Q)         0.456     3.752 f  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/Q
-                         net (fo=5, routed)           0.670     4.422    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg
-    SLICE_X13Y50         LUT2 (Prop_lut2_I0_O)        0.150     4.572 f  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/ignore_packet_i_2/O
-                         net (fo=4, routed)           1.044     5.616    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/ignore_packet_i_2_n_0
-    SLICE_X12Y52         LUT6 (Prop_lut6_I2_O)        0.332     5.948 r  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/gate_tready_i_11/O
-                         net (fo=1, routed)           1.002     6.950    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/gate_tready_i_11_n_0
-    SLICE_X12Y49         LUT6 (Prop_lut6_I1_O)        0.124     7.074 f  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/gate_tready_i_4/O
-                         net (fo=4, routed)           1.036     8.110    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/next_tx_state[0]
-    SLICE_X13Y50         LUT3 (Prop_lut3_I0_O)        0.150     8.260 r  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_3/O
-                         net (fo=1, routed)           0.805     9.065    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_3_n_0
-    SLICE_X13Y52         LUT6 (Prop_lut6_I5_O)        0.326     9.391 r  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_2/O
-                         net (fo=1, routed)           0.795    10.186    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_2_n_0
-    SLICE_X13Y50         LUT6 (Prop_lut6_I5_O)        0.124    10.310 r  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_1/O
-                         net (fo=1, routed)           0.000    10.310    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg0
-    SLICE_X13Y50         FDRE                                         r  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/D
+    SLICE_X13Y50         FDRE (Prop_fdre_C_Q)         0.456     3.752 f  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/Q
+                         net (fo=5, routed)           0.670     4.422    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg
+    SLICE_X13Y50         LUT2 (Prop_lut2_I0_O)        0.150     4.572 f  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/ignore_packet_i_2/O
+                         net (fo=4, routed)           1.044     5.616    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/ignore_packet_i_2_n_0
+    SLICE_X12Y52         LUT6 (Prop_lut6_I2_O)        0.332     5.948 r  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/gate_tready_i_11/O
+                         net (fo=1, routed)           1.002     6.950    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/gate_tready_i_11_n_0
+    SLICE_X12Y49         LUT6 (Prop_lut6_I1_O)        0.124     7.074 f  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/gate_tready_i_4/O
+                         net (fo=4, routed)           1.036     8.110    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/next_tx_state[0]
+    SLICE_X13Y50         LUT3 (Prop_lut3_I0_O)        0.150     8.260 r  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_3/O
+                         net (fo=1, routed)           0.805     9.065    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_3_n_0
+    SLICE_X13Y52         LUT6 (Prop_lut6_I5_O)        0.326     9.391 r  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_2/O
+                         net (fo=1, routed)           0.795    10.186    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_2_n_0
+    SLICE_X13Y50         LUT6 (Prop_lut6_I5_O)        0.124    10.310 r  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_i_1/O
+                         net (fo=1, routed)           0.000    10.310    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg0
+    SLICE_X13Y50         FDRE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock eth_mii_tx_clk rise edge)
                                                      40.000    40.000 r  
     H16                                               0.000    40.000 r  eth_mii_tx_clk (IN)
-                         net (fo=0)                   0.000    40.000    temac_core_inst/inst/mii_interface/mii_tx_clk
-    H16                  IBUF (Prop_ibuf_I_O)         1.408    41.408 r  temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.459    41.867    temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
-    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.486    42.353 r  temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
-                         net (fo=587, routed)         0.769    43.122    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_axi_clk
-    SLICE_X13Y50         FDRE                                         r  temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/C
+                         net (fo=0)                   0.000    40.000    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.408    41.408 r  temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.459    41.867    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.486    42.353 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=587, routed)         0.769    43.122    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_axi_clk
+    SLICE_X13Y50         FDRE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg/C
                          clock pessimism              0.174    43.296    
                          clock uncertainty           -0.035    43.260    
-    SLICE_X13Y50         FDRE (Setup_fdre_C_D)        0.031    43.291    temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg
+    SLICE_X13Y50         FDRE (Setup_fdre_C_D)        0.031    43.291    temac_inst/temac_core_inst/inst/temac_core_core/no_avb_tx_axi_intf.tx_axi_shim/tx_mac_tready_reg_reg
   -------------------------------------------------------------------
                          required time                         43.291    
                          arrival time                         -10.310    
@@ -819,10 +819,10 @@ Slack (MET) :             0.119ns  (arrival time - required time)
                          (clock eth_mii_tx_clk rise edge)
                                                       0.000     0.000 r  
     H16                                               0.000     0.000 r  eth_mii_tx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_tx_clk
-    H16                  IBUF (Prop_ibuf_I_O)         0.247     0.247 r  temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.206     0.453    temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
-    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.092     0.545 r  temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.247     0.247 r  temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206     0.453    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.092     0.545 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
                          net (fo=587, routed)         0.288     0.833    tx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
     SLICE_X9Y50          FDRE                                         r  tx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/C
   -------------------------------------------------------------------    -------------------
@@ -834,10 +834,10 @@ Slack (MET) :             0.119ns  (arrival time - required time)
                          (clock eth_mii_tx_clk rise edge)
                                                       0.000     0.000 r  
     H16                                               0.000     0.000 r  eth_mii_tx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_tx_clk
-    H16                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.311     0.745    temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
-    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.254     1.000 r  temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.311     0.745    temac_inst/temac_core_inst/inst/mii_interface/mii_tx_clk_ibuf
+    BUFR_X0Y5            BUFR (Prop_bufr_I_O)         0.254     1.000 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/O
                          net (fo=587, routed)         0.323     1.323    tx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
     SLICE_X9Y50          FDRE                                         r  tx_mac_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[1][7]/C
                          clock pessimism             -0.490     0.833    
@@ -860,9 +860,9 @@ Period(ns):         40.000
 Sources:            { eth_mii_tx_clk }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     BUFR/I   n/a            3.174         40.000      36.826     BUFR_X0Y5     temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/I
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         20.000      19.500     SLICE_X29Y58  temac_core_inst/inst/tx_enable_int_reg/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         20.000      19.500     SLICE_X29Y58  temac_core_inst/inst/tx_enable_int_reg/C
+Min Period        n/a     BUFR/I   n/a            3.174         40.000      36.826     BUFR_X0Y5     temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_tx_clk/I
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         20.000      19.500     SLICE_X29Y58  temac_inst/temac_core_inst/inst/tx_enable_int_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         20.000      19.500     SLICE_X29Y58  temac_inst/temac_core_inst/inst/tx_enable_int_reg/C
 
 
 
@@ -1136,9 +1136,9 @@ Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             4.851ns  (required time - arrival time)
-  Source:                 temac_core_inst/inst/temac_core_core/flow/rx_pause/pause_req_to_tx_int_reg/C
+  Source:                 temac_inst/temac_core_inst/inst/temac_core_core/flow/rx_pause/pause_req_to_tx_int_reg/C
                             (rising edge-triggered cell FDRE clocked by eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
-  Destination:            temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_sync_reg0/D
+  Destination:            temac_inst/temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_sync_reg0/D
                             (rising edge-triggered cell FDRE clocked by eth_mii_tx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             eth_mii_tx_clk
   Path Type:              Setup (Max at Slow Process Corner)
@@ -1149,14 +1149,14 @@ Slack (MET) :             4.851ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y63                                       0.000     0.000 r  temac_core_inst/inst/temac_core_core/flow/rx_pause/pause_req_to_tx_int_reg/C
-    SLICE_X1Y63          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  temac_core_inst/inst/temac_core_core/flow/rx_pause/pause_req_to_tx_int_reg/Q
-                         net (fo=2, routed)           0.598     1.054    temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_in
-    SLICE_X1Y60          FDRE                                         r  temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_sync_reg0/D
+    SLICE_X1Y63                                       0.000     0.000 r  temac_inst/temac_core_inst/inst/temac_core_core/flow/rx_pause/pause_req_to_tx_int_reg/C
+    SLICE_X1Y63          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  temac_inst/temac_core_inst/inst/temac_core_core/flow/rx_pause/pause_req_to_tx_int_reg/Q
+                         net (fo=2, routed)           0.598     1.054    temac_inst/temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_in
+    SLICE_X1Y60          FDRE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_sync_reg0/D
   -------------------------------------------------------------------    -------------------
 
                          max delay                    6.000     6.000    
-    SLICE_X1Y60          FDRE (Setup_fdre_C_D)       -0.095     5.905    temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_sync_reg0
+    SLICE_X1Y60          FDRE (Setup_fdre_C_D)       -0.095     5.905    temac_inst/temac_core_inst/inst/temac_core_core/flow/tx_pause/sync_good_rx/data_sync_reg0
   -------------------------------------------------------------------
                          required time                          5.905    
                          arrival time                          -1.054    
@@ -1441,9 +1441,9 @@ Hold  :            0  Failing Endpoints,  Worst Slack        0.491ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             38.387ns  (required time - arrival time)
-  Source:                 temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
+  Source:                 temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
                             (rising edge-triggered cell FDRE clocked by eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
-  Destination:            temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+  Destination:            temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
                             (recovery check against rising-edge clock eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             **async_default**
   Path Type:              Recovery (Max at Slow Process Corner)
@@ -1465,30 +1465,30 @@ Slack (MET) :             38.387ns  (required time - arrival time)
                          (clock eth_mii_rx_clk rise edge)
                                                       0.000     0.000 r  
     F15                                               0.000     0.000 r  eth_mii_rx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_rx_clk
-    F15                  IBUF (Prop_ibuf_I_O)         1.482     1.482 r  temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.500     1.982    temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
-    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.511     2.493 r  temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
-                         net (fo=549, routed)         0.732     3.225    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
-    SLICE_X1Y72          FDRE                                         r  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         1.482     1.482 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.500     1.982    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.511     2.493 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=549, routed)         0.732     3.225    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X1Y72          FDRE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y72          FDRE (Prop_fdre_C_Q)         0.456     3.681 f  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/Q
-                         net (fo=3, routed)           0.777     4.458    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable
-    SLICE_X2Y74          FDCE                                         f  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+    SLICE_X1Y72          FDRE (Prop_fdre_C_Q)         0.456     3.681 f  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/Q
+                         net (fo=3, routed)           0.777     4.458    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable
+    SLICE_X2Y74          FDCE                                         f  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
   -------------------------------------------------------------------    -------------------
 
                          (clock eth_mii_rx_clk rise edge)
                                                      40.000    40.000 r  
     F15                                               0.000    40.000 r  eth_mii_rx_clk (IN)
-                         net (fo=0)                   0.000    40.000    temac_core_inst/inst/mii_interface/mii_rx_clk
-    F15                  IBUF (Prop_ibuf_I_O)         1.412    41.412 r  temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.459    41.871    temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
-    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.486    42.356 r  temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
-                         net (fo=549, routed)         0.695    43.051    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
-    SLICE_X2Y74          FDCE                                         r  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/C
+                         net (fo=0)                   0.000    40.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         1.412    41.412 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.459    41.871    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.486    42.356 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=549, routed)         0.695    43.051    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X2Y74          FDCE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/C
                          clock pessimism              0.149    43.200    
                          clock uncertainty           -0.035    43.165    
-    SLICE_X2Y74          FDCE (Recov_fdce_C_CLR)     -0.319    42.846    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg
+    SLICE_X2Y74          FDCE (Recov_fdce_C_CLR)     -0.319    42.846    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg
   -------------------------------------------------------------------
                          required time                         42.846    
                          arrival time                          -4.458    
@@ -1502,9 +1502,9 @@ Slack (MET) :             38.387ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.491ns  (arrival time - required time)
-  Source:                 temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
+  Source:                 temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
                             (rising edge-triggered cell FDRE clocked by eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
-  Destination:            temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+  Destination:            temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
                             (removal check against rising-edge clock eth_mii_rx_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             **async_default**
   Path Type:              Removal (Min at Fast Process Corner)
@@ -1521,29 +1521,29 @@ Slack (MET) :             0.491ns  (arrival time - required time)
                          (clock eth_mii_rx_clk rise edge)
                                                       0.000     0.000 r  
     F15                                               0.000     0.000 r  eth_mii_rx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_rx_clk
-    F15                  IBUF (Prop_ibuf_I_O)         0.250     0.250 r  temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.206     0.456    temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
-    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092     0.548 r  temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
-                         net (fo=549, routed)         0.255     0.803    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
-    SLICE_X1Y72          FDRE                                         r  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.250     0.250 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.206     0.456    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.092     0.548 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=549, routed)         0.255     0.803    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X1Y72          FDRE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y72          FDRE (Prop_fdre_C_Q)         0.141     0.944 f  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/Q
-                         net (fo=3, routed)           0.293     1.238    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable
-    SLICE_X2Y74          FDCE                                         f  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
+    SLICE_X1Y72          FDRE (Prop_fdre_C_Q)         0.141     0.944 f  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable_reg/Q
+                         net (fo=3, routed)           0.293     1.238    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/sfd_enable
+    SLICE_X2Y74          FDCE                                         f  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/CLR
   -------------------------------------------------------------------    -------------------
 
                          (clock eth_mii_rx_clk rise edge)
                                                       0.000     0.000 r  
     F15                                               0.000     0.000 r  eth_mii_rx_clk (IN)
-                         net (fo=0)                   0.000     0.000    temac_core_inst/inst/mii_interface/mii_rx_clk
-    F15                  IBUF (Prop_ibuf_I_O)         0.438     0.438 r  temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
-                         net (fo=1, routed)           0.311     0.749    temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
-    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.254     1.003 r  temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
-                         net (fo=549, routed)         0.282     1.285    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
-    SLICE_X2Y74          FDCE                                         r  temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/C
+                         net (fo=0)                   0.000     0.000    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk
+    F15                  IBUF (Prop_ibuf_I_O)         0.438     0.438 r  temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf_i/O
+                         net (fo=1, routed)           0.311     0.749    temac_inst/temac_core_inst/inst/mii_interface/mii_rx_clk_ibuf
+    BUFR_X0Y4            BUFR (Prop_bufr_I_O)         0.254     1.003 r  temac_inst/temac_core_inst/inst/mii_interface/bufr_mii_rx_clk/O
+                         net (fo=549, routed)         0.282     1.285    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/rx_axi_clk
+    SLICE_X2Y74          FDCE                                         r  temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg/C
                          clock pessimism             -0.472     0.813    
-    SLICE_X2Y74          FDCE (Remov_fdce_C_CLR)     -0.067     0.746    temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg
+    SLICE_X2Y74          FDCE (Remov_fdce_C_CLR)     -0.067     0.746    temac_inst/temac_core_inst/inst/temac_core_core/gmii_mii_rx_gen/nibble_toggle_reg
   -------------------------------------------------------------------
                          required time                         -0.746    
                          arrival time                           1.238    
