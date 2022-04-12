@@ -1,4 +1,7 @@
-module udp #(
+// This block contains the logic to implement the UDP hardware stack.
+// The MAC is external.
+// 
+module udp_stack #(
     parameter logic[47:0] local_mac     = 48'h00_0a_35_01_02_03,    // a Xilinx mac address
     parameter logic[31:0] local_ip      = 32'h10_00_00_80,          // 16.0.0.128
     parameter logic[15:0] local_port    = 16'h04d2                  // 1234
