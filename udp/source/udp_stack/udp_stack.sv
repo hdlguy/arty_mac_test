@@ -19,7 +19,7 @@ module udp_stack #(
     input   logic           tx_axis_mac_tready,
     output  logic[7:0]      tx_axis_mac_tdata,
     output  logic           tx_axis_mac_tlast,
-    output  logic           tx_axis_mac_tuser
+    output  logic           tx_axis_mac_tuser,
     // udp message to receive
     output  logic           udp_rx_tvalid, 
     input   logic           udp_rx_tready, 
@@ -65,7 +65,6 @@ module udp_stack #(
         .dv_out(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip),
         .udp_tvalid(udp_rx_tvalid), .udp_tdata(udp_rx_tdata), .udp_tlast(udp_rx_tlast), .udp_tuser(udp_rx_tuser)
     );
-    assign udp_rx_tready = 1;
 
 
     // send an arp reply

@@ -71,7 +71,7 @@ module top #(
         .tx_axis_tuser  (tx_axis_mac_tuser)
     );
 
-    
+ /*   
     // tx fifo
     logic[7:0] tx_fifo_tdata;
     logic tx_fifo_empty, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_tvalid;
@@ -143,8 +143,81 @@ module top #(
         .probe3({ udp_tx_tready,  udp_tx_tvalid,  udp_tx_tlast,  udp_tx_tuser,  udp_tx_tdata}), // 12
         .probe4(arp_rx_dv_out)
     );
+*/
+
+    udp_stack #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) udp_stack_inst (
+        .clk(clk),
+        // rx data from temac
+        .rx_axis_mac_aclk   (rx_axis_mac_aclk   ),
+        .rx_axis_mac_tvalid (rx_axis_mac_tvalid ),
+        .rx_axis_mac_tdata  (rx_axis_mac_tdata  ),
+        .rx_axis_mac_tlast  (rx_axis_mac_tlast  ),
+        .rx_axis_mac_tuser  (rx_axis_mac_tuser  ),
+        // tx data to temac
+        .tx_axis_mac_aclk   (tx_axis_mac_aclk   ),
+        .tx_axis_mac_tvalid (tx_axis_mac_tvalid ),
+        .tx_axis_mac_tready (tx_axis_mac_tready ),
+        .tx_axis_mac_tdata  (tx_axis_mac_tdata  ),
+        .tx_axis_mac_tlast  (tx_axis_mac_tlast  ),
+        .tx_axis_mac_tuser  (tx_axis_mac_tuser  ),
+        // udp message to receive
+        .udp_rx_tvalid      (udp_rx_tvalid  ), 
+        .udp_rx_tready      (udp_rx_tready  ), 
+        .udp_rx_tdata       (udp_rx_tdata   ),
+        .udp_rx_tlast       (udp_rx_tlast   ), 
+        .udp_rx_tuser       (udp_rx_tuser   ),
+        // udp message to transmit
+        .udp_tx_tvalid      (udp_tx_tvalid  ), 
+        .udp_tx_tready      (udp_tx_tready  ), 
+        .udp_tx_tdata       (udp_tx_tdata   ),
+        .udp_tx_tlast       (udp_tx_tlast   ), 
+        .udp_tx_tuser       (udp_tx_tuser   )
+    );
+    
+    // a fifo to loop udp frames
+    logic udp_loop_fifo_empty, udp_loop_fifo_full;
+    udp_fifo udp_loop_fifo (
+        .wr_clk(clk), .full (udp_loop_fifo_full),  .wr_en(udp_rx_tvalid), .din ({udp_rx_tlast, udp_rx_tuser, udp_rx_tdata}),
+        .rd_clk(clk), .empty(udp_loop_fifo_empty), .rd_en(udp_tx_tready), .dout({udp_tx_tlast, udp_tx_tuser, udp_tx_tdata})
+    );
+    assign udp_rx_tready = ~udp_loop_fifo_full;
+    assign udp_tx_tvalid = ~udp_loop_fifo_empty;
+
 
 endmodule
 
+
 /*
+module udp_stack #(
+    parameter logic[47:0] local_mac     = 48'h00_0a_35_01_02_03,    // a Xilinx mac address
+    parameter logic[31:0] local_ip      = 32'h10_00_00_80,          // 16.0.0.128
+    parameter logic[15:0] local_port    = 16'h04d2                  // 1234
+) (
+    input   logic           clk,
+    // rx data from temac
+    input   logic           rx_axis_mac_aclk,
+    input   logic           rx_axis_mac_tvalid,
+    input   logic[7:0]      rx_axis_mac_tdata,
+    input   logic           rx_axis_mac_tlast,
+    input   logic           rx_axis_mac_tuser,
+    // tx data to temac
+    input   logic           tx_axis_mac_aclk,
+    output  logic           tx_axis_mac_tvalid,
+    input   logic           tx_axis_mac_tready,
+    output  logic[7:0]      tx_axis_mac_tdata,
+    output  logic           tx_axis_mac_tlast,
+    output  logic           tx_axis_mac_tuser
+    // udp message to receive
+    output  logic           udp_rx_tvalid, 
+    input   logic           udp_rx_tready, 
+    output  logic[7:0]      udp_rx_tdata,
+    output  logic           udp_rx_tlast, 
+    output  logic           udp_rx_tuser,
+    // udp message to transmit
+    input   logic           udp_tx_tvalid, 
+    output  logic           udp_tx_tready, 
+    input   logic[7:0]      udp_tx_tdata,
+    input   logic           udp_tx_tlast, 
+    input   logic           udp_tx_tuser
+);
 */
