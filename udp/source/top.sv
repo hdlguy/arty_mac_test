@@ -203,7 +203,7 @@ module top #(
         .clk(clk), 
         .rx_fifo_tvalid(rx_fifo_tvalid), .rx_fifo_tready(rx_fifo_tready), .rx_fifo_tdata(rx_fifo_tdata) , .rx_fifo_tlast(rx_fifo_tlast), .rx_fifo_tuser(rx_fifo_tuser),  // connect to rx fifo
         .dv_out(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip),
-        .udp_tvalid(udp_rx_tvalid), .udp_tready(udp_rx_tready), .udp_tdata(udp_rx_tdata), .udp_tlast(udp_rx_tlast), .udp_tuser(udp_rx_tuser)
+        .udp_tvalid(udp_rx_tvalid), .udp_tdata(udp_rx_tdata), .udp_tlast(udp_rx_tlast), .udp_tuser(udp_rx_tuser)
     );
     assign udp_rx_tready = 1;
 
