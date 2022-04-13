@@ -34,6 +34,7 @@ module udp_stack #(
     input   logic           udp_tx_tuser
 );
 
+
     // tx fifo
     logic[7:0] tx_fifo_tdata;
     logic tx_fifo_empty, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_tvalid;
@@ -55,7 +56,7 @@ module udp_stack #(
     assign rx_fifo_tvalid = ~rx_fifo_empty;  
 
 
-    // receive and decode arp requests
+    // receive arp requests and pass udp messages to application
     logic  arp_rx_dv_out;
     logic[47:0] remote_mac;
     logic[31:0] remote_ip;
@@ -67,13 +68,28 @@ module udp_stack #(
     );
 
 
-    // send an arp reply
+    // send arp replies and format udp frames for transmit
+    logic buf_tx_tvalid, buf_tx_tready, buf_tx_tlast;
+    logic[7:0] buf_tx_tdata;
+    logic length_tvalid, length_tready;
+    logic[15:0] length_tdata;
     arp_tx #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) arp_tx_inst (
         .clk(clk),
         .tx_fifo_tvalid(tx_fifo_tvalid), .tx_fifo_tready(tx_fifo_tready), .tx_fifo_tdata(tx_fifo_tdata) , .tx_fifo_tlast(tx_fifo_tlast), .tx_fifo_tuser(tx_fifo_tuser),  // connect to tx fifo
         .arp_dv_in(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip),
-        .udp_tvalid(udp_tx_tvalid), .udp_tready(udp_tx_tready), .udp_tdata(udp_tx_tdata), .udp_tlast(udp_tx_tlast), .udp_tuser(udp_tx_tuser)
+        .udp_tvalid(buf_tx_tvalid), .udp_tready(buf_tx_tready), .udp_tdata(buf_tx_tdata), .udp_tlast(buf_tx_tlast), .udp_tuser(buf_tx_tuser),
+        .length_tvalid(length_tvalid), .length_tready(length_tready), .length_tdata(length_tdata)
     );
+
+
+    // this buffers the tx udp packets and determines their length.
+    totlen totlen_inst (
+        .clk(clk),
+        .s_tvalid(udp_tx_tvalid), .s_tready(udp_tx_tready), .s_tdata(udp_tx_tdata), .s_tlast(udp_tx_tlast),
+        .m_tvalid(buf_tx_tvalid), .m_tready(buf_tx_tready), .m_tdata(buf_tx_tdata), .m_tlast(buf_tx_tlast),
+        .length_tvalid(), .length_tready(), .length_tdata()
+    );
+
 
 
     // an ILA debug core
@@ -89,4 +105,21 @@ module udp_stack #(
 endmodule
 
 /*
+module totlen (
+    input   logic           clk,
+    // frame in
+    input   logic           s_tvalid,
+    output  logic           s_tready,
+    input   logic[7:0]      s_tdata,
+    input   logic           s_tlast,
+    // frame out
+    output  logic           m_tvalid,
+    input   logic           m_tready,
+    output  logic[7:0]      m_tdata,
+    output  logic           m_tlast,
+    // length out
+    output  logic           length_tvalid,
+    input   logic           length_tready,
+    output  logic[15:0]     length_tdata
+);
 */

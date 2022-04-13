@@ -1,3 +1,5 @@
+//  This module waits for arp requests and sends arp replies in response.
+//  It also accepts udp payloads, prepends the correct header bytes and sends udp frames.
 //
 module arp_tx #(
     parameter logic[47:0]   local_mac   = 48'h00_0a_35_01_02_03,
@@ -20,7 +22,11 @@ module arp_tx #(
     output  logic           udp_tready,
     input   logic[7:0]      udp_tdata,
     input   logic           udp_tlast, 
-    input   logic           udp_tuser
+    input   logic           udp_tuser,
+    // length of UDP message
+    input   logic           length_tvalid,
+    output  logic           length_tready,
+    input   logic[15:0]     length_tdata
 );
 
     // assign values to the 42 byte arp frame.
