@@ -29,9 +29,13 @@ module arp_tx #(
     input   logic[15:0]     length_tdata
 );
 
+    
+    logic[47:0]     remote_mac_q;
+    logic[31:0]     remote_ip_q;
+
     // assign values to the 42 byte arp frame.
     logic[0:41][7:0] arp_bytes;
-    assign arp_bytes[ 0: 5] = remote_mac;
+    assign arp_bytes[ 0: 5] = remote_mac_q;
     assign arp_bytes[ 6:11] = local_mac;
     assign arp_bytes[12:13] = 16'h0806;
     assign arp_bytes[14:15] = 16'h0001;
@@ -41,28 +45,36 @@ module arp_tx #(
     assign arp_bytes[20:21] = 16'h0002;
     assign arp_bytes[22:27] = local_mac;
     assign arp_bytes[28:31] = local_ip;
-    assign arp_bytes[32:37] = remote_mac;
-    assign arp_bytes[38:41] = remote_ip;        
+    assign arp_bytes[32:37] = remote_mac_q;
+    assign arp_bytes[38:41] = remote_ip_q;        
  
     // some temporary assignments
-    logic[0:1][7:0] total_tx_length = 16'h00_26;
-    logic[0:1][7:0] header_checksum = 16'hcafe;
+    logic[15:0] udp_len=0;
+    logic[0:1][7:0] total_tx_length;
+    assign total_tx_length = 20 + 8 + 1 + udp_len;
+    logic[0:1][7:0] ip_id = 16'habcd;  // this gets incremented after each tx packet.
+    logic[0:1][7:0] header_checksum;
+    assign header_checksum =  ~(header_bytes[14:15]+header_bytes[16:17]+header_bytes[18:19]+header_bytes[20:21]+header_bytes[22:23]+
+                                header_bytes[26:27]+header_bytes[28:29]+header_bytes[30:31]+header_bytes[32:33]);
     logic[0:1][7:0] remote_port = local_port;
     logic[0:1][7:0] udp_header_length = 16'h0012;
 
-    // assign values to the 42 byte udp header.    
+    // assign values to the 42 bytes (eth+ip+udp=14+20+8) of header.   
+    // eth 14 bytes
     logic[0:41][7:0] header_bytes;
-    assign header_bytes[ 0: 5] = remote_mac;
+    assign header_bytes[ 0: 5] = remote_mac_q;
     assign header_bytes[ 6:11] = local_mac;
     assign header_bytes[12:13] = 16'h0800;
+    // ip 20 bytes
     assign header_bytes[14:15] = 16'h4500;
     assign header_bytes[16:17] = total_tx_length;
-    assign header_bytes[18:19] = 16'h9999;
+    assign header_bytes[18:19] = ip_id;
     assign header_bytes[20:21] = 16'h0400;
     assign header_bytes[22:23] = 16'h4011;
     assign header_bytes[24:25] = header_checksum;
     assign header_bytes[26:29] = local_ip;
-    assign header_bytes[30:33] = remote_ip;        
+    assign header_bytes[30:33] = remote_ip_q;
+    // udp 8 bytes     
     assign header_bytes[34:35] = local_port;        
     assign header_bytes[36:37] = remote_port;        
     assign header_bytes[38:39] = udp_header_length;        
@@ -71,7 +83,7 @@ module arp_tx #(
  
     // state machine   
     logic[7:0] byte_count=0;    
-    logic byte_count_rst, arp_complete=0, set_arp_complete, arp_pending=0, arp_active;
+    logic byte_count_rst, arp_complete=0, set_arp_complete, arp_pending=0, arp_active, inc_ip_id;
     logic payload_active, header_tvalid, header_active;
     logic arp_tvalid, arp_tuser;
     logic[3:0] state=0, next_state;
@@ -86,19 +98,22 @@ module arp_tx #(
         payload_active = 0;
         header_tvalid = 0;
         header_active = 0;
+        length_tready = 0;
+        inc_ip_id = 0;
         
         case (state)
 
             0: begin
                 next_state = 1;
                 byte_count_rst = 1;
+                inc_ip_id = 1;
             end
 
             1: begin
                 if (arp_pending) begin  // arp requests are rare but arp replies get priority.
                     next_state = 2;
                 end else begin
-                    if ((udp_tvalid) && (arp_complete)) begin   // don't send udp frames until an arp cycle completes.
+                    if ((length_tvalid) && (arp_complete)) begin   // don't send udp frames until an arp cycle completes.
                         next_state = 4;
                     end
                 end
@@ -124,6 +139,7 @@ module arp_tx #(
             4: begin
                 next_state = 5;
                 byte_count_rst = 1;
+                length_tready = 1;
             end
             
             // first send the headers for udp
@@ -170,6 +186,8 @@ module arp_tx #(
         if (set_arp_complete) arp_complete <= 1;
         if (arp_dv_in) begin
             arp_pending <= 1;
+            remote_mac_q <= remote_mac;
+            remote_ip_q  <= remote_ip;
         end else begin
             if (set_arp_complete) arp_pending <= 0;
         end
@@ -209,7 +227,11 @@ module arp_tx #(
                 end
             end
         end              
-    end                
+    end             
+    
+    always_ff @(posedge clk) if ((length_tready) && (length_tvalid)) udp_len <= length_tdata;   // latch the length of the udp payload.
+    
+    always_ff @(posedge clk) if (inc_ip_id) ip_id <= ip_id + 1;
 
 endmodule
 

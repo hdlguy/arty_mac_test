@@ -87,7 +87,7 @@ module udp_stack #(
         .clk(clk),
         .s_tvalid(udp_tx_tvalid), .s_tready(udp_tx_tready), .s_tdata(udp_tx_tdata), .s_tlast(udp_tx_tlast),
         .m_tvalid(buf_tx_tvalid), .m_tready(buf_tx_tready), .m_tdata(buf_tx_tdata), .m_tlast(buf_tx_tlast),
-        .length_tvalid(), .length_tready(), .length_tdata()
+        .length_tvalid(length_tvalid), .length_tready(length_tready), .length_tdata(length_tdata)
     );
 
 
@@ -99,7 +99,7 @@ module udp_stack #(
         .probe1({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata}), // 12
         .probe2({ udp_rx_tready,  udp_rx_tvalid,  udp_rx_tlast,  udp_rx_tuser,  udp_rx_tdata}), // 12
         .probe3({ udp_tx_tready,  udp_tx_tvalid,  udp_tx_tlast,  udp_tx_tuser,  udp_tx_tdata}), // 12
-        .probe4(arp_rx_dv_out)
+        .probe4({arp_rx_dv_out, length_tvalid, length_tready, length_tdata})                    // 19
     );
 
 endmodule
