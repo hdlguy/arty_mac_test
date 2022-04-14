@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="udp_stack_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="udp_stack_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="30.000000 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="293"></NameColumnWidth>
+      <ValueColumnWidth column_width="88"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="37" />
+   <wave_markers>
+      <marker label="" time="995100" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/udp_stack_tb/rx_axis_mac_aclk">
+      <obj_property name="ElementShortName">rx_axis_mac_aclk</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/rx_axis_mac_tvalid">
+      <obj_property name="ElementShortName">rx_axis_mac_tvalid</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/rx_axis_mac_tdata">
+      <obj_property name="ElementShortName">rx_axis_mac_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/rx_axis_mac_tlast">
+      <obj_property name="ElementShortName">rx_axis_mac_tlast</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/rx_axis_mac_tuser">
+      <obj_property name="ElementShortName">rx_axis_mac_tuser</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/tx_axis_mac_aclk">
+      <obj_property name="ElementShortName">tx_axis_mac_aclk</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_mac_aclk</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/tx_axis_mac_tvalid">
+      <obj_property name="ElementShortName">tx_axis_mac_tvalid</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_mac_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/tx_axis_mac_tready">
+      <obj_property name="ElementShortName">tx_axis_mac_tready</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_mac_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/tx_axis_mac_tdata">
+      <obj_property name="ElementShortName">tx_axis_mac_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_mac_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/tx_axis_mac_tlast">
+      <obj_property name="ElementShortName">tx_axis_mac_tlast</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_mac_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/tx_axis_mac_tuser">
+      <obj_property name="ElementShortName">tx_axis_mac_tuser</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_mac_tuser</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_rx_tvalid">
+      <obj_property name="ElementShortName">udp_rx_tvalid</obj_property>
+      <obj_property name="ObjectShortName">udp_rx_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_rx_tready">
+      <obj_property name="ElementShortName">udp_rx_tready</obj_property>
+      <obj_property name="ObjectShortName">udp_rx_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/udp_rx_tdata">
+      <obj_property name="ElementShortName">udp_rx_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">udp_rx_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_rx_tlast">
+      <obj_property name="ElementShortName">udp_rx_tlast</obj_property>
+      <obj_property name="ObjectShortName">udp_rx_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_rx_tuser">
+      <obj_property name="ElementShortName">udp_rx_tuser</obj_property>
+      <obj_property name="ObjectShortName">udp_rx_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_tx_tvalid">
+      <obj_property name="ElementShortName">udp_tx_tvalid</obj_property>
+      <obj_property name="ObjectShortName">udp_tx_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_tx_tready">
+      <obj_property name="ElementShortName">udp_tx_tready</obj_property>
+      <obj_property name="ObjectShortName">udp_tx_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/udp_tx_tdata">
+      <obj_property name="ElementShortName">udp_tx_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">udp_tx_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_tx_tlast">
+      <obj_property name="ElementShortName">udp_tx_tlast</obj_property>
+      <obj_property name="ObjectShortName">udp_tx_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/udp_tx_tuser">
+      <obj_property name="ElementShortName">udp_tx_tuser</obj_property>
+      <obj_property name="ObjectShortName">udp_tx_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/arp_bytes">
+      <obj_property name="ElementShortName">arp_bytes[0:45][7:0]</obj_property>
+      <obj_property name="ObjectShortName">arp_bytes[0:45][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/udp_bytes">
+      <obj_property name="ElementShortName">udp_bytes[0:49][7:0]</obj_property>
+      <obj_property name="ObjectShortName">udp_bytes[0:49][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/local_mac">
+      <obj_property name="ElementShortName">local_mac[47:0]</obj_property>
+      <obj_property name="ObjectShortName">local_mac[47:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/local_ip">
+      <obj_property name="ElementShortName">local_ip[31:0]</obj_property>
+      <obj_property name="ObjectShortName">local_ip[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/local_port">
+      <obj_property name="ElementShortName">local_port[15:0]</obj_property>
+      <obj_property name="ObjectShortName">local_port[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/arp_len">
+      <obj_property name="ElementShortName">arp_len[31:0]</obj_property>
+      <obj_property name="ObjectShortName">arp_len[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/udp_len">
+      <obj_property name="ElementShortName">udp_len[31:0]</obj_property>
+      <obj_property name="ObjectShortName">udp_len[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider16" type="divider">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/arp_rx_dv_out">
+      <obj_property name="ElementShortName">arp_rx_dv_out</obj_property>
+      <obj_property name="ObjectShortName">arp_rx_dv_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/remote_mac">
+      <obj_property name="ElementShortName">remote_mac[47:0]</obj_property>
+      <obj_property name="ObjectShortName">remote_mac[47:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/remote_ip">
+      <obj_property name="ElementShortName">remote_ip[31:0]</obj_property>
+      <obj_property name="ObjectShortName">remote_ip[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/length_tvalid">
+      <obj_property name="ElementShortName">length_tvalid</obj_property>
+      <obj_property name="ObjectShortName">length_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/length_tready">
+      <obj_property name="ElementShortName">length_tready</obj_property>
+      <obj_property name="ObjectShortName">length_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/length_tdata">
+      <obj_property name="ElementShortName">length_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">length_tdata[15:0]</obj_property>
+   </wvobject>
+</wave_config>
