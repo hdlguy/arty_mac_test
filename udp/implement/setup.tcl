@@ -15,6 +15,7 @@ read_ip ../source/clk_wiz/clk_wiz.xci
 read_ip ../source/udp_stack/mac_fifo/mac_fifo.xci
 read_ip ../source/udp_stack/udp_fifo/udp_fifo.xci
 read_ip ../source/udp_stack/eth_ila/eth_ila.xci
+reset_target all [get_files *.xci]
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
