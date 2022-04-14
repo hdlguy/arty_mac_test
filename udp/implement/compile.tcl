@@ -27,4 +27,3 @@ write_bitstream -verbose -force ./results/top.bit
 
 close_project
 
-

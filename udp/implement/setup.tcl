@@ -19,12 +19,12 @@ upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
 
+read_verilog -sv ../source/udp_frame_gen/udp_frame_gen.sv
 read_verilog -sv ../source/udp_stack/udp_stack.sv
 read_verilog -sv ../source/udp_stack/totlen/totlen.sv
 read_verilog -sv ../source/temac.sv
 read_verilog -sv ../source/udp_stack/arp_rx/arp_rx.sv
 read_verilog -sv ../source/udp_stack/arp_tx/arp_tx.sv
-read_verilog -sv ../source/udp_stack/arp_tx/udp_frame_gen.sv
 
 read_verilog -sv ../source/top.sv
 

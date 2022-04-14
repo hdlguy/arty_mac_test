@@ -107,7 +107,7 @@ module top #(
         .udp_tx_tuser       (udp_tx_tuser   )
     );
 
-
+/*
     // a fifo to loop udp frames
     logic udp_loop_fifo_empty, udp_loop_fifo_full;
     udp_fifo udp_loop_fifo (
@@ -116,9 +116,25 @@ module top #(
     );
     assign udp_rx_tready = ~udp_loop_fifo_full;
     assign udp_tx_tvalid = ~udp_loop_fifo_empty;
+*/
+
+    // a frame generator to pump out udp test payloads.
+    udp_frame_gen frame_gen_inst (
+        .clk(clk), .enable(sw[0]),
+        .m_tvalid(udp_tx_tvalid), .m_tready(udp_tx_tready), .m_tdata(udp_tx_tdata), .m_tlast(udp_tx_tlast), .m_tuser(udp_tx_tuser)
+    );
 
 endmodule
 
 
 /*
+module udp_frame_gen (
+    input   logic       clk,
+    input   logic       enable,
+    output  logic       m_tvalid,
+    input   logic       m_tready, 
+    output  logic[7:0]  m_tdata,
+    output  logic       m_tlast, 
+    output  logic       m_tuser
+);
 */
