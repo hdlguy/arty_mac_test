@@ -54,10 +54,8 @@ module arp_tx #(
     assign total_tx_length = 20 + 8 + 1 + udp_len;
     logic[0:1][7:0] ip_id = 16'habcd;  // this gets incremented after each tx packet.
     logic[0:1][7:0] header_checksum;
-    assign header_checksum =  ~(header_bytes[14:15]+header_bytes[16:17]+header_bytes[18:19]+header_bytes[20:21]+header_bytes[22:23]+
-                                header_bytes[26:27]+header_bytes[28:29]+header_bytes[30:31]+header_bytes[32:33]);
     logic[0:1][7:0] remote_port = local_port;
-    logic[0:1][7:0] udp_header_length = 16'h0012;
+    logic[0:1][7:0] udp_header_length = 8 + 1 + udp_len;
 
     // assign values to the 42 bytes (eth+ip+udp=14+20+8) of header.   
     // eth 14 bytes
@@ -69,7 +67,7 @@ module arp_tx #(
     assign header_bytes[14:15] = 16'h4500;
     assign header_bytes[16:17] = total_tx_length;
     assign header_bytes[18:19] = ip_id;
-    assign header_bytes[20:21] = 16'h0400;
+    assign header_bytes[20:21] = 16'h4000;
     assign header_bytes[22:23] = 16'h4011;
     assign header_bytes[24:25] = header_checksum;
     assign header_bytes[26:29] = local_ip;
@@ -232,6 +230,17 @@ module arp_tx #(
     always_ff @(posedge clk) if ((length_tready) && (length_tvalid)) udp_len <= length_tdata;   // latch the length of the udp payload.
     
     always_ff @(posedge clk) if (inc_ip_id) ip_id <= ip_id + 1;
+
+    // checksum calculation uses tricky, one's complement addition followed by taking the one's complement.
+    logic[19:0] cs1;
+    logic[16:0] cs2;
+    logic[15:0] cs3;
+    always_ff @(posedge clk) begin
+        cs1 <=  header_bytes[14:15]+header_bytes[16:17]+header_bytes[18:19]+header_bytes[20:21]+header_bytes[22:23]+header_bytes[26:27]+header_bytes[28:29]+header_bytes[30:31]+header_bytes[32:33];
+        cs2 <= cs1[15:0] + cs1[19:16];
+    end
+    assign cs3 = cs2[15:0] + cs2[16];
+    assign header_checksum = ~cs3;
 
 endmodule
 
