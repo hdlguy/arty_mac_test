@@ -105,21 +105,4 @@ module udp_stack #(
 endmodule
 
 /*
-module totlen (
-    input   logic           clk,
-    // frame in
-    input   logic           s_tvalid,
-    output  logic           s_tready,
-    input   logic[7:0]      s_tdata,
-    input   logic           s_tlast,
-    // frame out
-    output  logic           m_tvalid,
-    input   logic           m_tready,
-    output  logic[7:0]      m_tdata,
-    output  logic           m_tlast,
-    // length out
-    output  logic           length_tvalid,
-    input   logic           length_tready,
-    output  logic[15:0]     length_tdata
-);
 */
