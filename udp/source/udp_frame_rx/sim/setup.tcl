@@ -8,14 +8,14 @@ set_property target_language Verilog [current_project]
 set_property default_lib work [current_project]
 load_features ipintegrator
 
-read_ip ../../mac_fifo/mac_fifo.xci
+read_ip ../../udp_stack/mac_fifo/mac_fifo.xci
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
-read_verilog -sv ../frame_rx.sv
-read_verilog -sv ../frame_rx_tb.sv
+read_verilog -sv ../udp_frame_rx.sv
+read_verilog -sv ../udp_frame_rx_tb.sv
 
-add_files -fileset sim_1 -norecurse ./frame_rx_tb_behav.wcfg
+add_files -fileset sim_1 -norecurse ./udp_frame_rx_tb_behav.wcfg
 
 close_project
 

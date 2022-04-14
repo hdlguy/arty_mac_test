@@ -118,6 +118,18 @@ module top #(
     assign udp_tx_tvalid = ~udp_loop_fifo_empty;
 */
 
+    // a register file we can write with udp messages.
+    localparam int Nregs = 16;
+    logic[Nregs-1:0][31:0] wr_regs;
+    logic wr_regs_dv;
+    udp_frame_rx #(.Nregs(Nregs)) udp_frame_rx_inst (
+        .clk(clk), 
+        .rx_tvalid(udp_rx_tvalid), .rx_tready(udp_rx_tready), .rx_tdata(udp_rx_tdata), .rx_tlast(udp_rx_tlast), .rx_tuser(udp_rx_tuser),
+        .dv_out(wr_regs_dv), .wr_val(wr_regs)
+    );
+
+    assign led = wr_regs[2][3:0];
+
     // a frame generator to pump out udp test payloads.
     udp_frame_gen frame_gen_inst (
         .clk(clk), .enable(sw[0]),
@@ -128,6 +140,20 @@ endmodule
 
 
 /*
+module udp_frame_rx #(
+    parameter int Nregs = 16
+)(
+    input   logic                   clk,
+    // axi-stream interface from rx fifo.
+    input   logic                   rx_tvalid,
+    output  logic                   rx_tready, 
+    input   logic[7:0]              rx_tdata,
+    input   logic                   rx_tlast, 
+    input   logic                   rx_tuser, 
+    // register interface
+    output  logic                   dv_out = 0,
+    output  logic[Nregs-1:0][31:0]  wr_val // register file
+);
 module udp_frame_gen (
     input   logic       clk,
     input   logic       enable,
@@ -138,3 +164,5 @@ module udp_frame_gen (
     output  logic       m_tuser
 );
 */
+
+
