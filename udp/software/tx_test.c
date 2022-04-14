@@ -26,13 +26,14 @@ int main(){
 
     // send one packet to prime the pump.
     ssize_t nBytes = 10;
+    ssize_t maxbytes = 1000;
     int i=0;
     while(1){
-        for (nBytes=1; nBytes<100; nBytes++) {
-            printf("%d\n", i);
+        for (nBytes=1; nBytes<maxbytes; nBytes++) {
+            printf("%d: %ld\n", i, nBytes);
             for (int j=0; j<nBytes; j++) buffer[j] = 0x00ff & (j+i);
             sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr *)&serverAddr, addr_size); // /*Send message to server*/
-            usleep(1000000);
+            usleep(100000);
             i++;
         }
     }
