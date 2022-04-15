@@ -18,12 +18,11 @@ int main(){
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(1234);
     serverAddr.sin_addr.s_addr = inet_addr("16.0.0.128");
-    memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);  
+    memset(serverAddr.sin_zero, '\0', sizeof(serverAddr.sin_zero));  
 
     /*Initialize size variable to be used later on*/
     addr_size = sizeof(serverAddr);
 
-    // send one packet to prime the pump.
     ssize_t nBytes = 10;
     ssize_t maxbytes = 1000;
     int i=0;
@@ -31,7 +30,7 @@ int main(){
         for (nBytes=1; nBytes<maxbytes; nBytes++) {
             printf("%d: %ld\n", i, nBytes);
             for (int j=0; j<nBytes; j++) buffer[j] = 0x00ff & (j+i);
-            sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr *)&serverAddr, addr_size); // /*Send message to server*/
+            sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr *)&serverAddr, addr_size); 
             usleep(100000);
             i++;
         }
