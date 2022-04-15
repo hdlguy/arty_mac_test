@@ -11,14 +11,14 @@ module udp_frame_gen (
     input  logic            m_tready
 );
 
-    localparam int Lframe = 16;
+    localparam int Lframe = 1000;
     localparam int Lgap   = 100;
 
     logic enable_q=0;
     always_ff @(posedge clk) enable_q <= enable;
 
-    logic [15:0] count=0;
-    logic inc_count, rst_count;
+    logic [15:0] count=0, pcount=0;
+    logic inc_count, rst_count, inc_pcount;
 
     logic[3:0] state=0, next_state;
     always_comb begin
@@ -27,19 +27,20 @@ module udp_frame_gen (
         m_tvalid = 0;
         rst_count = 0;
         inc_count = 0;
+        inc_pcount = 0;
 
         case (state)
 
             0: begin
                 next_state = 1;
                 rst_count = 1;
+                inc_pcount = 1;
             end
 
             1: begin
                 if (enable_q) begin
                     next_state = 2;
                 end
-                rst_count = 1;
             end
 
             2: begin
@@ -83,10 +84,11 @@ module udp_frame_gen (
                 count <= count + 1;
             end
         end
+        if (inc_pcount) pcount <= pcount + 1;
     end
 
 
-    assign m_tdata = count[7:0];
+    assign m_tdata = count[7:0] + pcount[7:0];
     assign m_tuser = 0;
 
     always_comb begin
