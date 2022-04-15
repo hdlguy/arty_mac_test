@@ -12,7 +12,6 @@ int main(){
     socklen_t addr_size;
 
     /*Create UDP socket*/
-    //clientSocket = socket(PF_INET, SOCK_DGRAM, 0);
     clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
 
     /*Configure settings in address struct*/
@@ -22,7 +21,7 @@ int main(){
     memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);  
 
     /*Initialize size variable to be used later on*/
-    addr_size = sizeof serverAddr;
+    addr_size = sizeof(serverAddr);
 
     // send one packet to prime the pump.
     ssize_t nBytes = 10;

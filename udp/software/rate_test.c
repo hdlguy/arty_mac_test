@@ -14,7 +14,7 @@
    
 int main() {
     int sockfd;
-    uint8_t buffer[MAXLINE];
+    uint8_t buffer[MAXLINE], sendbuf[MAXLINE];
     struct sockaddr_in servaddr, cliaddr;
        
     // Creating socket file descriptor
@@ -30,6 +30,7 @@ int main() {
     servaddr.sin_family    = AF_INET; // IPv4
     servaddr.sin_addr.s_addr = INADDR_ANY;
     servaddr.sin_port = htons(PORT);
+    //memset(serverAddr.sin_zero, '\0', sizeof(serverAddr.sin_zero));  
        
     // Bind the socket with the server address
     if ( bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0 ) {
@@ -39,6 +40,11 @@ int main() {
        
     socklen_t len;
     len = sizeof(cliaddr);  //len is value/result
+
+    //socklen_t addr_size = sizeof(servaddr);
+    //int Nsend = 4*16;
+    //for (int i=0; i<Nsend; i++) sendbuf[i] = 0xff;
+    //sendto(sockfd, (char *)sendbuf, Nsend, 0, (struct sockaddr *)&servaddr, addr_size);
    
     struct timespec t1, t2;
     double elapsed_time, rate;
@@ -63,6 +69,9 @@ int main() {
             printf("bytes received = %ld, elapsed seconds = %le, Mbytes/second = %3.2lf, Mbits/second = %3.2lf\n", total_rxlen, elapsed_time, rate/1.0e6, rate*8/1.0e6);
             printf("buflen = %ld: ", buflen); for(int j=0; j<10; j++) printf("%02x", buffer[j]); printf("\n");
             total_rxlen = 0;
+
+            //sendbuf[8] += 1;
+            //sendto(sockfd, (char *)sendbuf, Nsend, 0, (struct sockaddr *)&servaddr, addr_size);
 
         }
 
