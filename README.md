@@ -11,6 +11,22 @@ Raw frames can only be used when the network connection is point-to-point, norma
 
 The advantages of raw frames are absolute maximum data transfer rate and extreme simplicity. A disadvantage is that raw socket software must run as root, requiring sudo privileges.
 
+```
+                                                ┌────────────────┐
+                       ┌───────┐                │                │
+           ┌──────┐    │       │   ┌──────┐     │                │
+           │      ├────►       ├──►│ FIFO ├─────►                │
+┌──────┐   │      │    │       │   └──────┘     │                │
+│      ├───►  TI  │    │ Xilinx│                │                │
+│ RJ45 │   │  PHY │    │ TEMAC │                │  Application   │
+│      ◄───┤      │    │       │                │                │
+└──────┘   │      │    │       │   ┌──────┐     │                │
+           │      ◄────┤       ◄───┤ FIFO ◄─────┤                │
+           └──────┘    │       │   └──────┘     │                │
+                       └───────┘                │                │
+                                                └────────────────┘
+```
+
 ## UDP
 
 UDP is an internet protocol that is commonly used to connect a remote sensor with a control computer.  It has the advantage that it can run through Ethernet switches but is much simpler and more efficient than TCP.
