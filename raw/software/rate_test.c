@@ -12,6 +12,8 @@
 int main ()
 {
 
+    printf("This program must be run as root: sudo ./rate_test\n\n");
+
     // open a raw socket
     int sock_r;
     sock_r=socket(AF_PACKET,SOCK_RAW,htons(ETH_P_ALL));

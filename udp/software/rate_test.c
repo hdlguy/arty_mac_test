@@ -14,7 +14,7 @@
    
 int main() {
     int sockfd;
-    uint8_t buffer[MAXLINE], sendbuf[MAXLINE];
+    uint8_t buffer[MAXLINE];
     struct sockaddr_in servaddr, cliaddr;
        
     // Creating socket file descriptor

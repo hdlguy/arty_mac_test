@@ -29,13 +29,16 @@
 
 int main(int argc, char *argv[])
 {
+
+    printf("This program must be run as root: sudo ./tx_test\n\n");
+
 	int sockfd;
 	struct ifreq if_idx;
 	struct ifreq if_mac;
 	int tx_len = 0;
 	char sendbuf[BUF_SIZ];
 	struct ether_header *eh = (struct ether_header *) sendbuf;
-	struct iphdr *iph = (struct iphdr *) (sendbuf + sizeof(struct ether_header));
+	//struct iphdr *iph = (struct iphdr *) (sendbuf + sizeof(struct ether_header));
 	struct sockaddr_ll socket_address;
 	char ifName[IFNAMSIZ];
 	
