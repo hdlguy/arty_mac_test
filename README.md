@@ -22,7 +22,7 @@ Once the ARP cycle is complete the FPGA can receive and send UDP packets.  The U
 
 For transmission, the UDP FPGA logic provides an AXI Stream interface for transmission.  The application need only provide the payload data.  Network headers are added by the logic.
 
-
+```
                                              ┌───────┐                     ┌────────────────┐
                        ┌───────┐             │       │                     │                │
            ┌──────┐    │       │   ┌──────┐  │ARP Rx │                     │                │
@@ -36,6 +36,7 @@ For transmission, the UDP FPGA logic provides an AXI Stream interface for transm
            └──────┘    │       │   └──────┘  │ARP Tx │    │ Length   │     │                │
                        └───────┘             │       ◄────┤ Count    │     │                │
                                              └───────┘    └──────────┘     └────────────────┘
+```
 
 ## Performance
 Using large 1024 byte frames, the raw interface was able to transmit data at 98Mbps on a 100Mbps connection.
