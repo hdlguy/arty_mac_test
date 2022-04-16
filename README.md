@@ -9,6 +9,8 @@ The raw part of this project demonstrates moving data over these interfaces. An 
 
 Raw frames can only be used when the network connection is point-to-point, normally a PC connected directly to the FPGA board. 
 
+The advantages of raw frames are absolute maximum data transfer rate and extreme simplicity. A disadvantage is that raw socket software must run as root, requiring sudo privileges.
+
 ## UDP
 
 UDP is an internet protocol that is commonly used to connect a remote sensor with a control computer.  It has the advantage that it can run through Ethernet switches but is much simpler and more efficient than TCP.
@@ -29,4 +31,5 @@ Using variable length frames (1 - 1000 bytes), the UDP logic was able to transmi
 ## References
 https://digilent.com/shop/arty-a7-artix-7-fpga-development-board/
 https://homepages.uc.edu/~thomam/Net1/Packet_Formats/
+https://www.xilinx.com/products/intellectual-property/temac.html
 
