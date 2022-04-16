@@ -62,6 +62,8 @@ Using variable length frames (1 - 1000 bytes), the UDP logic was able to transmi
 
 ## References
 <https://digilent.com/shop/arty-a7-artix-7-fpga-development-board/>
+
 <https://homepages.uc.edu/~thomam/Net1/Packet_Formats/>
+
 <https://www.xilinx.com/products/intellectual-property/temac.html>
 
