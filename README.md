@@ -57,6 +57,31 @@ Using large 1024 byte frames, the raw interface was able to transmit data at 98M
 
 Using variable length frames (1 - 1000 bytes), the UDP logic was able to transmit data at 93Mbps.
 
+## Working with the Designs
+### Building the Designs
+Both projects contain an implement folder. In Linux the designs can be built and flashed into the Arty using the following commands.
+
+    vivado -mode batch -source setup.tcl;  # creates a Vivado project
+    vivado -mode batch -source compile.tcl;  # compiles the design through bitstream creation
+    vivado -mode batch -source spi_program.tcl;  # burns the bitstream into the SPI flash on the Arty
+
+In Windows you must open an XTCL shell then:
+
+    source setup.tcl
+    source compile.tcl
+    source spi_program.tcl
+
+Both projects incorporate a little application block.  On the Rx side the application stores the first 64 bytes of the message. Byte 8, bits [3:0] are wired to the green LEDs on the Arty board.
+
+ON the Tx side, the application has a data generator that throws messages as fast as the link can accept them.  Switch SW0 enables the data generator.
+
+Both projects have a software folder that contains C programs and notes on how to test the designs.
+
+    tx_test.c - periodically sends messages to the FPGA over the Ethernet link so that the LEDs show a binary count.
+
+    rate_test.c - receives all frames sent by the FPGA, counts the bytes and displays the line rate of the link.
+
+    notes.txt - some Linux commands to work with the FPGA designs.
 
 ## References
 <https://digilent.com/shop/arty-a7-artix-7-fpga-development-board/>

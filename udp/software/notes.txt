@@ -1,5 +1,16 @@
+To find the name of your Ethernet interfaces:
 
- netcat -u 16.0.0.128 1234
+    ip address
 
- sudo arping -W 2 -i enx94103eb7e201 16.0.0.128
+To set the IP address of the interface to use for testing:
+
+    sudo ifconfig enx94103eb7e201 16.0.0.200
+
+To force ARP cycles on the interface:
+
+    sudo arping -W 2 -i enx94103eb7e201 16.0.0.128
+
+To send send text strings on a UDP socket:
+
+    netcat -u 16.0.0.128 1234
 
