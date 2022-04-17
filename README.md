@@ -28,11 +28,9 @@ The advantages of raw frames are absolute maximum data transfer rate and extreme
 ```
 
 ## UDP
-
 UDP is an internet protocol that is commonly used to connect a remote sensor with a control computer.  It has the advantage that it can run through Ethernet switches but is much simpler and more efficient than TCP.
 
-A UDP socket specifies an IP address and an IP port number.  UDP frames reside inside Ethernet and IP frames. The Ethernet frame header requires the MAC address of the destination.  To learn the MAC address of the target device the computer sends an ARP request.
-The FPGA design in this project contains logic to detect ARP requests and respond with an ARP reply.
+A UDP socket specifies an IP address and an IP port number.  UDP frames reside inside IP frames that reside within Ethernet frames.  The Ethernet frame header requires the MAC address of the destination.  To learn the MAC address of the target device the computer sends an ARP request.  The FPGA design in this project contains logic to detect ARP requests and respond with ARP replies.
 
 Once the ARP cycle is complete the FPGA can receive and send UDP packets.  The UDP logic of the FPGA strips off all network headers on reception and passes just the UDP payload to the application over an AXI Stream interface.
 
