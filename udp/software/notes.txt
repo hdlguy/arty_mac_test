@@ -4,7 +4,7 @@ To find the name of your Ethernet interfaces:
 
 To set the IP address of the interface to use for testing:
 
-    sudo ifconfig enx94103eb7e201 16.0.0.200
+    sudo ifconfig enx94103eb7e201 16.0.0.200 netmask 255.255.255.0
 
 To force ARP cycles on the interface:
 
