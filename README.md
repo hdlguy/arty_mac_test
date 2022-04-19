@@ -75,7 +75,7 @@ Both projects incorporate a little application block.  On the Rx side the applic
 
 ON the Tx side, the application has a data generator that throws messages as fast as the link can accept them.  Switch SW0 enables the data generator.
 
-## Test Software
+### Test Software
 Both projects have a software folder that contains C programs and notes on how to test the designs.
 
     tx_test.c - periodically sends messages to the FPGA over the Ethernet link so that the LEDs show a binary count.
