@@ -57,8 +57,8 @@ module udp_frame_rx #(
             
         end
         
-        if ((dv_in_q) && (byte_addr<Nregs*4)) begin            
-            wr_byte[byte_addr] <= tdata_q;
+        if (dv_in_q) begin            
+            if (byte_addr<Nregs*4) wr_byte[byte_addr] <= tdata_q;
             if (tlast_q) pre_dv_out <= 1; else pre_dv_out <= 0;
         end else begin
             pre_dv_out <= 0;

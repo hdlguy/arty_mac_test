@@ -23,11 +23,11 @@ int main(){
     /*Initialize size variable to be used later on*/
     addr_size = sizeof(serverAddr);
 
-    ssize_t nBytes = 10;
-    ssize_t maxbytes = 1000;
+    //ssize_t nBytes;
+    ssize_t maxbytes = 100;
     int i=0;
     while(1){
-        for (nBytes=1; nBytes<maxbytes; nBytes++) {
+        for (ssize_t nBytes=12; nBytes<maxbytes; nBytes++) {
             printf("%d: %ld\n", i, nBytes);
             for (int j=0; j<nBytes; j++) buffer[j] = 0x00ff & (j+i);
             sendto(clientSocket, buffer, nBytes, 0, (struct sockaddr *)&serverAddr, addr_size); 
