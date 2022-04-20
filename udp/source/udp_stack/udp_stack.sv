@@ -39,7 +39,7 @@ module udp_stack #(
     logic[7:0] tx_fifo_tdata;
     logic tx_fifo_empty, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_tvalid;
     mac_fifo tx_mac_fifo(
-        .wr_clk(clk),              .full(tx_fifo_full),   .wr_en(tx_fifo_tvalid),     .din ({tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata}), 
+        .wr_clk(clk),              .full(tx_fifo_full),   .wr_en(tx_fifo_tvalid),     .din ({    tx_fifo_tlast,     tx_fifo_tuser,     tx_fifo_tdata}), 
         .rd_clk(tx_axis_mac_aclk), .empty(tx_fifo_empty), .rd_en(tx_axis_mac_tready), .dout({tx_axis_mac_tlast, tx_axis_mac_tuser, tx_axis_mac_tdata})
     );
     assign tx_fifo_tready     = ~tx_fifo_full;
@@ -69,7 +69,7 @@ module udp_stack #(
 
 
     // send arp replies and format udp frames for transmit
-    logic buf_tx_tvalid, buf_tx_tready, buf_tx_tlast;
+    logic buf_tx_tvalid, buf_tx_tready, buf_tx_tlast, buf_tx_tuser;
     logic[7:0] buf_tx_tdata;
     logic length_tvalid, length_tready;
     logic[15:0] length_tdata;
@@ -80,6 +80,7 @@ module udp_stack #(
         .udp_tvalid(buf_tx_tvalid), .udp_tready(buf_tx_tready), .udp_tdata(buf_tx_tdata), .udp_tlast(buf_tx_tlast), .udp_tuser(buf_tx_tuser),
         .length_tvalid(length_tvalid), .length_tready(length_tready), .length_tdata(length_tdata)
     );
+    assign buf_tx_tuser = 0;
 
 
     // this buffers the tx udp packets and determines their length.

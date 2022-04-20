@@ -20,6 +20,7 @@ read_verilog -sv ../arp_rx/arp_rx.sv
 read_verilog -sv ../arp_tx/arp_tx.sv
 read_verilog -sv ../totlen/totlen.sv
 read_verilog -sv ../udp_stack.sv
+read_verilog -sv ../../udp_frame_gen/udp_frame_gen.sv
 read_verilog -sv ../udp_stack_tb.sv
 
 add_files -fileset sim_1 -norecurse ./udp_stack_tb_behav.wcfg

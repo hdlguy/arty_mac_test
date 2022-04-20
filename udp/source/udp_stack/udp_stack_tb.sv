@@ -9,7 +9,7 @@ module udp_stack_tb ();
     // tx data to temac
     logic           tx_axis_mac_aclk;
     logic           tx_axis_mac_tvalid;
-    logic           tx_axis_mac_tready;
+    logic           tx_axis_mac_tready=0;
     logic[7:0]      tx_axis_mac_tdata;
     logic           tx_axis_mac_tlast;
     logic           tx_axis_mac_tuser;
@@ -29,8 +29,7 @@ module udp_stack_tb ();
     logic clk=0; localparam clk_period=10; always #(clk_period/2)  clk=~clk;
     assign rx_axis_mac_aclk = clk;
     assign tx_axis_mac_aclk = clk;
-    assign tx_axis_mac_tready = 1;
-
+    
     localparam logic[47:0] local_mac    = 48'h00_0a_35_01_02_03;
     localparam logic[31:0] local_ip     = 32'h10_00_00_80;  // 16.0.0.128
     localparam logic[15:0] local_port   = 16'h04d2;         // 1234
@@ -130,7 +129,35 @@ module udp_stack_tb ();
                       
     end
 
+    logic gen_enable;
+    udp_frame_gen udp_frame_gen_inst(.clk(clk), .enable(gen_enable), .m_tvalid(udp_tx_tvalid ), .m_tready(udp_tx_tready), .m_tdata(udp_tx_tdata), .m_tlast(udp_tx_tlast), .m_tuser(udp_tx_tuser));
+
+    initial begin
+        gen_enable = 0;
+        #(clk_period*1000);
+        gen_enable = 1;
+    end
+    
+    // generate a realistic tready
+    logic[2:0] tx_tready_count = 0;
+    always_ff @(posedge clk) begin
+        tx_tready_count <= tx_tready_count + 1;    
+        if (tx_tready_count == 7) tx_axis_mac_tready <= 1; else tx_axis_mac_tready <= 0;
+    end
+
 endmodule
 
 /*
+module udp_frame_gen (
+    //
+    input  logic            clk,
+    input  logic            enable,
+    // fifo interface
+    output logic [7 : 0]    m_tdata,
+    output logic            m_tvalid,
+    output logic            m_tlast,
+    output logic            m_tuser,
+    input  logic            m_tready
+);
+
 */
