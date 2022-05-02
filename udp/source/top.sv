@@ -1,7 +1,8 @@
 module top #(
     parameter logic[47:0] local_mac     = 48'h00_0a_35_01_02_03,    // a Xilinx mac address
     parameter logic[31:0] local_ip      = 32'h10_00_00_80,          // 16.0.0.128
-    parameter logic[15:0] local_port    = 16'h04d2                  // 1234
+    parameter logic[15:0] local_port    = 16'h04d2,                 // 1234
+    parameter logic[15:0] remote_port   = 16'h04d2                  // 1234
 ) (
     input   logic           clkin100,   // 100MHz oscillator
     input   logic           resetn,     // red reset button
@@ -78,7 +79,7 @@ module top #(
     logic udp_tx_tvalid, udp_tx_tready, udp_tx_tlast, udp_tx_tuser;
     logic[7:0] udp_tx_tdata;
 
-    udp_stack #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) udp_stack_inst (
+    udp_stack #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port), .remote_port(remote_port)) udp_stack_inst (
         .clk(clk),
         // rx data from temac
         .rx_axis_mac_aclk   (rx_axis_mac_aclk   ),

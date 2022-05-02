@@ -4,7 +4,8 @@
 module arp_tx #(
     parameter logic[47:0]   local_mac   = 48'h00_0a_35_01_02_03,
     parameter logic[31:0]   local_ip    = 32'h10_00_00_80,
-    parameter logic[15:0]   local_port  = 16'h04d2  // 1234;
+    parameter logic[15:0]   local_port  = 16'h04d2, // 1234;
+    parameter logic[15:0]   remote_port = 16'h04d2  // 1234;
 ) (
     input   logic           clk,
     // axi-stream interface to tx fifo.
@@ -54,7 +55,7 @@ module arp_tx #(
     assign total_tx_length = 20 + 8 + 1 + udp_len;
     logic[0:1][7:0] ip_id = 16'habcd;  // this gets incremented after each tx packet.
     logic[0:1][7:0] header_checksum;
-    logic[0:1][7:0] remote_port = local_port;
+    //logic[0:1][7:0] remote_port = local_port;
     logic[0:1][7:0] udp_header_length = 8 + 1 + udp_len;
 
     // assign values to the 42 bytes (eth+ip+udp=14+20+8) of header.   

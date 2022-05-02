@@ -4,7 +4,8 @@
 module udp_stack #(
     parameter logic[47:0] local_mac     = 48'h00_0a_35_01_02_03,    // a Xilinx mac address
     parameter logic[31:0] local_ip      = 32'h10_00_00_80,          // 16.0.0.128
-    parameter logic[15:0] local_port    = 16'h04d2                  // 1234
+    parameter logic[15:0] local_port    = 16'h04d2,                 // 1234
+    parameter logic[15:0] remote_port   = 16'h04d2                  // 1234
 ) (
     input   logic           clk,
     // rx data from temac
@@ -60,7 +61,7 @@ module udp_stack #(
     logic  arp_rx_dv_out;
     logic[47:0] remote_mac;
     logic[31:0] remote_ip;
-    arp_rx #(.local_ip(local_ip)) arp_rx_inst (
+    arp_rx #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) arp_rx_inst (
         .clk(clk), 
         .rx_fifo_tvalid(rx_fifo_tvalid), .rx_fifo_tready(rx_fifo_tready), .rx_fifo_tdata(rx_fifo_tdata) , .rx_fifo_tlast(rx_fifo_tlast), .rx_fifo_tuser(rx_fifo_tuser),  // connect to rx fifo
         .dv_out(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip),
@@ -73,7 +74,7 @@ module udp_stack #(
     logic[7:0] buf_tx_tdata;
     logic length_tvalid, length_tready;
     logic[15:0] length_tdata;
-    arp_tx #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) arp_tx_inst (
+    arp_tx #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port), .remote_port(remote_port)) arp_tx_inst (
         .clk(clk),
         .tx_fifo_tvalid(tx_fifo_tvalid), .tx_fifo_tready(tx_fifo_tready), .tx_fifo_tdata(tx_fifo_tdata) , .tx_fifo_tlast(tx_fifo_tlast), .tx_fifo_tuser(tx_fifo_tuser),  // connect to tx fifo
         .arp_dv_in(arp_rx_dv_out), .remote_mac(remote_mac), .remote_ip(remote_ip),

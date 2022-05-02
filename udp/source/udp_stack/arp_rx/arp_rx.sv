@@ -1,8 +1,9 @@
 // arp_rx.sv - receives raw ethernet frames from the rx mac fifo.
 // If the frame is an arp request, fields are extracted for the arp reply.
 module arp_rx #(
-    parameter logic[47:0] local_mac = 48'h00_0a_35_01_02_03,
-    parameter logic[31:0] local_ip  = 32'h10_00_00_80           // 16.0.0.128
+    parameter logic[47:0] local_mac     = 48'h00_0a_35_01_02_03,
+    parameter logic[31:0] local_ip      = 32'h10_00_00_80,          // 16.0.0.128
+    parameter logic[15:0] local_port    = 16'h04d2                  // 1234
 ) (
     input   logic                   clk,
     // axi-stream interface from rx fifo.
@@ -95,9 +96,8 @@ module arp_rx #(
             dv_out <= 0;
         end
 
-        if ((byte_count==41) && (dest_mac==local_mac) && (protocol==17) && (dest_ip==local_ip)) udp_mess_active <= 1;
-        //if (tlast_q) udp_mess_active <= 0;
-        if (byte_count==(udp_length+42-8-1)) udp_mess_active <= 0;  // end of message
+        if ((byte_count==41) && (dest_mac==local_mac) && (protocol==17) && (dest_ip==local_ip) && (dest_port==local_port)) udp_mess_active <= 1; // start of udp message
+        if (byte_count==(udp_length+42-8-1)) udp_mess_active <= 0;  // end of udp message
         
     end
     
