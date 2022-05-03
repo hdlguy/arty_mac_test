@@ -33,8 +33,9 @@ module udp_stack_tb ();
     localparam logic[47:0] local_mac    = 48'h00_0a_35_01_02_03;
     localparam logic[31:0] local_ip     = 32'h10_00_00_80;  // 16.0.0.128
     localparam logic[15:0] local_port   = 16'h04d2;         // 1234
+    localparam logic[15:0] remote_port  = 16'h04d2;         // 1234
 
-    udp_stack #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port)) uut (.*);            
+    udp_stack #(.local_mac(local_mac), .local_ip(local_ip), .local_port(local_port), .remote_port(remote_port)) uut (.*);            
     
     // define a legal arp packet
     localparam int arp_len = 46;
