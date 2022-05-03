@@ -30,8 +30,6 @@ module totlen (
     assign m_tvalid = ~data_fifo_empty;
 
 
-    logic length_tvalid, length_tready;
-    logic[15:0] length_tdata;
     logic count_tvalid, count_tready;
     logic[15:0] count_tdata;
 
