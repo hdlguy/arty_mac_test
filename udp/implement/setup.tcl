@@ -1,4 +1,8 @@
 # This script sets up a Vivado project with all ip references resolved.
+# In Linux:
+#   vivado -mode batch -source setup.tcl
+# In windows use xtcl shell
+#   source setup.tcl
 close_project -quiet
 file delete -force proj.xpr *.os *.jou *.log proj.srcs proj.cache proj.runs
 #

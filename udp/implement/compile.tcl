@@ -1,4 +1,8 @@
 # Script to compile the FPGA with zynq processor system all the way to bit file.
+# In Linux:
+#   vivado -mode batch -source compile.tcl
+# In windows use xtcl shell
+#   source compile.tcl
 
 close_project -quiet
 

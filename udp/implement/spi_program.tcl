@@ -1,4 +1,8 @@
-#
+# Script to burn configuration flash
+# In Linux:
+#   vivado -mode batch -source spi_program.tcl
+# In windows use xtcl shell
+#   source spi_program.tcl
 write_cfgmem -force -format MCS -size 128 -interface SPIx4 -loadbit "up 0x0 ./results/top.bit" -verbose ./results/top.mcs
 
 disconnect_hw_server -quiet
