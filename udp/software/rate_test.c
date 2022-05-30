@@ -46,6 +46,7 @@ int main() {
     //for (int i=0; i<Nsend; i++) sendbuf[i] = 0xff;
     //sendto(sockfd, (char *)sendbuf, Nsend, 0, (struct sockaddr *)&servaddr, addr_size);
    
+    printf("rate_test: remember to turn on SW0.\n");
     struct timespec t1, t2;
     double elapsed_time, rate;
     ssize_t buflen, total_rxlen=0;
