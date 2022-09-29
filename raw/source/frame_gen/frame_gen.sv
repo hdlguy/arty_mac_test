@@ -11,7 +11,7 @@ module frame_gen (
     input  logic            m_axis_tready
 );
 
-    localparam int Nframe = 1024;
+    localparam int Nframe = 8000;
 
     logic [0:5][7:0] d_address = {8'hff, 8'hff, 8'hff, 8'hff, 8'hff, 8'hff}; // the broadcast address.
     logic [0:5][7:0] s_address = {8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02}; 

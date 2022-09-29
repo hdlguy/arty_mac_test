@@ -80,6 +80,9 @@ module temac (
     assign tx_configuration_vector[1] = 1; // Transmitter Enable
     assign tx_configuration_vector[0] = 0; // Transmitter Reset
 
+    assign tx_ifg_delay = 0;
+    assign pause_req = 0;
+    assign pause_val = 0;
 
     temac_core temac_core_inst (
         .glbl_rstn(glbl_rstn),                              // input logic glbl_rstn
@@ -128,10 +131,6 @@ module temac (
         .rx_configuration_vector(rx_configuration_vector),  // input logic [79 : 0] rx_configuration_vector
         .tx_configuration_vector(tx_configuration_vector)   // input logic [79 : 0] tx_configuration_vector
     );
-
-    assign tx_ifg_delay = 0;
-    assign pause_req = 0;
-    assign pause_val = 0;
 
 endmodule
 
