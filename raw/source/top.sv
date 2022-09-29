@@ -76,6 +76,52 @@ module top (
     assign rx_axi_rstn = locked; 
     assign tx_axi_rstn = locked; 
     assign eth_mii_rst_n = locked;
+    
+    // *************************************************************
+    eth_mac_mii # (
+        .TARGET             ("XILINX"), // target ("SIM", "GENERIC", "XILINX", "ALTERA")
+        .CLOCK_INPUT_STYLE  ("BUFR"),   // Clock input style ("BUFG", "BUFR", "BUFIO", "BUFIO2")
+        .ENABLE_PADDING     (1),
+        .MIN_FRAME_LENGTH   (64)
+    ) eth_mac_mii_inst (
+        .rst            (~glbl_rstn),
+        
+        .tx_clk         (tx_mac_aclk),
+        .tx_rst         (tx_reset),
+        .tx_axis_tdata  (tx_axis_mac_tdata),
+        .tx_axis_tvalid (tx_axis_mac_tvalid),
+        .tx_axis_tready (tx_axis_mac_tready),
+        .tx_axis_tlast  (tx_axis_mac_tlast),
+        .tx_axis_tuser  (tx_axis_mac_tuser),
+        
+        .rx_clk         (rx_mac_aclk),
+        .rx_rst         (rx_reset),
+        .rx_axis_tdata  (rx_axis_mac_tdata),
+        .rx_axis_tvalid (rx_axis_mac_tvalid),
+        .rx_axis_tlast  (rx_axis_mac_tlast),
+        .rx_axis_tuser  (rx_axis_mac_tuser),
+        
+        .mii_rx_clk     (eth_mii_rx_clk),
+        .mii_rxd        (eth_mii_rxd),
+        .mii_rx_dv      (eth_mii_rx_dv),
+        .mii_rx_er      (eth_mii_rx_er),
+        .mii_tx_clk     (eth_mii_tx_clk),
+        .mii_txd        (eth_mii_txd),
+        .mii_tx_en      (eth_mii_tx_en),
+        .mii_tx_er      (),
+        
+        .tx_start_packet(),
+        .tx_error_underflow(),
+        .rx_start_packet(),
+        .rx_error_bad_frame(),
+        .rx_error_bad_fcs(),
+        
+        .ifg_delay      (12)
+    );
+
+
+    // *************************************************************
+/*
 
     logic [79 : 0] rx_configuration_vector;
     assign rx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Receiver Pause Frame Source Address[47:0]
@@ -113,6 +159,9 @@ module top (
     assign tx_configuration_vector[1] = 1; // Transmitter Enable
     assign tx_configuration_vector[0] = 0; // Transmitter Reset
 
+    assign tx_ifg_delay = 0;
+    assign pause_req = 0;
+    assign pause_val = 0;    
 
     temac_core temac_core_inst (
         .glbl_rstn(glbl_rstn),                              // input logic glbl_rstn
@@ -162,11 +211,11 @@ module top (
         .rx_configuration_vector(rx_configuration_vector),  // input logic [79 : 0] rx_configuration_vector
         .tx_configuration_vector(tx_configuration_vector)   // input logic [79 : 0] tx_configuration_vector
     );
-
-    assign tx_ifg_delay = 0;
-    assign pause_req = 0;
-    assign pause_val = 0;
+*/
     
+    // **********************************************************************
+    
+
     
     // generate tx frames
     logic tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tready, tx_fifo_full, tx_fifo_empty;
@@ -209,11 +258,60 @@ module top (
     assign led = slv_reg[2][3:0];
 
     
-    eth_ila tx_eth_ila (.clk(clk), .probe0({tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata})); // 12
-    eth_ila rx_eth_ila (.clk(clk), .probe0({rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})); // 12    
+    eth_ila eth_ila_inst (
+        .clk(clk), 
+        .probe0({   tx_fifo_tready, tx_fifo_tvalid, tx_fifo_tlast, tx_fifo_tuser, tx_fifo_tdata, 
+                    rx_fifo_tready, rx_fifo_tvalid, rx_fifo_tlast, rx_fifo_tuser, rx_fifo_tdata})
+    ); // 24
 
 endmodule
 
 
 /*
+module eth_mac_mii #
+(
+    // target ("SIM", "GENERIC", "XILINX", "ALTERA")
+    parameter TARGET = "GENERIC",
+    // Clock input style ("BUFG", "BUFR", "BUFIO", "BUFIO2")
+    // Use BUFR for Virtex-5, Virtex-6, 7-series
+    // Use BUFG for Ultrascale
+    // Use BUFIO2 for Spartan-6
+    parameter CLOCK_INPUT_STYLE = "BUFIO2",
+    parameter ENABLE_PADDING = 1,
+    parameter MIN_FRAME_LENGTH = 64
+) (
+    input  wire        rst,
+    output wire        rx_clk,
+    output wire        rx_rst,
+    output wire        tx_clk,
+    output wire        tx_rst,
+    // AXI input
+    input  wire [7:0]  tx_axis_tdata,
+    input  wire        tx_axis_tvalid,
+    output wire        tx_axis_tready,
+    input  wire        tx_axis_tlast,
+    input  wire        tx_axis_tuser,
+    // AXI output
+    output wire [7:0]  rx_axis_tdata,
+    output wire        rx_axis_tvalid,
+    output wire        rx_axis_tlast,
+    output wire        rx_axis_tuser,
+    // MII interface
+    input  wire        mii_rx_clk,
+    input  wire [3:0]  mii_rxd,
+    input  wire        mii_rx_dv,
+    input  wire        mii_rx_er,
+    input  wire        mii_tx_clk,
+    output wire [3:0]  mii_txd,
+    output wire        mii_tx_en,
+    output wire        mii_tx_er,
+    //Status
+    output wire        tx_start_packet,
+    output wire        tx_error_underflow,
+    output wire        rx_start_packet,
+    output wire        rx_error_bad_frame,
+    output wire        rx_error_bad_fcs,
+    // Configuration
+    input  wire [7:0]  ifg_delay
+);
 */
