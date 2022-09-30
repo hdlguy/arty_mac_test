@@ -44,42 +44,6 @@ module temac (
     assign tx_axi_rstn      = resetn; 
     assign eth_mii_rst_n    = resetn;
 
-    logic [79:0] rx_configuration_vector;
-    assign rx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Receiver Pause Frame Source Address[47:0]
-    assign rx_configuration_vector[31:16] = 1600; // Receiver Max Frame Size[15:0].
-    assign rx_configuration_vector[15] = 0; // Reserved
-    assign rx_configuration_vector[14] = 0; // Receiver Max Frame Enable
-    assign rx_configuration_vector[13:12] = 2'b01; // Receiver Speed Configuration
-    assign rx_configuration_vector[11] = 0; // Promiscuous Mode
-    assign rx_configuration_vector[10] = 0; // Reserved
-    assign rx_configuration_vector[9] = 0; // Receiver Control Frame Length Check Disable
-    assign rx_configuration_vector[8] = 0; // Receiver Length/Type Error Check Disable
-    assign rx_configuration_vector[7] = 0; // Reserved
-    assign rx_configuration_vector[6] = 0; // Receiver Half-Duplex
-    assign rx_configuration_vector[5] = 0; // Receiver Flow Control Enable
-    assign rx_configuration_vector[4] = 0; // Receiver Jumbo Frame Enable
-    assign rx_configuration_vector[3] = 0; // Receiver In-Band FCS Enable
-    assign rx_configuration_vector[2] = 0; // Receiver VLAN Enable
-    assign rx_configuration_vector[1] = 1; // Receiver Enable
-    assign rx_configuration_vector[0] = 0; // Receiver Reset
-
-    logic [79:0] tx_configuration_vector;
-    assign tx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Transmitter Pause Frame Source Address[47:0]
-    assign tx_configuration_vector[31:16] = 4500; // Transmitter Max Frame Size[15:0].
-    assign tx_configuration_vector[15] = 0; // Reserved
-    assign tx_configuration_vector[14] = 0; // Transmitter Max Frame Enable
-    assign tx_configuration_vector[13:12] = 2'b01; // Transmitter Speed Configuration
-    assign tx_configuration_vector[11: 9] = 3'b000; // Reserved
-    assign tx_configuration_vector[8] = 0; // Transmitter Interframe Gap Adjust Enable.
-    assign tx_configuration_vector[7] = 0; // Reserved
-    assign tx_configuration_vector[6] = 0; // Transmitter Half-Duplex
-    assign tx_configuration_vector[5] = 0; // Transmitter Flow Control Enable
-    assign tx_configuration_vector[4] = 1; // Transmitter Jumbo Frame Enable
-    assign tx_configuration_vector[3] = 0; // Transmitter In-Band FCS Enable
-    assign tx_configuration_vector[2] = 0; // Transmitter VLAN Enable
-    assign tx_configuration_vector[1] = 1; // Transmitter Enable
-    assign tx_configuration_vector[0] = 0; // Transmitter Reset
-
     // *************************************************************
     eth_mac_mii # (
         .TARGET             ("XILINX"), // target ("SIM", "GENERIC", "XILINX", "ALTERA")
@@ -125,6 +89,42 @@ module temac (
 
     // *************************************************************
 /*
+    logic [79:0] rx_configuration_vector;
+    assign rx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Receiver Pause Frame Source Address[47:0]
+    assign rx_configuration_vector[31:16] = 1600; // Receiver Max Frame Size[15:0].
+    assign rx_configuration_vector[15] = 0; // Reserved
+    assign rx_configuration_vector[14] = 0; // Receiver Max Frame Enable
+    assign rx_configuration_vector[13:12] = 2'b01; // Receiver Speed Configuration
+    assign rx_configuration_vector[11] = 0; // Promiscuous Mode
+    assign rx_configuration_vector[10] = 0; // Reserved
+    assign rx_configuration_vector[9] = 0; // Receiver Control Frame Length Check Disable
+    assign rx_configuration_vector[8] = 0; // Receiver Length/Type Error Check Disable
+    assign rx_configuration_vector[7] = 0; // Reserved
+    assign rx_configuration_vector[6] = 0; // Receiver Half-Duplex
+    assign rx_configuration_vector[5] = 0; // Receiver Flow Control Enable
+    assign rx_configuration_vector[4] = 0; // Receiver Jumbo Frame Enable
+    assign rx_configuration_vector[3] = 0; // Receiver In-Band FCS Enable
+    assign rx_configuration_vector[2] = 0; // Receiver VLAN Enable
+    assign rx_configuration_vector[1] = 1; // Receiver Enable
+    assign rx_configuration_vector[0] = 0; // Receiver Reset
+
+    logic [79:0] tx_configuration_vector;
+    assign tx_configuration_vector[79:32] = { 8'h00, 8'h0a, 8'h35, 8'h00, 8'h01, 8'h02 }; // Transmitter Pause Frame Source Address[47:0]
+    assign tx_configuration_vector[31:16] = 4500; // Transmitter Max Frame Size[15:0].
+    assign tx_configuration_vector[15] = 0; // Reserved
+    assign tx_configuration_vector[14] = 0; // Transmitter Max Frame Enable
+    assign tx_configuration_vector[13:12] = 2'b01; // Transmitter Speed Configuration
+    assign tx_configuration_vector[11: 9] = 3'b000; // Reserved
+    assign tx_configuration_vector[8] = 0; // Transmitter Interframe Gap Adjust Enable.
+    assign tx_configuration_vector[7] = 0; // Reserved
+    assign tx_configuration_vector[6] = 0; // Transmitter Half-Duplex
+    assign tx_configuration_vector[5] = 0; // Transmitter Flow Control Enable
+    assign tx_configuration_vector[4] = 1; // Transmitter Jumbo Frame Enable
+    assign tx_configuration_vector[3] = 0; // Transmitter In-Band FCS Enable
+    assign tx_configuration_vector[2] = 0; // Transmitter VLAN Enable
+    assign tx_configuration_vector[1] = 1; // Transmitter Enable
+    assign tx_configuration_vector[0] = 0; // Transmitter Reset
+
     assign tx_ifg_delay = 0;
     assign pause_req = 0;
     assign pause_val = 0;

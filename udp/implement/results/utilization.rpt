@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Thu Sep 29 14:36:55 2022
+| Date         : Fri Sep 30 07:45:20 2022
 | Host         : pdudley-msi-laptop running 64-bit Ubuntu 20.04.5 LTS
 | Command      : report_utilization -file ./results/utilization.rpt
 | Design       : top
