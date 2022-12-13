@@ -3136,7 +3136,7 @@
         "C_ENABLE_ILA_AXI_MON": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_NUM_OF_PROBES": [ { "value": "5", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_DATA_DEPTH": [ { "value": "2048", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "C_MAJOR_VERSION": [ { "value": "2021", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_MAJOR_VERSION": [ { "value": "2022", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_MINOR_VERSION": [ { "value": "2", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_BUILD_REVISION": [ { "value": "0", "format": "long", "usage": "all" } ],
         "C_CORE_MAJOR_VER": [ { "value": "6", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],

@@ -91,3 +91,5 @@ Both projects have a software folder that contains C programs and notes on how t
 
 <https://www.xilinx.com/products/intellectual-property/temac.html>
 
+<https://github.com/alexforencich/verilog-ethernet>
+
