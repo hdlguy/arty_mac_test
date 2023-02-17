@@ -7,9 +7,10 @@ create_project -force -part xc7a35ticsg324-1L proj
 set_property target_language Verilog [current_project]
 set_property default_lib work [current_project]
 
-#read_ip ../../mac_fifo/mac_fifo.xci
-#upgrade_ip -quiet  [get_ips *]
-#generate_target {all} [get_ips *]
+read_ip ../totlen_data_fifo/totlen_data_fifo.xci
+read_ip ../totlen_length_fifo/totlen_length_fifo.xci
+upgrade_ip -quiet  [get_ips *]
+generate_target {all} [get_ips *]
 
 read_verilog -sv ../totlen.sv
 read_verilog -sv ../totlen_tb.sv

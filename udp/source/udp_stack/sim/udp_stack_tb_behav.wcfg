@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="2,081.000000 us"></ZoomEndTime>
-      <Cursor1Time time="0.000000 us"></Cursor1Time>
+      <ZoomStartTime time="25,282.011 ns"></ZoomStartTime>
+      <ZoomEndTime time="36,717.012 ns"></ZoomEndTime>
+      <Cursor1Time time="30,777.011 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="292"></NameColumnWidth>
-      <ValueColumnWidth column_width="75"></ValueColumnWidth>
+      <NameColumnWidth column_width="283"></NameColumnWidth>
+      <ValueColumnWidth column_width="79"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="37" />
+   <WVObjectSize size="56" />
    <wave_markers>
       <marker label="" time="995100" />
    </wave_markers>
@@ -192,5 +192,103 @@
    <wvobject type="array" fp_name="/udp_stack_tb/uut/length_tdata">
       <obj_property name="ElementShortName">length_tdata[15:0]</obj_property>
       <obj_property name="ObjectShortName">length_tdata[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider38" type="divider">
+      <obj_property name="label">totlen</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/s_tvalid">
+      <obj_property name="ElementShortName">s_tvalid</obj_property>
+      <obj_property name="ObjectShortName">s_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/s_tready">
+      <obj_property name="ElementShortName">s_tready</obj_property>
+      <obj_property name="ObjectShortName">s_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/totlen_inst/s_tdata">
+      <obj_property name="ElementShortName">s_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/s_tlast">
+      <obj_property name="ElementShortName">s_tlast</obj_property>
+      <obj_property name="ObjectShortName">s_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/m_tvalid">
+      <obj_property name="ElementShortName">m_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/m_tready">
+      <obj_property name="ElementShortName">m_tready</obj_property>
+      <obj_property name="ObjectShortName">m_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/totlen_inst/m_tdata">
+      <obj_property name="ElementShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/m_tlast">
+      <obj_property name="ElementShortName">m_tlast</obj_property>
+      <obj_property name="ObjectShortName">m_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/data_fifo_full">
+      <obj_property name="ElementShortName">data_fifo_full</obj_property>
+      <obj_property name="ObjectShortName">data_fifo_full</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/data_fifo_empty">
+      <obj_property name="ElementShortName">data_fifo_empty</obj_property>
+      <obj_property name="ObjectShortName">data_fifo_empty</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/count_tvalid">
+      <obj_property name="ElementShortName">count_tvalid</obj_property>
+      <obj_property name="ObjectShortName">count_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/count_tready">
+      <obj_property name="ElementShortName">count_tready</obj_property>
+      <obj_property name="ObjectShortName">count_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/totlen_inst/count_tdata">
+      <obj_property name="ElementShortName">count_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">count_tdata[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/totlen_inst/count">
+      <obj_property name="ElementShortName">count[15:0]</obj_property>
+      <obj_property name="ObjectShortName">count[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/length_tvalid">
+      <obj_property name="ElementShortName">length_tvalid</obj_property>
+      <obj_property name="ObjectShortName">length_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_stack_tb/uut/totlen_inst/length_tready">
+      <obj_property name="ElementShortName">length_tready</obj_property>
+      <obj_property name="ObjectShortName">length_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_stack_tb/uut/totlen_inst/length_tdata">
+      <obj_property name="ElementShortName">length_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">length_tdata[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
 </wave_config>
