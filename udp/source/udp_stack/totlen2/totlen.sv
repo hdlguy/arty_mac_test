@@ -30,10 +30,11 @@ module totlen (
 
     localparam int Nmax = 1024-1;  // number of bytes before frame is broken.
 
+    logic max_compare, faux_tlast;
+    
     // this fifo buffers the data
     logic data_fifo_full, data_fifo_empty;
-    totlen_data_fifo data_fifo (
-        .clk(clk), 
+    totlen_data_fifo data_fifo (.clk(clk), 
         .full(data_fifo_full),   .wr_en(s_tvalid), .din({s_tdata, faux_tlast}),  // we need to control the assertion of s_tlast for the short frames.
         .empty(data_fifo_empty), .rd_en(m_tready), .dout({m_tdata, m_tlast}) 
     );
@@ -47,8 +48,7 @@ module totlen (
 
     // this fifo holds the length counts of the frames that go into the data fifo.
     logic length_fifo_full, length_fifo_empty;
-    totlen_length_fifo length_fifo (
-        .clk(clk), 
+    totlen_length_fifo length_fifo (.clk(clk), 
         .full(length_fifo_full),   .wr_en(count_tvalid),  .din(count_tdata),
         .empty(length_fifo_empty), .rd_en(length_tready), .dout(length_tdata) 
     );
@@ -57,8 +57,6 @@ module totlen (
     
 
     // here below is where we need to break up the frames. Maybe a state machine would be nice.
-
-    logic max_compare, faux_tlast;
     
     // count bytes
     logic[15:0] count = 0;
@@ -85,8 +83,6 @@ module totlen (
     end
     assign count_tdata = count;
     
-
-
 endmodule
 
 
