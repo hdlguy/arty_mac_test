@@ -11,18 +11,18 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="140.121000001 ms"></ZoomEndTime>
-      <Cursor1Time time="0.000000000 ms"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="401.000001 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="292"></NameColumnWidth>
+      <NameColumnWidth column_width="282"></NameColumnWidth>
       <ValueColumnWidth column_width="79"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="32" />
+   <WVObjectSize size="34" />
    <wave_markers>
-      <marker label="" time="995100" />
       <marker label="" time="139894835100" />
+      <marker label="" time="338715000" />
    </wave_markers>
    <wvobject type="logic" fp_name="/totlen_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
@@ -165,15 +165,26 @@
       <obj_property name="ObjectShortName">count_tdata[15:0]</obj_property>
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/totlen_tb/uut/count">
       <obj_property name="ElementShortName">count[15:0]</obj_property>
       <obj_property name="ObjectShortName">count[15:0]</obj_property>
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="divider65" type="divider">
-      <obj_property name="label">data fifo</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
+   <wvobject type="array" fp_name="/totlen_tb/uut/Nmax">
+      <obj_property name="ElementShortName">Nmax[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Nmax[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/max_compare">
+      <obj_property name="ElementShortName">max_compare</obj_property>
+      <obj_property name="ObjectShortName">max_compare</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/faux_tlast">
+      <obj_property name="ElementShortName">faux_tlast</obj_property>
+      <obj_property name="ObjectShortName">faux_tlast</obj_property>
    </wvobject>
 </wave_config>

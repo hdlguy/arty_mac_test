@@ -17,7 +17,7 @@ module totlen_tb ();
 
     totlen uut (.*);    
 
-    int length = 4;
+    int length = 1020;
     initial begin    
     
         s_tvalid = 0;
