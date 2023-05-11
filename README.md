@@ -1,10 +1,10 @@
 # arty_mac_test
-A test design to see if the tri-mode ethernet mac can be used for control and data in a small design.
+A test design to see if ethernet can be used for control and data in a small design.
 
 Two approaches are tested here, raw Ethernet frames and UDP. The Arty A7-35t development board is used in these examples. It provides a 100Mbps Ethernet connection.
 
 ## Raw Frames
-The Xilinx TEMAC core provides AXI Streaming interfaces for reception and transmission of raw Ethernet frames.  
+The Ethernet MAC provides AXI Streaming interfaces for reception and transmission of raw Ethernet frames.  
 The raw part of this project demonstrates moving data over these interfaces. An FPGA design for the Arty A7-35t development board is provided along with Linux C language raw socket examples for excercising the design.
 
 Raw frames can only be used when the network connection is point-to-point, normally a PC connected directly to the FPGA board. 
@@ -17,8 +17,8 @@ The advantages of raw frames are absolute maximum data transfer rate and extreme
            ┌──────┐    │       │   ┌──────┐ RAW │                │
            │      ├────►       ├──►│ FIFO ├─────►                │
 ┌──────┐   │      │    │       │   └──────┘     │                │
-│      ├───►  TI  │    │ Xilinx│                │                │
-│ RJ45 │   │  PHY │    │ TEMAC │                │  Application   │
+│      ├───►  TI  │    │       │                │                │
+│ RJ45 │   │  PHY │    │  MAC  │                │  Application   │
 │      ◄───┤      │    │       │                │                │
 └──────┘   │      │    │       │   ┌──────┐ RAW │                │
            │      ◄────┤       ◄───┤ FIFO ◄─────┤                │
@@ -42,8 +42,8 @@ For transmission, the UDP FPGA logic provides an AXI Stream interface for transm
            ┌──────┐    │       │   ┌──────┐  │ARP Rx │                 UDP │                │
            │      ├────►       ├──►│ FIFO ├──►       ├─────────────────────►                │
 ┌──────┐   │      │    │       │   └──────┘  └───┬───┘                     │                │
-│      ├───►  TI  │    │ Xilinx│                 │                         │                │
-│ RJ45 │   │  PHY │    │ TEMAC │                 │ARP                      │  Application   │
+│      ├───►  TI  │    │       │                 │                         │                │
+│ RJ45 │   │  PHY │    │  MAC  │                 │ARP                      │  Application   │
 │      ◄───┤      │    │       │                 │                         │                │
 └──────┘   │      │    │       │   ┌──────┐  ┌───▼───┐    ┌──────────┐ UDP │                │
            │      ◄────┤       ◄───┤ FIFO ◄──┤       ◄────┤ Payload  ◄─────┤                │
