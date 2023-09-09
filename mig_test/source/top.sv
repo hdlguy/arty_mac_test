@@ -78,7 +78,7 @@ module top(
     always_ff @(posedge clk) begin
         if ((S_AXIS_S2MM_tvalid) && (S_AXIS_S2MM_tready)) begin
             for (int i=0; i<8; i++) begin
-                gen_data[i] <= gen_data[i] + 1;
+                gen_data[i] <= gen_data[i] + 8;
             end
             gen_count <= gen_count - 1;
             if (0==gen_count) begin
@@ -92,7 +92,7 @@ module top(
 
     
     // generate command
-    assign S_AXIS_S2MM_CMD_tdata = 72'h00_0000_0000_0000_0000;
+    assign S_AXIS_S2MM_CMD_tdata = 72'h0a_0000_0000_0080_0100;
     always_ff @(posedge clk) begin
         if (reset) begin
             S_AXIS_S2MM_CMD_tvalid <= 1;
