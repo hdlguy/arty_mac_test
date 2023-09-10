@@ -4,6 +4,10 @@ set_max_delay 10 -datapath_only -from [all_ffs] -to [get_ports ddr3_sdram_reset_
 set_property IOSTANDARD LVCMOS33    [get_ports clkin100]
 set_property PACKAGE_PIN   E3       [get_ports clkin100]
 
+set_property IOSTANDARD LVCMOS33    [get_ports resetn]
+set_property PACKAGE_PIN   C2       [get_ports resetn]
+set_false_path -from                [get_ports resetn]
+
 #set_property IOSTANDARD LVCMOS33    [get_ports led[*]]
 #set_property PACKAGE_PIN T10        [get_ports led[3]]
 #set_property PACKAGE_PIN  T9        [get_ports led[2]]
@@ -27,10 +31,6 @@ set_property PACKAGE_PIN   E3       [get_ports clkin100]
 #set_property PACKAGE_PIN B9         [get_ports btn[2]]
 #set_property PACKAGE_PIN C9         [get_ports btn[1]]
 #set_property PACKAGE_PIN D9         [get_ports btn[0]]
-
-#set_property IOSTANDARD LVCMOS33    [get_ports resetn]
-#set_property PACKAGE_PIN   C2       [get_ports resetn]
-#set_false_path -from                [get_ports resetn]
 
 #set_property IOSTANDARD LVCMOS33    [get_ports eth_refclk]
 #set_property SLEW SLOW              [get_ports eth_refclk]

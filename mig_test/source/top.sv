@@ -1,6 +1,7 @@
 //
 module top(
     input   logic   clkin100,
+    input   logic   resetn,
     //
     output logic  [13:0]  ddr3_sdram_addr,
     output logic  [2:0]   ddr3_sdram_ba,
@@ -29,15 +30,21 @@ module top(
     logic           S_AXIS_S2MM_tready;
     logic           S_AXIS_S2MM_tvalid;
     //
-    logic           reset, resetn;
+    logic [7:0]     M_AXIS_S2MM_STS_tdata;
+    logic [0:0]     M_AXIS_S2MM_STS_tkeep;
+    logic           M_AXIS_S2MM_STS_tlast;
+    logic           M_AXIS_S2MM_STS_tready;
+    logic           M_AXIS_S2MM_STS_tvalid;    
+    //
     logic           clk100, clk;
     logic           locked;
     
     clk_wiz clk_wiz_inst (.clkout100(clk100), .clkout200(), .clkin100(clkin100), .locked(locked));
     
-    assign resetn = locked;
-    assign reset  = ~locked;
     assign clk = clk100;
+    
+    logic reset=1;
+    always_ff @(posedge clk) reset <= ~resetn;
           
     system system_i (
         .S_AXIS_S2MM_CMD_tdata  (S_AXIS_S2MM_CMD_tdata),
@@ -49,6 +56,12 @@ module top(
         .S_AXIS_S2MM_tlast      (S_AXIS_S2MM_tlast),
         .S_AXIS_S2MM_tready     (S_AXIS_S2MM_tready),
         .S_AXIS_S2MM_tvalid     (S_AXIS_S2MM_tvalid),
+        
+        .M_AXIS_S2MM_STS_tdata  (M_AXIS_S2MM_STS_tdata),
+        .M_AXIS_S2MM_STS_tkeep  (M_AXIS_S2MM_STS_tkeep),
+        .M_AXIS_S2MM_STS_tlast  (M_AXIS_S2MM_STS_tlast),
+        .M_AXIS_S2MM_STS_tready (M_AXIS_S2MM_STS_tready),
+        .M_AXIS_S2MM_STS_tvalid (M_AXIS_S2MM_STS_tvalid),
         
         .ddr3_sdram_addr        (ddr3_sdram_addr),
         .ddr3_sdram_ba          (ddr3_sdram_ba),
@@ -69,6 +82,8 @@ module top(
         .resetn                 (resetn), // active low
         .aclk                   (clk)
     );        
+    
+    assign M_AXIS_S2MM_STS_tready = 1;
 
     // generate data
     logic [7:0][7:0] gen_data = {8'h07, 8'h06, 8'h05, 8'h04, 8'h03, 8'h02, 8'h01, 8'h00};
@@ -92,7 +107,7 @@ module top(
 
     
     // generate command
-    assign S_AXIS_S2MM_CMD_tdata = 72'h0a_0000_0000_0080_0100;
+    assign S_AXIS_S2MM_CMD_tdata = 72'h0a_8000_0000_0080_1000;
     always_ff @(posedge clk) begin
         if (reset) begin
             S_AXIS_S2MM_CMD_tvalid <= 1;
@@ -102,9 +117,20 @@ module top(
     end
     
     data_ila data_ila_inst(.clk(clk), 
-        .probe0({S_AXIS_S2MM_CMD_tvalid, S_AXIS_S2MM_CMD_tready, S_AXIS_S2MM_tlast, S_AXIS_S2MM_tready,S_AXIS_S2MM_tvalid}), // 5
-        .probe1({S_AXIS_S2MM_tdata}) // 64
+        .probe0({
+            reset, S_AXIS_S2MM_CMD_tvalid, S_AXIS_S2MM_CMD_tready, 
+            S_AXIS_S2MM_tlast, S_AXIS_S2MM_tready,S_AXIS_S2MM_tvalid,
+            M_AXIS_S2MM_STS_tkeep, M_AXIS_S2MM_STS_tlast, M_AXIS_S2MM_STS_tread, M_AXIS_S2MM_STS_tvalid            
+         }), // 10
+        .probe1({S_AXIS_S2MM_tdata, M_AXIS_S2MM_STS_tdata}) // 72
     );
-            
-            
+                       
 endmodule
+
+/*
+    logic [7:0]     M_AXIS_S2MM_STS_tdata;
+    logic [0:0]     M_AXIS_S2MM_STS_tkeep;
+    logic           M_AXIS_S2MM_STS_tlast;
+    logic           M_AXIS_S2MM_STS_tready;
+    logic           M_AXIS_S2MM_STS_tvalid;    
+*/
