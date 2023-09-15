@@ -381,6 +381,9 @@ proc create_root_design { parentCell } {
    CONFIG.ASSOCIATED_BUSIF {M_AXIS_S2MM_STS:S_AXIS_S2MM:S_AXIS_S2MM_CMD} \
  ] $aclk
   set resetn [ create_bd_port -dir I -type rst resetn ]
+  set init_calib_complete [ create_bd_port -dir O init_calib_complete ]
+  set mmcm_locked [ create_bd_port -dir O mmcm_locked ]
+  set ui_clk_sync_rst [ create_bd_port -dir O -type rst ui_clk_sync_rst ]
 
   # Create instance: mig_7series_0, and set properties
   set mig_7series_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:4.2 mig_7series_0 ]
@@ -438,8 +441,11 @@ connect_bd_intf_net -intf_net [get_bd_intf_nets axi_datamover_0_M_AXI_S2MM] [get
   # Create port connections
   connect_bd_net -net aclk_0_1 [get_bd_ports aclk] [get_bd_pins smartconnect_0/aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins mig_7series_0/sys_clk_i] [get_bd_pins axi_datamover_0/m_axi_s2mm_aclk] [get_bd_pins axi_datamover_0/m_axis_s2mm_cmdsts_awclk] [get_bd_pins system_ila_0/clk]
   connect_bd_net -net ext_reset_in_0_1 [get_bd_ports resetn] [get_bd_pins proc_sys_reset_0/ext_reset_in] [get_bd_pins proc_sys_reset_1/ext_reset_in] [get_bd_pins mig_7series_0/sys_rst]
+  connect_bd_net -net mig_7series_0_init_calib_complete [get_bd_pins mig_7series_0/init_calib_complete] [get_bd_ports init_calib_complete]
+  connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins mig_7series_0/mmcm_locked] [get_bd_ports mmcm_locked]
   connect_bd_net -net mig_7series_0_ui_addn_clk_0 [get_bd_pins mig_7series_0/ui_addn_clk_0] [get_bd_pins mig_7series_0/clk_ref_i]
   connect_bd_net -net mig_7series_0_ui_clk [get_bd_pins mig_7series_0/ui_clk] [get_bd_pins smartconnect_0/aclk1] [get_bd_pins proc_sys_reset_1/slowest_sync_clk]
+  connect_bd_net -net mig_7series_0_ui_clk_sync_rst [get_bd_pins mig_7series_0/ui_clk_sync_rst] [get_bd_ports ui_clk_sync_rst]
   connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins proc_sys_reset_0/peripheral_aresetn] [get_bd_pins smartconnect_0/aresetn] [get_bd_pins axi_datamover_0/m_axi_s2mm_aresetn] [get_bd_pins axi_datamover_0/m_axis_s2mm_cmdsts_aresetn] [get_bd_pins system_ila_0/resetn]
   connect_bd_net -net proc_sys_reset_1_peripheral_aresetn [get_bd_pins proc_sys_reset_1/peripheral_aresetn] [get_bd_pins mig_7series_0/aresetn]
 

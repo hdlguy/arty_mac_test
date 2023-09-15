@@ -38,6 +38,7 @@ module top(
     //
     logic           clk100, clk;
     logic           locked;
+    logic           init_calib_complete, mmcm_locked, ui_clk_sync_rst, init_calib_complete_q=0, mmcm_locked_q=0;
     
     clk_wiz clk_wiz_inst (.clkout100(clk100), .clkout200(), .clkin100(clkin100), .locked(locked));
     
@@ -62,7 +63,7 @@ module top(
         .M_AXIS_S2MM_STS_tlast  (M_AXIS_S2MM_STS_tlast),
         .M_AXIS_S2MM_STS_tready (M_AXIS_S2MM_STS_tready),
         .M_AXIS_S2MM_STS_tvalid (M_AXIS_S2MM_STS_tvalid),
-        
+        //
         .ddr3_sdram_addr        (ddr3_sdram_addr),
         .ddr3_sdram_ba          (ddr3_sdram_ba),
         .ddr3_sdram_cas_n       (ddr3_sdram_cas_n),
@@ -78,9 +79,13 @@ module top(
         .ddr3_sdram_ras_n       (ddr3_sdram_ras_n),
         .ddr3_sdram_reset_n     (ddr3_sdram_reset_n),
         .ddr3_sdram_we_n        (ddr3_sdram_we_n),
-        
+        //
         .resetn                 (resetn), // active low
-        .aclk                   (clk)
+        .aclk                   (clk),
+        //
+        .init_calib_complete    (init_calib_complete),
+        .mmcm_locked            (mmcm_locked),
+        .ui_clk_sync_rst        (ui_clk_sync_rst)
     );        
     
     assign M_AXIS_S2MM_STS_tready = 1;
@@ -106,26 +111,31 @@ module top(
     assign S_AXIS_S2MM_tdata = gen_data;
 
     
-    // generate command
+    // generate command, wait for mig to calibrate
     assign S_AXIS_S2MM_CMD_tdata = 72'h0a_8000_0000_0080_1000;
     always_ff @(posedge clk) begin
-        if (reset) begin
-            S_AXIS_S2MM_CMD_tvalid <= 1;
+        init_calib_complete_q <= init_calib_complete;
+        mmcm_locked_q <= mmcm_locked;
+        if ((~init_calib_complete_q) || (~mmcm_locked_q)) begin
+            S_AXIS_S2MM_CMD_tvalid <= 0;
         end else begin
-            if (S_AXIS_S2MM_CMD_tready) S_AXIS_S2MM_CMD_tvalid <= 0;
+            S_AXIS_S2MM_CMD_tvalid <= 1;
         end
     end
     
-    data_ila data_ila_inst(.clk(clk), 
+    data_ila data_ila_inst(
+        .clk(clk), 
         .probe0({
             reset, S_AXIS_S2MM_CMD_tvalid, S_AXIS_S2MM_CMD_tready, 
             S_AXIS_S2MM_tlast, S_AXIS_S2MM_tready,S_AXIS_S2MM_tvalid,
-            M_AXIS_S2MM_STS_tkeep, M_AXIS_S2MM_STS_tlast, M_AXIS_S2MM_STS_tread, M_AXIS_S2MM_STS_tvalid            
-         }), // 10
+            M_AXIS_S2MM_STS_tkeep, M_AXIS_S2MM_STS_tlast, M_AXIS_S2MM_STS_tread, M_AXIS_S2MM_STS_tvalid,
+            init_calib_complete_q, mmcm_locked_q, ui_clk_sync_rst            
+         }), // 13
         .probe1({S_AXIS_S2MM_tdata, M_AXIS_S2MM_STS_tdata}) // 72
     );
                        
 endmodule
+
 
 /*
     logic [7:0]     M_AXIS_S2MM_STS_tdata;
