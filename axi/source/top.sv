@@ -13,7 +13,7 @@ module top(
     logic           bram_rst;
     logic[3:0]      bram_we;
     
-    logic [11:0]    s_axi4_araddr;
+    logic [31:0]    s_axi4_araddr;
     logic [1:0]     s_axi4_arburst;
     logic [3:0]     s_axi4_arcache;
     logic [0:0]     s_axi4_arid;
@@ -23,7 +23,7 @@ module top(
     logic           s_axi4_arready;
     logic [2:0]     s_axi4_arsize;
     logic           s_axi4_arvalid;
-    logic [11:0]    s_axi4_awaddr;
+    logic [31:0]    s_axi4_awaddr;
     logic [1:0]     s_axi4_awburst;
     logic [3:0]     s_axi4_awcache;
     logic [0:0]     s_axi4_awid;
@@ -48,64 +48,66 @@ module top(
     logic           s_axi4_wready;
     logic [3:0]     s_axi4_wstrb;
     logic           s_axi4_wvalid;
+    logic[3:0]      s_axi4_arqos, s_axi4_awqos;
     
+    logic init, axi_aclk, axi_aresetn;
+
     // axi4 master
     axi4_master axi_master_inst (
-    	.m00_axi_init_axi_txn(),
-		.m00_axi_txn_done(),
-		.m00_axi_error(),
+    	.m00_axi_init_axi_txn   (init),
+		.m00_axi_txn_done       (),
+		.m00_axi_error          (),
         //
-		.m00_axi_aclk(),
-		.m00_axi_aresetn(),
-        .m00_axi_awid(),
-        .m00_axi_awaddr(),
-        .m00_axi_awlen(),
-        .m00_axi_awsize(),
-        .m00_axi_awburst(),
-		.m00_axi_awlock(),
-        .m00_axi_awcache(),
-        .m00_axi_awprot(),
-        .m00_axi_awqos(),
-        .m00_axi_awuser(),
-		.m00_axi_awvalid(),
-		.m00_axi_awready(),
-        .m00_axi_wdata(),
-        .m00_axi_wstrb(),
-		.m00_axi_wlast(),
-        .m00_axi_wuser(),
-		.m00_axi_wvalid(),
-		.m00_axi_wready(),
-        .m00_axi_bid(),
-        .m00_axi_bresp(),
-        .m00_axi_buser(),
-		.m00_axi_bvalid(),
-		.m00_axi_bready(),
-        .m00_axi_arid(),
-        .m00_axi_araddr(),
-        .m00_axi_arlen(),
-        .m00_axi_arsize(),
-        .m00_axi_arburst(),
-		.m00_axi_arlock(),
-        .m00_axi_arcache(),
-        .m00_axi_arprot(),
-        .m00_axi_arqos(),
-        .m00_axi_aruser(),
-		.m00_axi_arvalid(),
-		.m00_axi_arready(),
-        .m00_axi_rid(),
-        .m00_axi_rdata(),
-        .m00_axi_rresp(),
-		.m00_axi_rlast(),
-        .m00_axi_ruser(),
-		.m00_axi_rvalid(),
-		.m00_axi_rready()
+		.m00_axi_aclk           (axi_aclk),
+		.m00_axi_aresetn        (axi_aresetn),
+        //
+        .m00_axi_awid           (s_axi4_awid),
+        .m00_axi_awaddr         (s_axi4_awaddr),
+        .m00_axi_awlen          (s_axi4_awlen),
+        .m00_axi_awsize         (s_axi4_awsize),
+        .m00_axi_awburst        (s_axi4_awburst),
+		.m00_axi_awlock         (s_axi4_awlock),
+        .m00_axi_awcache        (s_axi4_awcache),
+        .m00_axi_awprot         (s_axi4_awprot),
+        .m00_axi_awqos          (),
+        .m00_axi_awuser         (),
+		.m00_axi_awvalid        (s_axi4_awvalid),
+		.m00_axi_awready        (s_axi4_awready),
+        .m00_axi_wdata          (s_axi4_wdata),
+        .m00_axi_wstrb          (s_axi4_wstrb),
+		.m00_axi_wlast          (s_axi4_wlast),
+        .m00_axi_wuser          (s_axi4_wuser),
+		.m00_axi_wvalid         (s_axi4_wvalid),
+		.m00_axi_wready         (s_axi4_wready),
+        .m00_axi_bid            (s_axi4_bid),
+        .m00_axi_bresp          (s_axi4_bresp),
+        .m00_axi_buser          (0),
+		.m00_axi_bvalid         (s_axi4_bvalid),
+		.m00_axi_bready         (s_axi4_bready),
+        .m00_axi_arid           (s_axi4_arid),
+        .m00_axi_araddr         (s_axi4_araddr),
+        .m00_axi_arlen          (s_axi4_arlen),
+        .m00_axi_arsize         (s_axi4_arsize),
+        .m00_axi_arburst        (s_axi4_arburst),
+		.m00_axi_arlock         (s_axi4_arlock),
+        .m00_axi_arcache        (s_axi4_arcache),
+        .m00_axi_arprot         (s_axi4_arprot),
+        .m00_axi_arqos          (),
+        .m00_axi_aruser         (),
+		.m00_axi_arvalid        (s_axi4_arvalid),
+		.m00_axi_arready        (s_axi4_arready),
+        .m00_axi_rid            (s_axi4_rid),
+        .m00_axi_rdata          (s_axi4_rdata),
+        .m00_axi_rresp          (s_axi4_rresp),
+		.m00_axi_rlast          (s_axi4_rlast),
+        .m00_axi_ruser          (0),
+		.m00_axi_rvalid         (s_axi4_rvalid),
+		.m00_axi_rready         (s_axi4_rready)
     );    
     
   
-    logic init, axi_aclk, axi_aresetn;
     system system_i(
         .clk_in         (clkin100),
-        .init           (init),
         .resetn         (resetn),
         .axi_aclk       (axi_aclk),
         .axi_aresetn    (axi_aresetn),
