@@ -44,8 +44,8 @@ set_property synth_checkpoint_mode None    [get_files ./proj.srcs/sources_1/bd/s
 #read_verilog -sv ../source/udp_stack/arp_rx/arp_rx.sv
 #read_verilog -sv ../source/udp_stack/arp_tx/arp_tx.sv
 
-read_verilog -sv ../source/axi_master/axi4_master_master_full_v1_0_M00_AXI.v  
-read_verilog -sv ../source/axi_master/axi4_master.v
+read_verilog -sv ../source/axi4_master/axi4_master_master_full_v1_0_M00_AXI.v  
+read_verilog -sv ../source/axi4_master/axi4_master.v
 
 read_verilog -sv ../source/top.sv
 
