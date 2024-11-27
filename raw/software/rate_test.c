@@ -49,7 +49,7 @@ int main ()
         total_rxlen += buflen;
 
         // occasionally compute the rx throughput.
-        if (i%(1024*32) == 0) {
+        if (i%(1024*16) == 0) {
 
             t1 = t2;
             clock_gettime(CLOCK_MONOTONIC, &t2);
