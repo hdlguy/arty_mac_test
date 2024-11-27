@@ -8,7 +8,7 @@ set_property part xc7a35ticsg324-1L [current_project]
 set_property target_language verilog [current_project]
 set_property default_lib work [current_project]
 
-#read_ip ../source/temac_core/temac_core.xci
+read_ip ../source/temac_core/temac_core.xci
 read_ip ../source/clk_wiz/clk_wiz.xci
 read_ip ../source/mac_fifo/mac_fifo.xci
 read_ip ../source/eth_ila/eth_ila.xci
