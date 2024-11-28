@@ -2,8 +2,9 @@
 close_project -quiet
 file delete -force proj.xpr *.os *.jou *.log proj.srcs proj.cache proj.runs
 #
-create_project -force proj 
-set_property part xc7a35ticsg324-1L [current_project]
+create_project -part xczu2cg-sfvc784-1-e -force proj
+#create_project -force proj 
+#set_property part xc7a35ticsg324-1L [current_project]
 #set_property board_part digilentinc.com:arty-a7-35:part0:1.0 [current_project]
 set_property target_language verilog [current_project]
 set_property default_lib work [current_project]
@@ -29,6 +30,8 @@ read_verilog -sv ../source/frame_rx/frame_rx.sv
 read_verilog -sv ../source/top.sv
 
 read_xdc ../source/top.xdc  
+
+set_property top top [current_fileset]
 
 close_project
 
