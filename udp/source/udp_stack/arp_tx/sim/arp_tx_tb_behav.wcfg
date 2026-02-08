@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="arp_tx_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="arp_tx_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="22.730001 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="293"></NameColumnWidth>
+      <ValueColumnWidth column_width="83"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="35" />
+   <wave_markers>
+      <marker label="" time="924000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/arp_tx_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/arp_dv_in">
+      <obj_property name="ElementShortName">arp_dv_in</obj_property>
+      <obj_property name="ObjectShortName">arp_dv_in</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/remote_mac">
+      <obj_property name="ElementShortName">remote_mac[47:0]</obj_property>
+      <obj_property name="ObjectShortName">remote_mac[47:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/remote_ip">
+      <obj_property name="ElementShortName">remote_ip[31:0]</obj_property>
+      <obj_property name="ObjectShortName">remote_ip[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/local_mac">
+      <obj_property name="ElementShortName">local_mac[47:0]</obj_property>
+      <obj_property name="ObjectShortName">local_mac[47:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/local_ip">
+      <obj_property name="ElementShortName">local_ip[31:0]</obj_property>
+      <obj_property name="ObjectShortName">local_ip[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tvalid">
+      <obj_property name="ElementShortName">tx_fifo_tvalid</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tready">
+      <obj_property name="ElementShortName">tx_fifo_tready</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/tx_fifo_tdata">
+      <obj_property name="ElementShortName">tx_fifo_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tlast">
+      <obj_property name="ElementShortName">tx_fifo_tlast</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/tx_fifo_tuser">
+      <obj_property name="ElementShortName">tx_fifo_tuser</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tuser</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/udp_tvalid">
+      <obj_property name="ElementShortName">udp_tvalid</obj_property>
+      <obj_property name="ObjectShortName">udp_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/udp_tready">
+      <obj_property name="ElementShortName">udp_tready</obj_property>
+      <obj_property name="ObjectShortName">udp_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/udp_tdata">
+      <obj_property name="ElementShortName">udp_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">udp_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/udp_tlast">
+      <obj_property name="ElementShortName">udp_tlast</obj_property>
+      <obj_property name="ObjectShortName">udp_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/udp_tuser">
+      <obj_property name="ElementShortName">udp_tuser</obj_property>
+      <obj_property name="ObjectShortName">udp_tuser</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider16" type="divider">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/state">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/byte_count">
+      <obj_property name="ElementShortName">byte_count[7:0]</obj_property>
+      <obj_property name="ObjectShortName">byte_count[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/tx_fifo_tvalid">
+      <obj_property name="ElementShortName">tx_fifo_tvalid</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/tx_fifo_tready">
+      <obj_property name="ElementShortName">tx_fifo_tready</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/tx_fifo_tdata">
+      <obj_property name="ElementShortName">tx_fifo_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/tx_fifo_tlast">
+      <obj_property name="ElementShortName">tx_fifo_tlast</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/tx_fifo_tuser">
+      <obj_property name="ElementShortName">tx_fifo_tuser</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_tuser</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/remote_mac">
+      <obj_property name="ElementShortName">remote_mac[47:0]</obj_property>
+      <obj_property name="ObjectShortName">remote_mac[47:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/remote_ip">
+      <obj_property name="ElementShortName">remote_ip[31:0]</obj_property>
+      <obj_property name="ObjectShortName">remote_ip[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/next_state">
+      <obj_property name="ElementShortName">next_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/local_mac">
+      <obj_property name="ElementShortName">local_mac[47:0]</obj_property>
+      <obj_property name="ObjectShortName">local_mac[47:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/arp_tx_tb/uut/local_ip">
+      <obj_property name="ElementShortName">local_ip[31:0]</obj_property>
+      <obj_property name="ObjectShortName">local_ip[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/arp_complete">
+      <obj_property name="ElementShortName">arp_complete</obj_property>
+      <obj_property name="ObjectShortName">arp_complete</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/arp_pending">
+      <obj_property name="ElementShortName">arp_pending</obj_property>
+      <obj_property name="ObjectShortName">arp_pending</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/arp_active">
+      <obj_property name="ElementShortName">arp_active</obj_property>
+      <obj_property name="ObjectShortName">arp_active</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/header_active">
+      <obj_property name="ElementShortName">header_active</obj_property>
+      <obj_property name="ObjectShortName">header_active</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/arp_tx_tb/uut/payload_active">
+      <obj_property name="ElementShortName">payload_active</obj_property>
+      <obj_property name="ObjectShortName">payload_active</obj_property>
+   </wvobject>
+</wave_config>

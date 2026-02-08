@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="totlen_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="totlen_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="140.121000001 ms"></ZoomEndTime>
+      <Cursor1Time time="0.000000000 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="292"></NameColumnWidth>
+      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="32" />
+   <wave_markers>
+      <marker label="" time="995100" />
+      <marker label="" time="139894835100" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/totlen_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/s_tvalid">
+      <obj_property name="ElementShortName">s_tvalid</obj_property>
+      <obj_property name="ObjectShortName">s_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/s_tready">
+      <obj_property name="ElementShortName">s_tready</obj_property>
+      <obj_property name="ObjectShortName">s_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/s_tdata">
+      <obj_property name="ElementShortName">s_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/s_tlast">
+      <obj_property name="ElementShortName">s_tlast</obj_property>
+      <obj_property name="ObjectShortName">s_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/m_tvalid">
+      <obj_property name="ElementShortName">m_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/m_tready">
+      <obj_property name="ElementShortName">m_tready</obj_property>
+      <obj_property name="ObjectShortName">m_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/m_tdata">
+      <obj_property name="ElementShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/m_tlast">
+      <obj_property name="ElementShortName">m_tlast</obj_property>
+      <obj_property name="ObjectShortName">m_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/length_tvalid">
+      <obj_property name="ElementShortName">length_tvalid</obj_property>
+      <obj_property name="ObjectShortName">length_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/length_tready">
+      <obj_property name="ElementShortName">length_tready</obj_property>
+      <obj_property name="ObjectShortName">length_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/length_tdata">
+      <obj_property name="ElementShortName">length_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">length_tdata[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/state">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/next_state">
+      <obj_property name="ElementShortName">next_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider16" type="divider">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/s_tvalid">
+      <obj_property name="ElementShortName">s_tvalid</obj_property>
+      <obj_property name="ObjectShortName">s_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/s_tready">
+      <obj_property name="ElementShortName">s_tready</obj_property>
+      <obj_property name="ObjectShortName">s_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/uut/s_tdata">
+      <obj_property name="ElementShortName">s_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/s_tlast">
+      <obj_property name="ElementShortName">s_tlast</obj_property>
+      <obj_property name="ObjectShortName">s_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/m_tvalid">
+      <obj_property name="ElementShortName">m_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/m_tready">
+      <obj_property name="ElementShortName">m_tready</obj_property>
+      <obj_property name="ObjectShortName">m_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/uut/m_tdata">
+      <obj_property name="ElementShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/m_tlast">
+      <obj_property name="ElementShortName">m_tlast</obj_property>
+      <obj_property name="ObjectShortName">m_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/length_tvalid">
+      <obj_property name="ElementShortName">length_tvalid</obj_property>
+      <obj_property name="ObjectShortName">length_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/length_tready">
+      <obj_property name="ElementShortName">length_tready</obj_property>
+      <obj_property name="ObjectShortName">length_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/uut/length_tdata">
+      <obj_property name="ElementShortName">length_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">length_tdata[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/count_tvalid">
+      <obj_property name="ElementShortName">count_tvalid</obj_property>
+      <obj_property name="ObjectShortName">count_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/totlen_tb/uut/count_tready">
+      <obj_property name="ElementShortName">count_tready</obj_property>
+      <obj_property name="ObjectShortName">count_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/uut/count_tdata">
+      <obj_property name="ElementShortName">count_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">count_tdata[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/totlen_tb/uut/count">
+      <obj_property name="ElementShortName">count[15:0]</obj_property>
+      <obj_property name="ObjectShortName">count[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider65" type="divider">
+      <obj_property name="label">data fifo</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+</wave_config>
