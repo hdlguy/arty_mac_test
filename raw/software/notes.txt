@@ -1,0 +1,24 @@
+- To find the name of your Ethernet interfaces:
+
+ip address
+
+- To set the IP address of the interface to use for testing:
+
+sudo ifconfig enx94103eb7e201 16.0.0.200 netmask 255.255.255.0
+
+- To force ARP cycles on the interface:
+
+sudo arping -W 2 -i enx94103eb7e201 16.0.0.128
+
+- To send send text strings on a UDP socket:
+
+netcat -u 16.0.0.128 1234
+
+- To enable jumbo frames
+
+sudo ip link set enx94103eb7e201 mtu 9000
+
+- To check MTU size
+
+ip link show | grep mtu
+

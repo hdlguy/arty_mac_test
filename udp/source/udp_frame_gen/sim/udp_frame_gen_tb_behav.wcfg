@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="udp_frame_gen_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="udp_frame_gen_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="101.000000 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="293"></NameColumnWidth>
+      <ValueColumnWidth column_width="128"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="21" />
+   <wave_markers>
+      <marker label="" time="42055000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/enable">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/m_tvalid">
+      <obj_property name="ElementShortName">m_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/m_tready">
+      <obj_property name="ElementShortName">m_tready</obj_property>
+      <obj_property name="ObjectShortName">m_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_frame_gen_tb/m_tdata">
+      <obj_property name="ElementShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/m_tlast">
+      <obj_property name="ElementShortName">m_tlast</obj_property>
+      <obj_property name="ObjectShortName">m_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/m_tuser">
+      <obj_property name="ElementShortName">m_tuser</obj_property>
+      <obj_property name="ObjectShortName">m_tuser</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider16" type="divider">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/enable">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_frame_gen_tb/uut/m_tdata">
+      <obj_property name="ElementShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/m_tvalid">
+      <obj_property name="ElementShortName">m_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/m_tlast">
+      <obj_property name="ElementShortName">m_tlast</obj_property>
+      <obj_property name="ObjectShortName">m_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/m_tuser">
+      <obj_property name="ElementShortName">m_tuser</obj_property>
+      <obj_property name="ObjectShortName">m_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/m_tready">
+      <obj_property name="ElementShortName">m_tready</obj_property>
+      <obj_property name="ObjectShortName">m_tready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/enable_q">
+      <obj_property name="ElementShortName">enable_q</obj_property>
+      <obj_property name="ObjectShortName">enable_q</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_frame_gen_tb/uut/count">
+      <obj_property name="ElementShortName">count[15:0]</obj_property>
+      <obj_property name="ObjectShortName">count[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/inc_count">
+      <obj_property name="ElementShortName">inc_count</obj_property>
+      <obj_property name="ObjectShortName">inc_count</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/udp_frame_gen_tb/uut/rst_count">
+      <obj_property name="ElementShortName">rst_count</obj_property>
+      <obj_property name="ObjectShortName">rst_count</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_frame_gen_tb/uut/state">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/udp_frame_gen_tb/uut/next_state">
+      <obj_property name="ElementShortName">next_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[3:0]</obj_property>
+   </wvobject>
+</wave_config>

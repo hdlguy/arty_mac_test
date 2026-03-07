@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="frame_rx_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="frame_rx_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="22.280001 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="293"></NameColumnWidth>
+      <ValueColumnWidth column_width="128"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="34" />
+   <wave_markers>
+      <marker label="" time="924000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/frame_rx_tb/aclk">
+      <obj_property name="ElementShortName">aclk</obj_property>
+      <obj_property name="ObjectShortName">aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/fifo_tvalid">
+      <obj_property name="ElementShortName">fifo_tvalid</obj_property>
+      <obj_property name="ObjectShortName">fifo_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/fifo_tuser">
+      <obj_property name="ElementShortName">fifo_tuser</obj_property>
+      <obj_property name="ObjectShortName">fifo_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/fifo_tready">
+      <obj_property name="ElementShortName">fifo_tready</obj_property>
+      <obj_property name="ObjectShortName">fifo_tready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/fifo_tlast">
+      <obj_property name="ElementShortName">fifo_tlast</obj_property>
+      <obj_property name="ObjectShortName">fifo_tlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/fifo_tdata">
+      <obj_property name="ElementShortName">fifo_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/fifo_full">
+      <obj_property name="ElementShortName">fifo_full</obj_property>
+      <obj_property name="ObjectShortName">fifo_full</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/fifo_empty">
+      <obj_property name="ElementShortName">fifo_empty</obj_property>
+      <obj_property name="ObjectShortName">fifo_empty</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/rx_fifo_tvalid">
+      <obj_property name="ElementShortName">rx_fifo_tvalid</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/rx_fifo_tready">
+      <obj_property name="ElementShortName">rx_fifo_tready</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/rx_fifo_tdata">
+      <obj_property name="ElementShortName">rx_fifo_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/rx_fifo_tlast">
+      <obj_property name="ElementShortName">rx_fifo_tlast</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/rx_fifo_tuser">
+      <obj_property name="ElementShortName">rx_fifo_tuser</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/dv_out">
+      <obj_property name="ElementShortName">dv_out</obj_property>
+      <obj_property name="ObjectShortName">dv_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/wr_val">
+      <obj_property name="ElementShortName">wr_val[15:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_val[15:0][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="divider16" type="divider">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/rx_fifo_tvalid">
+      <obj_property name="ElementShortName">rx_fifo_tvalid</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/rx_fifo_tready">
+      <obj_property name="ElementShortName">rx_fifo_tready</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/rx_fifo_tlast">
+      <obj_property name="ElementShortName">rx_fifo_tlast</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/rx_fifo_tuser">
+      <obj_property name="ElementShortName">rx_fifo_tuser</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tuser</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/uut/rx_fifo_tdata">
+      <obj_property name="ElementShortName">rx_fifo_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/dv_in">
+      <obj_property name="ElementShortName">dv_in</obj_property>
+      <obj_property name="ObjectShortName">dv_in</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/uut/byte_count">
+      <obj_property name="ElementShortName">byte_count[15:0]</obj_property>
+      <obj_property name="ObjectShortName">byte_count[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/uut/byte_addr">
+      <obj_property name="ElementShortName">byte_addr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">byte_addr[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/uut/tdata_q">
+      <obj_property name="ElementShortName">tdata_q[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tdata_q[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/tlast_q">
+      <obj_property name="ElementShortName">tlast_q</obj_property>
+      <obj_property name="ObjectShortName">tlast_q</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/dv_out">
+      <obj_property name="ElementShortName">dv_out</obj_property>
+      <obj_property name="ObjectShortName">dv_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/uut/wr_byte">
+      <obj_property name="ElementShortName">wr_byte[63:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_byte[63:0][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/dv_in_q">
+      <obj_property name="ElementShortName">dv_in_q</obj_property>
+      <obj_property name="ObjectShortName">dv_in_q</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/uut/sync_word">
+      <obj_property name="ElementShortName">sync_word[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sync_word[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/frame_rx_tb/uut/tdata_q">
+      <obj_property name="ElementShortName">tdata_q[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tdata_q[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/frame_rx_tb/uut/pre_dv_out">
+      <obj_property name="ElementShortName">pre_dv_out</obj_property>
+      <obj_property name="ObjectShortName">pre_dv_out</obj_property>
+   </wvobject>
+</wave_config>
