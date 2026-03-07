@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="mac_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="mac_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="278.645 ns"></ZoomEndTime>
+      <Cursor1Time time="0.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="203"></NameColumnWidth>
+      <ValueColumnWidth column_width="94"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="29" />
+   <wvobject type="logic" fp_name="/mac_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/reset">
+      <obj_property name="ElementShortName">reset[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reset[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_reset">
+      <obj_property name="ElementShortName">rx_reset[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_reset[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_mac_aclk">
+      <obj_property name="ElementShortName">tx_mac_aclk[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_mac_aclk[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_reset">
+      <obj_property name="ElementShortName">tx_reset[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_reset[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_axis_tdata">
+      <obj_property name="ElementShortName">tx_axis_tdata[1:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tdata[1:0][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_axis_tvalid">
+      <obj_property name="ElementShortName">tx_axis_tvalid[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tvalid[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_axis_tready">
+      <obj_property name="ElementShortName">tx_axis_tready[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tready[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_axis_tlast">
+      <obj_property name="ElementShortName">tx_axis_tlast[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tlast[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_axis_tuser">
+      <obj_property name="ElementShortName">tx_axis_tuser[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tuser[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_mac_aclk">
+      <obj_property name="ElementShortName">rx_mac_aclk[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_mac_aclk[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_axis_tdata">
+      <obj_property name="ElementShortName">rx_axis_tdata[1:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tdata[1:0][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_axis_tvalid">
+      <obj_property name="ElementShortName">rx_axis_tvalid[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tvalid[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_axis_tlast">
+      <obj_property name="ElementShortName">rx_axis_tlast[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tlast[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_axis_tuser">
+      <obj_property name="ElementShortName">rx_axis_tuser[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tuser[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_rx_clk">
+      <obj_property name="ElementShortName">mii_rx_clk[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_rx_clk[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_rxd">
+      <obj_property name="ElementShortName">mii_rxd[1:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_rxd[1:0][3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_rx_dv">
+      <obj_property name="ElementShortName">mii_rx_dv[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_rx_dv[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_rx_er">
+      <obj_property name="ElementShortName">mii_rx_er[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_rx_er[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_tx_clk">
+      <obj_property name="ElementShortName">mii_tx_clk[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_tx_clk[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_txd">
+      <obj_property name="ElementShortName">mii_txd[1:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_txd[1:0][3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_tx_en">
+      <obj_property name="ElementShortName">mii_tx_en[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_tx_en[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/mii_tx_er">
+      <obj_property name="ElementShortName">mii_tx_er[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mii_tx_er[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_start_packet">
+      <obj_property name="ElementShortName">tx_start_packet[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_start_packet[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/tx_error_underflow">
+      <obj_property name="ElementShortName">tx_error_underflow[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_error_underflow[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_start_packet">
+      <obj_property name="ElementShortName">rx_start_packet[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_start_packet[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_error_bad_frame">
+      <obj_property name="ElementShortName">rx_error_bad_frame[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_error_bad_frame[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/mac_tb/rx_error_bad_fcs">
+      <obj_property name="ElementShortName">rx_error_bad_fcs[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_error_bad_fcs[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/mac_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+</wave_config>
